@@ -145,31 +145,120 @@
   const track = $("[data-track]");
 
   if (track) {
-    const cards = $$("[data-clause]", track);
-    const now = $("[data-clause-now]");
-    const fill = $("[data-clause-fill]");
+    const cards = $$("[data-policy]", track);
+    const now = $("[data-policy-now]");
+    const fill = $("[data-policy-fill]");
+    const steps = $$("[data-step]");
 
-    const paintPosition = () => {
-      const max = track.scrollWidth - track.clientWidth;
-      if (fill) fill.style.width = `${20 + (max > 0 ? track.scrollLeft / max : 0) * 80}%`;
+    const maxScroll = () => Math.max(0, track.scrollWidth - track.clientWidth);
 
-      if (!now) return;
-      /* Measure against the viewport, not the scroll origin: the track is
-         padded to the page gutter, so offsetLeft is offset by that padding. */
-      const edge = track.getBoundingClientRect().left + track.clientWidth * 0.3;
+    /* Distance from one card's left edge to the next, gap included. */
+    const cardStep = () => {
+      if (cards.length < 2) return cards[0]?.getBoundingClientRect().width || 0;
+      return cards[1].getBoundingClientRect().left - cards[0].getBoundingClientRect().left;
+    };
+
+    /* The deck snaps each card's left edge to the scroll padding, so the
+       current card is the last one whose edge has reached that line. At the
+       far end the tail cannot align, so fall back to the nearest edge. */
+    const currentIndex = () => {
+      const max = maxScroll();
+      if (max <= 0) return 0;
+      if (track.scrollLeft >= max - 4) return cards.length - 1;
+      const padLine =
+        track.getBoundingClientRect().left +
+        (parseFloat(getComputedStyle(track).scrollPaddingInlineStart) || 0);
       let index = 0;
       cards.forEach((card, i) => {
-        if (card.getBoundingClientRect().left <= edge) index = i;
+        if (card.getBoundingClientRect().left <= padLine + 8) index = i;
       });
-      /* At the far end the last card never reaches the edge, so pin the count
-         to the end rather than stranding it one short. */
-      if (max > 0 && track.scrollLeft >= max - 4) index = cards.length - 1;
-      now.textContent = String(index + 1).padStart(2, "0");
+      return index;
+    };
+
+    const paintSteps = () => {
+      const at = maxScroll();
+      steps.forEach((btn) => {
+        btn.disabled = Number(btn.dataset.step) < 0 ? track.scrollLeft <= 4 : track.scrollLeft >= at - 4;
+      });
+    };
+
+    const stepBy = (cards_) => {
+      const to = track.scrollLeft + cards_ * cardStep();
+      track.scrollTo({
+        left: clamp(to, 0, maxScroll()),
+        behavior: reduce.matches ? "auto" : "smooth",
+      });
+    };
+
+    steps.forEach((btn) =>
+      btn.addEventListener("click", () => stepBy(Number(btn.dataset.step)))
+    );
+
+    const paintPosition = () => {
+      const max = maxScroll();
+      if (fill) fill.style.width = `${20 + (max > 0 ? track.scrollLeft / max : 0) * 80}%`;
+      if (now) now.textContent = String(currentIndex() + 1).padStart(2, "0");
+      paintSteps();
     };
 
     track.addEventListener("scroll", paintPosition, { passive: true });
     window.addEventListener("resize", paintPosition);
     paintPosition();
+
+    /* Snap on idle rather than in CSS. A `scroll-snap-type` axis captures a
+       vertical wheel and settles it sideways before the page may scroll, which
+       is what made the deck feel like it hijacked the page. Here the deck only
+       settles itself when it has actually been moved sideways and then stops. */
+    let settleTimer;
+    let horizontal = false;
+
+    /* Settle waits for the gesture to actually stop. A trackpad keeps firing
+       scroll events for its whole momentum tail, so a short delay would snap
+       back between events and swallow the travel. */
+    const settleSoon = () => {
+      window.clearTimeout(settleTimer);
+      settleTimer = window.setTimeout(() => {
+        const step = cardStep();
+        if (!step || track.classList.contains("is-dragging")) return;
+        const to = clamp(Math.round(track.scrollLeft / step) * step, 0, maxScroll());
+        if (Math.abs(to - track.scrollLeft) < 2) return;
+        track.scrollTo({ left: to, behavior: reduce.matches ? "auto" : "smooth" });
+      }, 320);
+    };
+
+    track.addEventListener("scroll", () => {
+      if (horizontal) settleSoon();
+    }, { passive: true });
+
+    /* Only a gesture with more sideways than vertical travel counts as using
+       the deck. A vertical wheel or a vertical swipe leaves it alone. */
+    track.addEventListener(
+      "wheel",
+      (event) => {
+        if (Math.abs(event.deltaX) > Math.abs(event.deltaY)) {
+          horizontal = true;
+          settleSoon();
+        }
+      },
+      { passive: true }
+    );
+
+    let touchStart = null;
+    track.addEventListener("touchstart", (event) => {
+      const t = event.touches[0];
+      touchStart = { x: t.clientX, y: t.clientY };
+    }, { passive: true });
+
+    track.addEventListener("touchmove", (event) => {
+      if (!touchStart) return;
+      const t = event.touches[0];
+      if (Math.abs(t.clientX - touchStart.x) > Math.abs(t.clientY - touchStart.y)) horizontal = true;
+    }, { passive: true });
+
+    track.addEventListener("touchend", () => {
+      touchStart = null;
+      horizontal = false;
+    }, { passive: true });
 
     /* Pointer drag for mice. Touch keeps native panning, which is better. */
     let drag = null;
@@ -200,17 +289,10 @@
       drag = null;
       if (track.classList.contains("is-dragging")) {
         track.classList.remove("is-dragging");
-        const origin = track.getBoundingClientRect().left - track.scrollLeft;
-        const nearest = cards.reduce((best, card) =>
-          Math.abs(card.getBoundingClientRect().left - track.getBoundingClientRect().left) <
-          Math.abs(best.getBoundingClientRect().left - track.getBoundingClientRect().left)
-            ? card
-            : best
-        );
-        track.scrollTo({
-          left: nearest.getBoundingClientRect().left - origin,
-          behavior: reduce.matches ? "auto" : "smooth",
-        });
+        /* Settle on the nearest card boundary, never past the end. */
+        const step = cardStep();
+        const to = Math.round(track.scrollLeft / step) * step;
+        track.scrollTo({ left: clamp(to, 0, maxScroll()), behavior: reduce.matches ? "auto" : "smooth" });
       }
     };
 
@@ -233,29 +315,29 @@
     /* Arrow keys move focus card by card, but only from inside the deck. */
     track.addEventListener("keydown", (event) => {
       if (event.key !== "ArrowRight" && event.key !== "ArrowLeft") return;
-      const from = document.activeElement?.closest("[data-clause]");
+      const from = document.activeElement?.closest("[data-policy]");
       if (!from) return;
       event.preventDefault();
-      const next = cards[clamp(cards.indexOf(from) + (event.key === "ArrowRight" ? 1 : -1), 0, cards.length - 1)];
-      next.scrollIntoView({
-        behavior: reduce.matches ? "auto" : "smooth",
-        inline: "start",
-        block: "nearest",
-      });
-      next.querySelector(".clause__btn")?.focus({ preventScroll: true });
+      /* Step by delta rather than scrollIntoView: a card sitting inside the
+         scroll padding already counts as in view, so scrollIntoView does
+         nothing at the first card. */
+      const dir = event.key === "ArrowRight" ? 1 : -1;
+      stepBy(dir);
+      const next = cards[clamp(currentIndex() + dir, 0, cards.length - 1)];
+      next.querySelector(".policy__btn")?.focus({ preventScroll: true });
     });
 
-    /* Each clause opens in place: the card grows, the deck does not jump. */
+    /* Each policy opens in place: the card grows, the deck does not jump. */
     cards.forEach((card) => {
-      const btn = $(".clause__btn", card);
-      const panel = $(".clause__panel", card);
+      const btn = $(".policy__btn", card);
+      const panel = $(".policy__panel", card);
       panel.inert = true;
 
       btn.addEventListener("click", () => {
         const open = card.dataset.open === "true";
         card.dataset.open = String(!open);
         btn.setAttribute("aria-expanded", String(!open));
-        $(".clause__btn-label", btn).textContent = open ? "Open clause" : "Close clause";
+        $(".policy__btn-label", btn).textContent = open ? "Open policy" : "Close policy";
         panel.inert = open;
       });
     });
