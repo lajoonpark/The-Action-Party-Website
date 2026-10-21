@@ -1,4 +1,4 @@
-# Logo Lockup and Tagline — Reference Description
+# Logo Lockup and Tagline: Reference Description
 
 **Status:** reference description only. This file documents a raster screenshot of the
 brand artwork; it is **not** the vector source. Do not trace, rebuild, or "improve" the mark
@@ -8,12 +8,12 @@ without the original Canva file or an exported SVG/PDF from the designer.
 
 | File | What it is |
 | --- | --- |
-| `docs/reference/canva-source-screenshot.jpg` | The original 1280×800 screenshot of the Canva editor window, exactly as received (browser chrome, tabs, and thumbnail filmstrip included — those are **not** part of the design). |
+| `docs/reference/canva-source-screenshot.jpg` | The original 1280×800 screenshot of the Canva editor window, exactly as received (browser chrome, tabs, and thumbnail filmstrip included; those are **not** part of the design). |
 | `docs/reference/logo-lockup-artboard.png` | A pixel-exact crop of the white Canva artboard only, 838×471 px. All measurements in this document are taken from this crop. |
 
 **Provenance (from the screenshot, for later verification)**
 
-- Tool: Canva web editor, opened on a design named "The Action Party — Pr…" (browser tab and
+- Tool: Canva web editor, opened on a design named "The Action Party, Pr…" (browser tab and
   top-bar doc label).
 - Editing at **49% zoom**, page **1 of 5**, 16:9 slide format. The artboard crop is 838×471 px,
   an aspect ratio of ≈1.779 (16:9 = 1.778). The design format is therefore 16:9, but the zoom
@@ -21,7 +21,7 @@ without the original Canva file or an exported SVG/PDF from the designer.
   pixel numbers below are proportions to preserve, not the source's real dimensions.
 - Page 1 is selected in the filmstrip; pages 2–5 are empty white slides carrying only a small
   cropped corner motif (see "Filmstrip" below).
-- Nothing in the screenshot defines safe margins, bleed, or export presets — those still need
+- Nothing in the screenshot defines safe margins, bleed, or export presets. Those still need
   to be chosen when the mark is recomposed for the web.
 
 ---
@@ -48,7 +48,7 @@ to the right by the red arrow, lands on "ACTION" (the visually dominant word), a
 to the tagline. The vertical rule between mark and wordmark acts as a stop that keeps the two
 halves from competing.
 
-All elements are optically centered as a single unit within the artboard — the lockup sits
+All elements are optically centered as a single unit within the artboard. The lockup sits
 slightly above middle, leaving a visibly larger band of white beneath the tagline than above
 the mark.
 
@@ -65,14 +65,14 @@ the mark.
   roughly 20% of the letter's width, which gives the mark a blunt, poster-like weight.
 - **Crossbar:** **none visible.** The red arrow occupies exactly the position and angle where
   a crossbar would sit, so the arrow does double duty: it is both the A's missing stroke and
-  an independent directional element. This is the core idea of the mark — action passing
+  an independent directional element. This is the core idea of the mark: action passing
   through the letter.
 - **Counter:** the triangular negative space inside the A is open at the crossbar height
   because the arrow runs through it; the arrow's shaft is narrower than the counter, so slivers
   of white remain above and below the shaft at that crossing.
 - **Feet:** both leg bottoms are **flat horizontal cuts** sitting on a common baseline. No
   serifs, no rounding, no overshoot.
-- **Measured size:** bounding box **235 × 222 px** on the 838×471 crop — essentially square.
+- **Measured size:** bounding box **235 × 222 px** on the 838×471 crop, essentially square.
   With the arrow included the whole mark spans x 66–314, i.e. **248 px wide**.
 
 ### 2.2 The arrow
@@ -88,7 +88,7 @@ the mark.
   shallow enough to stay legible as a crossbar.
 - **Extent:** the tail starts low and left, *outside* the left leg of the A near its foot, so
   the arrow appears to enter the letter from below-left rather than being drawn inside it. The
-  tip clears the A's right leg by a wide margin and stops well short of the vertical rule —
+  tip clears the A's right leg by a wide margin and stops well short of the vertical rule, so
   the arrow never touches the divider, which is what keeps the lockup from feeling closed.
 - **Meaning carried:** forward motion, urgency, progress. Because it is the only saturated
   element in the composition, it also functions as the single accent the rest of the design
@@ -98,10 +98,10 @@ the mark.
 
 ## 3. The vertical rule
 
-- A **hairline** — effectively 1 px at 838 px wide, so its true weight in the source is
+- A **hairline**: effectively 1 px at 838 px wide, so its true weight in the source is
   probably a 1–2 pt line at 1920 px.
 - Positioned at x = 377 on the crop, i.e. **77 px to the right of the A's right edge** and
-  **31 px to the left of the wordmark** — asymmetric on purpose. The mark gets the wider
+  **31 px to the left of the wordmark**, asymmetric on purpose. The mark gets the wider
   breathing room; the type is treated as closer to its own rule.
 - Height: spans **y 87–326**, which is the full height of the lockup and a hair taller than the
   A itself (94–315). It therefore brackets the mark and the wordmark together rather than
@@ -117,7 +117,7 @@ Three stacked, left-aligned, all-caps lines in a heavy grotesque sans. Measured 
 | Line | Vertical extent | Cap height | Treatment |
 | --- | --- | --- | --- |
 | `THE` | y 110–145 | 36 px | Small, black, **widely tracked** (loose letter-spacing) |
-| `ACTION` | y 176–237 | 62 px | Very large, **heavy/black weight**, black, tight tracking — the dominant element |
+| `ACTION` | y 176–237 | 62 px | Very large, **heavy/black weight**, black, tight tracking, the dominant element |
 | `PARTY` | y 271–307 | 37 px | Medium, black, widely tracked to match `THE` |
 
 - **Hierarchy trick:** `THE` and `PARTY` are set in the same small size and the same loose
@@ -126,7 +126,7 @@ Three stacked, left-aligned, all-caps lines in a heavy grotesque sans. Measured 
 - **Alignment:** all three lines share one left edge at x = 408; the block ends at x = 754.
   `THE` and `PARTY` are letter-spaced so that they optically balance the much wider `ACTION`.
 - **Font identification:** not confirmable from a raster. It behaves like a geometric/grotesque
-  family of the Montserrat / League Spartan / Arial Black sort — square-ish counters, horizontal
+  family of the Montserrat / League Spartan / Arial Black sort: square-ish counters, horizontal
   terminals, single-storey feel in the cap forms. **Do not substitute a webfont on the live site
   until the real family is confirmed**; if a match is needed, Montserrat ExtraBold is the closest
   common web-safe-adjacent candidate and should be treated as a placeholder only.
@@ -137,21 +137,21 @@ Three stacked, left-aligned, all-caps lines in a heavy grotesque sans. Measured 
 
 > **Less Talk. More Action.**
 
-- **Case:** sentence-style title case, **not** all caps — only the `L`, `T`, `M`, and `A` are
+- **Case:** sentence-style title case, **not** all caps. Only the `L`, `T`, `M`, and `A` are
   capitalised. This is the one typographic element that breaks the all-caps system, which is
   what makes it read as a spoken line rather than another label.
-- **Weight:** light/regular, monoline sans — a dramatic weight drop from the wordmark. Same
+- **Weight:** light/regular, monoline sans: a dramatic weight drop from the wordmark. Same
   family feel as the wordmark but visibly thinner.
 - **Tracking:** very wide, airier than anything above it. The inter-sentence gap (after
   "Talk.") is wider than the word gaps, so the line parses as two beats: *Less Talk.* / *More Action.*
-- **Colour split — the whole point of the line:**
+- **Colour split, which is the whole point of the line:**
   - `Less Talk` is **black**, and its period is **black**.
   - `More Action` is **the same red as the arrow**, and its final period is **red**.
   - Each period matches the colour of the sentence it closes; there is no third colour.
 - **Placement:** a single line, optically centred under the lockup, spanning x 145–716 and
   y 350–375 on the crop. Its centre break falls close to the vertical rule, so the black half
   sits under the mark and the red half sits under the wordmark. Baseline clearance below
-  `PARTY` is ≈43 px — a full line-space, not a tight stack.
+  `PARTY` is ≈43 px, a full line-space rather than a tight stack.
 - **Punctuation:** two full stops, both retained. Dropping them changes the tone from a
   statement to a slogan fragment; keep them.
 
@@ -166,7 +166,7 @@ Three stacked, left-aligned, all-caps lines in a heavy grotesque sans. Measured 
 | White | **#FFFFFF** | Artboard/background. No off-white, no cream. |
 
 Rough ink coverage on the artboard: white ≈ 91%, black ≈ 8%, red ≈ 1.6% (38,340 black px and
-7,825 red px out of 394,698). The red is a deliberate minority — it must stay a minority. Any
+7,825 red px out of 394,698). The red is a deliberate minority, and it must stay a minority. Any
 layout that gives red more than a sixth of the page breaks the identity.
 
 ---
@@ -187,7 +187,7 @@ layout that gives red more than a sixth of the page breaks the identity.
 | Tagline bottom to trim | 96 px | 20% |
 
 These ratios are the closest thing to a spacing spec the screenshot contains. Use them as the
-proportion to preserve when redrawing at other sizes — not as fixed pixels.
+proportion to preserve when redrawing at other sizes, not as fixed pixels.
 
 ---
 
@@ -195,7 +195,7 @@ proportion to preserve when redrawing at other sizes — not as fixed pixels.
 
 The bottom of the screenshot shows five page thumbnails. Page 1 is the lockup above. Pages 2–5
 are white 16:9 slides showing **only a small cropped fragment of the mark's top-right corner in
-the upper-left of the frame** — a tiny black-and-red diagonal sliver, the arrowhead and a corner
+the upper-left of the frame**: a tiny black-and-red diagonal sliver, the arrowhead and a corner
 of the A. Read together, they suggest a running motif: the mark used as a corner accent, cropped
 so only a diagonal wedge remains, at small scale and one corner only. Treat this as an unfinished
 idea in the source, not an approved secondary asset.
@@ -219,7 +219,7 @@ idea in the source, not an approved secondary asset.
 - Don't add a crossbar to the A, close the arrow's gaps, or give the arrow an outline.
 - Don't recolour the arrow, or make "More Action." a different red from it.
 - Don't set the tagline in all caps, in the wordmark's weight, or centre it under the wordmark
-  alone — it belongs to the whole lockup.
+  alone; it belongs to the whole lockup.
 - Don't put the lockup on photography, gradients, or any non-white field without a designer's
   sign-off; the source exists only on white.
 
@@ -228,7 +228,7 @@ idea in the source, not an approved secondary asset.
 ## 10. Known gaps (ask before building)
 
 1. Exact typeface family and license for the wordmark and tagline.
-2. Vector master (SVG/PDF) — the screenshot is the only artefact we hold, so any web asset
+2. Vector master (SVG/PDF). The screenshot is the only artefact we hold, so any web asset
    derived from it is a raster import, not a clean redraw.
 3. Whether the tagline is locked to the logo or may be used separately in headers/hero copy.
 4. Which red is canonical: #E33A2E, #E2372B, or something from a brand file.
