@@ -351,7 +351,7 @@ svg { display: block; }
   flex: none;
 }
 
-/* The tagline is the hero: both sentences, both full stops, black first clause,
+/* The tagline is the hero: both sentences, both full stops, black first policy,
    red second, set light with wide tracking as brand §5 specifies. Sized so the
    longest sentence fits the measure on one line, as it does on the artboard:
    17.9cqw of Archivo at wght 300. */
@@ -687,9 +687,9 @@ svg { display: block; }
   text-wrap: pretty;
 }
 
-/* ---------- 01 The plan: a horizontal deck of five clauses ----------
+/* ---------- 01 The plan: a horizontal deck of five policies ----------
    The deck scrolls sideways with scroll snapping, so a trackpad, a touch
-   swipe and the arrow keys all land on a clause rather than between two. */
+   swipe and the arrow keys all land on a policy rather than between two. */
 
 .section--plan { overflow: clip; }
 
@@ -724,8 +724,10 @@ svg { display: block; }
   display: flex;
   gap: clamp(0.75rem, 0.4rem + 1vw, 1.25rem);
   overflow-x: auto;
-  overscroll-behavior-x: contain;
-  scroll-snap-type: x mandatory;
+  overscroll-behavior-x: auto;
+  /* No CSS snapping: a mandatory snap axis captures a vertical wheel and
+     settles it sideways before the page may scroll. The script snaps to a card
+     once the deck stops moving instead, which never fights the page. */
   scroll-padding-inline: max(var(--gutter), calc((100vw - var(--shell)) / 2 + var(--gutter)));
   padding-inline: max(var(--gutter), calc((100vw - var(--shell)) / 2 + var(--gutter)));
   padding-block: 0.25rem 1.5rem;
@@ -736,21 +738,19 @@ svg { display: block; }
 .track::-webkit-scrollbar { display: none; }
 .track.is-dragging {
   cursor: grabbing;
-  scroll-snap-type: none;
   scroll-behavior: auto;
 }
 .track.is-dragging * { user-select: none; }
 
-.clause {
+.policy {
   flex: 0 0 clamp(16rem, 22vw + 8rem, 26rem);
-  scroll-snap-align: start;
   display: flex;
 }
 
-/* The card is the clause: number and count at the top, the name set as a
+/* The card is the policy: number and count at the top, the name set as a
    statement, the claim underneath, and the working hidden behind a control
    that expands the card downward. */
-.clause__card {
+.policy__card {
   display: grid;
   grid-template-rows: auto auto auto 1fr auto;
   gap: var(--space-s);
@@ -761,12 +761,12 @@ svg { display: block; }
   position: relative;
   transition: transform 420ms var(--ease-out), box-shadow 420ms var(--ease-out), background-color 300ms ease;
 }
-.clause:hover .clause__card {
+.policy:hover .policy__card {
   transform: translateY(-4px);
   box-shadow: 6px 6px 0 0 var(--ink);
 }
 
-.clause__top {
+.policy__top {
   display: flex;
   align-items: baseline;
   justify-content: space-between;
@@ -775,20 +775,20 @@ svg { display: block; }
   border-bottom: 1px solid var(--rule);
 }
 
-.clause__index {
+.policy__index {
   font-size: var(--step--2);
   font-variation-settings: "wdth" 78, "wght" 700;
   letter-spacing: 0.13em;
   text-transform: uppercase;
   color: var(--ink-3);
 }
-.clause__index span {
+.policy__index span {
   color: var(--action-deep);
   margin-right: 0.35em;
   font-variant-numeric: tabular-nums;
 }
 
-.clause__count {
+.policy__count {
   font-size: var(--step--2);
   font-variation-settings: "wdth" 78, "wght" 600;
   letter-spacing: 0.1em;
@@ -797,7 +797,7 @@ svg { display: block; }
   white-space: nowrap;
 }
 
-.clause__name {
+.policy__name {
   font-variation-settings: "wdth" 106, "wght" 700;
   font-size: var(--step-3);
   line-height: 0.96;
@@ -805,7 +805,7 @@ svg { display: block; }
   text-wrap: balance;
 }
 
-.clause__claim {
+.policy__claim {
   font-size: var(--step-1);
   line-height: 1.24;
   letter-spacing: -0.014em;
@@ -814,18 +814,18 @@ svg { display: block; }
   max-width: 24ch;
 }
 
-.clause__panel {
+.policy__panel {
   display: grid;
   grid-template-rows: 0fr;
   transition: grid-template-rows 480ms var(--ease-out);
 }
-.clause__reveal { overflow: hidden; }
-.clause__inner { display: grid; gap: var(--space-s); padding-top: var(--space-s); }
+.policy__reveal { overflow: hidden; }
+.policy__inner { display: grid; gap: var(--space-s); padding-top: var(--space-s); }
 
-.clause[data-open="true"] .clause__panel { grid-template-rows: 1fr; }
-.clause[data-open="true"] .clause__card { box-shadow: 6px 6px 0 0 var(--ink); }
+.policy[data-open="true"] .policy__panel { grid-template-rows: 1fr; }
+.policy[data-open="true"] .policy__card { box-shadow: 6px 6px 0 0 var(--ink); }
 
-.clause__inner p {
+.policy__inner p {
   font-size: var(--step--1);
   line-height: 1.55;
   color: var(--ink-2);
@@ -833,14 +833,14 @@ svg { display: block; }
   border-top: 1px solid var(--rule);
 }
 
-.clause__inner ul {
+.policy__inner ul {
   display: grid;
   gap: 0.35rem;
   font-size: var(--step--1);
   color: var(--ink-2);
 }
-.clause__inner li { position: relative; padding-left: 1.1rem; }
-.clause__inner li::before {
+.policy__inner li { position: relative; padding-left: 1.1rem; }
+.policy__inner li::before {
   content: "";
   position: absolute;
   left: 0;
@@ -850,32 +850,32 @@ svg { display: block; }
   background: var(--action);
 }
 
-.clause__meta {
+.policy__meta {
   display: grid;
   gap: 0.5rem;
   padding-top: var(--space-s);
   border-top: 1px solid var(--rule);
 }
-.clause__meta div {
+.policy__meta div {
   display: flex;
   justify-content: space-between;
   gap: var(--space-s);
   align-items: baseline;
 }
-.clause__meta dt {
+.policy__meta dt {
   font-size: var(--step--2);
   font-variation-settings: "wdth" 78, "wght" 700;
   letter-spacing: 0.1em;
   text-transform: uppercase;
   color: var(--ink-3);
 }
-.clause__meta dd {
+.policy__meta dd {
   font-size: var(--step--1);
   font-variation-settings: "wdth" 100, "wght" 600;
   text-align: right;
 }
 
-.clause__btn {
+.policy__btn {
   position: relative;
   display: flex;
   align-items: center;
@@ -895,7 +895,7 @@ svg { display: block; }
   isolation: isolate;
   transition: color 240ms ease;
 }
-.clause__btn::before {
+.policy__btn::before {
   content: "";
   position: absolute;
   inset: 0;
@@ -904,20 +904,20 @@ svg { display: block; }
   transform: translateY(101%);
   transition: transform 420ms var(--ease-snap);
 }
-.clause__btn:hover::before,
-.clause__btn[aria-expanded="true"]::before { transform: translateY(0); }
-.clause__btn:hover,
-.clause__btn[aria-expanded="true"] { color: var(--paper); }
+.policy__btn:hover::before,
+.policy__btn[aria-expanded="true"]::before { transform: translateY(0); }
+.policy__btn:hover,
+.policy__btn[aria-expanded="true"] { color: var(--paper); }
 
 /* A plus that becomes a minus: two rules, one rotating out. */
-.clause__mark {
+.policy__mark {
   position: relative;
   width: 0.85rem;
   height: 0.85rem;
   flex: none;
 }
-.clause__mark::before,
-.clause__mark::after {
+.policy__mark::before,
+.policy__mark::after {
   content: "";
   position: absolute;
   inset: 50% 0 auto;
@@ -925,14 +925,47 @@ svg { display: block; }
   background: currentColor;
   transition: transform 380ms var(--ease-out);
 }
-.clause__mark::after { transform: rotate(90deg); }
-.clause__btn[aria-expanded="true"] .clause__mark::after { transform: rotate(0deg); }
+.policy__mark::after { transform: rotate(90deg); }
+.policy__btn[aria-expanded="true"] .policy__mark::after { transform: rotate(0deg); }
 
 .deck-wrap__foot {
   display: flex;
   align-items: center;
   gap: var(--space-m);
   margin-top: var(--space-s);
+}
+
+.deck-wrap__nav {
+  display: none;
+  gap: 0.4rem;
+  margin-left: auto;
+}
+.js .deck-wrap__nav { display: flex; }
+
+.deck-wrap__step {
+  width: 2.5rem;
+  height: 2.5rem;
+  display: grid;
+  place-items: center;
+  padding: 0;
+  border: 1px solid var(--ink);
+  background: var(--paper);
+  color: var(--ink);
+  font: inherit;
+  font-size: var(--step-0);
+  line-height: 1;
+  cursor: pointer;
+  transition: background-color 220ms ease, color 220ms ease, transform 320ms var(--ease-spring);
+}
+.deck-wrap__step:hover:not(:disabled) {
+  background: var(--ink);
+  color: var(--paper);
+  transform: translateY(-2px);
+}
+.deck-wrap__step:disabled {
+  border-color: var(--rule);
+  color: var(--ink-3);
+  cursor: default;
 }
 .deck-wrap__count {
   font-size: var(--step--2);
@@ -1173,15 +1206,6 @@ svg { display: block; }
   letter-spacing: -0.045em;
   margin-top: var(--space-m);
   text-wrap: balance;
-}
-
-.system__intro {
-  margin-top: var(--space-m);
-  max-width: 38ch;
-  font-size: var(--step-0);
-  line-height: 1.55;
-  color: rgba(255, 255, 255, 0.66);
-  text-wrap: pretty;
 }
 
 .system__rules {
@@ -1610,19 +1634,10 @@ svg { display: block; }
   padding: 0.1rem 0.4rem 0.15rem;
   transition: color 240ms ease, border-color 240ms ease, background-color 240ms ease;
 }
-.record__item:nth-child(1) .record__kind {
-  color: var(--action-deep);
-  border-color: var(--action-deep);
-}
 .record__item a:hover .record__kind {
   background: var(--ink);
   color: var(--paper);
   border-color: var(--ink);
-}
-.record__item:nth-child(1) a:hover .record__kind {
-  background: var(--action);
-  border-color: var(--action);
-  color: var(--paper);
 }
 
 .record__title {
@@ -1662,6 +1677,7 @@ svg { display: block; }
 
 .section--join { border-top: 1px solid var(--ink); }
 
+.section__title + .form { margin-top: var(--space-l); }
 .form { max-width: 30rem; }
 
 /* The segmented control's selection is one sliding black block, so switching
@@ -2018,20 +2034,20 @@ input[type="radio"]:checked { background: var(--ink); box-shadow: inset 0 0 0 2p
   .ledger.is-in tbody tr:nth-child(5) { transition-delay: 340ms; }
   .ledger.is-in tbody tr:nth-child(6) { transition-delay: 410ms; }
 
-  /* Clause cards deal themselves in from the right, one after another. */
-  .js .clause {
+  /* Policy cards deal themselves in from the right, one after another. */
+  .js .policy {
     opacity: 0;
     transform: translateX(28px) rotate(0.4deg);
     transition:
       opacity 620ms var(--ease-out),
       transform 820ms var(--ease-out);
   }
-  .deck-wrap.is-in .clause { opacity: 1; transform: none; }
-  .deck-wrap.is-in .clause:nth-child(1) { transition-delay: 40ms; }
-  .deck-wrap.is-in .clause:nth-child(2) { transition-delay: 130ms; }
-  .deck-wrap.is-in .clause:nth-child(3) { transition-delay: 220ms; }
-  .deck-wrap.is-in .clause:nth-child(4) { transition-delay: 310ms; }
-  .deck-wrap.is-in .clause:nth-child(5) { transition-delay: 400ms; }
+  .deck-wrap.is-in .policy { opacity: 1; transform: none; }
+  .deck-wrap.is-in .policy:nth-child(1) { transition-delay: 40ms; }
+  .deck-wrap.is-in .policy:nth-child(2) { transition-delay: 130ms; }
+  .deck-wrap.is-in .policy:nth-child(3) { transition-delay: 220ms; }
+  .deck-wrap.is-in .policy:nth-child(4) { transition-delay: 310ms; }
+  .deck-wrap.is-in .policy:nth-child(5) { transition-delay: 400ms; }
 
   /* Cards rise out of the stack and settle, like being dealt face up. */
   .js .card {
@@ -2228,7 +2244,7 @@ input[type="radio"]:checked { background: var(--ink); box-shadow: inset 0 0 0 2p
   .footer__legal { grid-column: 1 / -1; }
 
   .deck { grid-template-columns: minmax(0, 1fr); }
-  .clause { flex-basis: clamp(15rem, 62vw, 22rem); }
+  .policy { flex-basis: clamp(15rem, 62vw, 22rem); }
 
   .ledger__balance { grid-template-columns: minmax(0, 1fr); }
   .ledger__balance-num { grid-column: 1; grid-row: auto; font-size: var(--step-3); }
