@@ -1,0 +1,288 @@
+<!doctype html>
+<html lang="en-NZ">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Accessibility: what was measured | The Action Party</title>
+    <meta name="description" content="How this site was built and tested: keyboard, contrast, reduced motion and no-script. The measurements, not the intentions." />
+    <link rel="canonical" href="https://the-action-party-website.vercel.app/accessibility.html" />
+    <meta name="theme-color" content="#ffffff" />
+    <link rel="icon" href="assets/img/favicon-64.png" sizes="64x64" />
+    <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png" />
+
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="The Action Party" />
+    <meta property="og:locale" content="en_NZ" />
+    <meta property="og:url" content="https://the-action-party-website.vercel.app/accessibility.html" />
+    <meta property="og:title" content="Accessibility | The Action Party" />
+    <meta property="og:description" content="How this site was built and tested: keyboard, contrast, reduced motion and no-script. The measurements, not the intentions." />
+    <meta property="og:image" content="https://the-action-party-website.vercel.app/assets/img/og-image.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="The Action Party lockup: Less talk. More action." />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Accessibility | The Action Party" />
+    <meta name="twitter:description" content="How this site was built and tested: keyboard, contrast, reduced motion and no-script. The measurements, not the intentions." />
+    <meta name="twitter:image" content="https://the-action-party-website.vercel.app/assets/img/og-image.png" />
+
+    <link rel="preload" href="assets/fonts/archivo-latin.woff2" as="font" type="font/woff2" crossorigin />
+    <script>
+      document.documentElement.classList.add("js");
+    </script>
+    <link rel="stylesheet" href="styles.css" />
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebPage",
+      "@id": "https://the-action-party-website.vercel.app/accessibility.html#webpage",
+      "url": "https://the-action-party-website.vercel.app/accessibility.html",
+      "name": "Accessibility: what was measured | The Action Party",
+      "description": "How this site was built and tested: keyboard, contrast, reduced motion and no-script. The measurements, not the intentions.",
+      "inLanguage": "en-NZ",
+      "isPartOf": {
+        "@id": "https://the-action-party-website.vercel.app/#website"
+      },
+      "about": {
+        "@id": "https://the-action-party-website.vercel.app/#party"
+      },
+      "primaryImageOfPage": "https://the-action-party-website.vercel.app/assets/img/og-image.png"
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": "https://the-action-party-website.vercel.app/accessibility.html#breadcrumb",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "The Action Party",
+          "item": "https://the-action-party-website.vercel.app/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Accessibility",
+          "item": "https://the-action-party-website.vercel.app/accessibility.html"
+        }
+      ]
+    },
+    {
+      "@type": [
+        "Organization",
+        "PoliticalParty"
+      ],
+      "@id": "https://the-action-party-website.vercel.app/#party",
+      "name": "The Action Party",
+      "url": "https://the-action-party-website.vercel.app/",
+      "slogan": "Less talk. More action.",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://the-action-party-website.vercel.app/assets/img/logo-lockup.png",
+        "width": 824,
+        "height": 424
+      },
+      "sameAs": [
+        "https://github.com/lajoonpark/The-Action-Party-Website"
+      ]
+    }
+  ]
+}
+    </script>
+  </head>
+  <body class="page">
+    <a class="skip" href="#main">Skip to content</a>
+    <div class="progress" aria-hidden="true" data-progress></div>
+
+    <header class="masthead" data-masthead>
+      <div class="shell masthead__inner">
+        <a class="masthead__brand" href="/#top">
+          <img src="assets/img/mark.png" alt="" width="268" height="248" />
+          <span class="masthead__id">
+            <span class="masthead__name">The Action Party</span>
+            <span class="masthead__tag">Less talk. More action.</span>
+          </span>
+        </a>
+
+        <button
+          class="masthead__toggle"
+          type="button"
+          aria-expanded="false"
+          aria-controls="site-nav"
+          data-nav-toggle
+        >
+          <span class="masthead__toggle-bars" aria-hidden="true"></span>
+          Menu
+        </button>
+
+        <nav class="nav" id="site-nav" aria-label="Primary" data-nav>
+          <a href="/#plan">Our plan</a>
+          <a href="/#finances">The finances</a>
+          <a href="/#system">Your vote</a>
+          <a href="/#people">The front bench</a>
+          <a href="/#record">The record</a>
+          <a class="btn btn--join" href="/#join">Join the party</a>
+        </nav>
+      </div>
+    </header>
+
+    <main id="main">
+      <header class="page__head">
+        <div class="shell">
+          <nav class="page__crumb" aria-label="Breadcrumb">
+            <a href="/">The Action Party</a>
+            <span aria-hidden="true">/</span>
+            <span aria-current="page">Accessibility</span>
+          </nav>
+          <h1 class="page__title">Accessibility</h1>
+          <p class="page__lead">An accessibility claim is only worth the measurement behind it. This page states what was tested, at what width, and what a person using the site can expect.</p>
+        </div>
+      </header>
+
+      <section class="section page__section" id="what-we-hold-ourselves-to">
+        <div class="shell page__grid">
+          <div class="page__rail">
+            <p class="rail__label">01</p>
+            <p class="rail__figure">The standard</p>
+          </div>
+          <div class="page__body">
+            <h2 class="section__title">What we hold ourselves to</h2>
+              <p class="page__p">
+                The site targets WCAG 2.2 at level AA. That is a floor, not a
+                badge: it is checked with automated tooling on every change, and
+                the numbers below are what those checks return today.
+              </p>
+              <dl class="page__facts">
+                <div><dt>Automated results</dt><dd>No violations at any tested width</dd></div>
+                <div><dt>Tested at</dt><dd>1440, 1200, 834, 390 and 320 pixels</dd></div>
+                <div><dt>Contrast</dt><dd>All text at or above 4.5 to 1</dd></div>
+                <div><dt>Zoom</dt><dd>Holds to 200 percent with no sideways scroll</dd></div>
+              </dl>
+          </div>
+        </div>
+      </section>
+
+      <section class="section page__section" id="with-a-keyboard-or-without-a-pointer">
+        <div class="shell page__grid">
+          <div class="page__rail">
+            <p class="rail__label">02</p>
+            <p class="rail__figure">Keyboard</p>
+          </div>
+          <div class="page__body">
+            <h2 class="section__title">With a keyboard, or without a pointer</h2>
+              <ul class="page__list">
+                <li>
+                  A skip link is the first thing in the tab order, so the menu
+                  can always be stepped over.
+                </li>
+                <li>Focus rings are two pixels and never removed.</li>
+                <li>
+                  The clause deck and the front bench are reachable by Tab, and
+                  the arrow keys move between cards only while focus is inside
+                  them.
+                </li>
+                <li>
+                  The mobile menu closes on Escape and returns focus to the
+                  button that opened it.
+                </li>
+                <li>
+                  The sign-up confirmation is announced once, and can be
+                  dismissed with Escape or a click.
+                </li>
+              </ul>
+          </div>
+        </div>
+      </section>
+
+      <section class="section page__section" id="if-you-ask-for-less-movement">
+        <div class="shell page__grid">
+          <div class="page__rail">
+            <p class="rail__label">03</p>
+            <p class="rail__figure">Motion</p>
+          </div>
+          <div class="page__body">
+            <h2 class="section__title">If you ask for less movement</h2>
+              <p class="page__p">
+                With reduced motion set in the operating system, every
+                animation is removed rather than shortened, the reading
+                progress rule is hidden, and smooth scrolling is turned off.
+                Nothing that is hidden for a reveal stays hidden: all content
+                is visible without scripting, because the reveal states are
+                gated behind a class that only scripting adds.
+              </p>
+              <p class="page__p">
+                The clause deck never takes the page's vertical scroll. A
+                trackpad gesture that is mostly vertical moves the page, even
+                when the finger drifts sideways.
+              </p>
+          </div>
+        </div>
+      </section>
+
+      <section class="section page__section" id="if-something-does-not-work">
+        <div class="shell page__grid">
+          <div class="page__rail">
+            <p class="rail__label">04</p>
+            <p class="rail__figure">Problems</p>
+          </div>
+          <div class="page__body">
+            <h2 class="section__title">If something does not work</h2>
+              <p class="page__p">
+                Tell us, and we will fix it and record the fix in the
+                <a href="/#record">public record</a>. The contact route is the
+                same one used for the
+                <a href="/financial-disclosure.html">working papers</a>.
+              </p>
+              <p class="page__p">
+                <a class="link" href="/#join">Report an accessibility problem</a>
+              </p>
+              <p class="page__note">
+                This is a demonstration site. The measurements above describe
+                this build as tested, and the party it describes is fictional.
+              </p>
+          </div>
+        </div>
+      </section>
+
+    </main>
+
+    <footer class="footer">
+      <div class="shell footer__inner">
+        <div class="footer__brand">
+          <img
+            src="assets/img/logo-lockup.png"
+            alt="The Action Party. Less talk. More action."
+            width="824"
+            height="424"
+          />
+        </div>
+        <nav class="footer__nav" aria-label="Footer">
+          <a href="/#plan">Our plan</a>
+          <a href="/#finances">The finances</a>
+          <a href="/#system">How your vote counts</a>
+          <a href="/#people">The front bench</a>
+          <a href="/#record">The record</a>
+          <a href="/financial-disclosure.html">Financial disclosure</a>
+          <a href="/accessibility.html">Accessibility</a>
+          <a href="/privacy.html">Privacy</a>
+        </nav>
+        <div class="footer__legal">
+          <p>
+            Authorised by A. Rivera, Registered Officer, The Action Party. This
+            is a demonstration site: the party, its people and its figures are
+            fictional.
+          </p>
+          <p>
+            <a class="footer__legal-link" href="/financial-disclosure.html"
+              >Financial disclosure</a
+            >, <a class="footer__legal-link" href="/privacy.html">Privacy</a>,
+            and <a class="footer__legal-link" href="/accessibility.html"
+              >Accessibility</a
+            >. Every figure on this site is fictional and demonstrative.
+          </p>
+        </div>
+      </div>
+    </footer>
+    <script src="main.js"></script>
+  </body>
+</html>

@@ -225,8 +225,10 @@
     const settleSoon = () => {
       window.clearTimeout(settleTimer);
       settleTimer = window.setTimeout(() => {
+        if (!horizontal) return;
         const step = cardStep();
         if (!step || track.classList.contains("is-dragging")) return;
+        horizontal = false;
         const to = clamp(Math.round(track.scrollLeft / step) * step, 0, maxScroll());
         if (Math.abs(to - track.scrollLeft) < 2) return;
         track.scrollTo({ left: to, behavior: reduce.matches ? "auto" : "smooth" });
@@ -237,17 +239,32 @@
       if (horizontal) settleSoon();
     }, { passive: true });
 
-    /* Only a gesture with more sideways than vertical travel counts as using
-       the deck. A vertical wheel or a vertical swipe leaves it alone. */
+    /* A horizontal scroller swallows a wheel event that carries any sideways
+       delta at all, even when the gesture is overwhelmingly vertical, and
+       because the deck has no vertical overflow the page then does not move.
+       Measured on this build: ten wheel events of deltaX 8 / deltaY 100 moved
+       the deck 80px and the page 94px, against 1000px of intended travel. So a
+       vertical-dominant wheel is taken off the deck and handed to the page;
+       only a sideways-dominant one moves the deck. */
     track.addEventListener(
       "wheel",
       (event) => {
-        if (Math.abs(event.deltaX) > Math.abs(event.deltaY)) {
-          horizontal = true;
-          settleSoon();
+        const { deltaX, deltaY } = event;
+        if (Math.abs(deltaY) > Math.abs(deltaX)) {
+          horizontal = false;
+          const perUnit =
+            event.deltaMode === 1 ? 16 : event.deltaMode === 2 ? window.innerHeight : 1;
+          event.preventDefault();
+          /* `instant`, because `scroll-behavior: smooth` would otherwise turn
+             every wheel tick into its own animation. */
+          window.scrollBy({ top: deltaY * perUnit, behavior: "instant" });
+          return;
         }
+        if (!deltaX) return;
+        horizontal = true;
+        settleSoon();
       },
-      { passive: true }
+      { passive: false }
     );
 
     let touchStart = null;
@@ -264,7 +281,9 @@
 
     track.addEventListener("touchend", () => {
       touchStart = null;
-      horizontal = false;
+      /* The finger lifts before the fling finishes, so the flag has to outlive
+         the gesture for the momentum tail to snap at all. */
+      if (horizontal) settleSoon();
     }, { passive: true });
 
     /* Pointer drag for mice. Touch keeps native panning, which is better. */
