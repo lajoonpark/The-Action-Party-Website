@@ -127,10 +127,17 @@
 
           $$("[data-num]", ledger).forEach((cell, i) => {
             const to = Number(cell.dataset.num);
+            /* The ledger mixes billions, trillions and percentages, so the
+               unit and the decimal places come from the cell's own text
+               rather than being stamped on as a percent sign. */
+            const unit = (cell.textContent.trim().match(/[a-z%]+$/i) || [""])[0];
+            const decimals = (String(cell.dataset.num).split(".")[1] || "").length;
+            const label = () =>
+              unit === "%" ? `${to.toFixed(decimals)}%` : unit ? `${to.toFixed(decimals)} ${unit}` : to.toFixed(decimals);
             window.setTimeout(() => {
-              countTo(cell, to, { decimals: 1, duration: 760 });
+              countTo(cell, to, { decimals, duration: 760 });
               window.setTimeout(() => {
-                cell.textContent = `${to.toFixed(1)}%`;
+                cell.textContent = label();
               }, 780);
             }, 80 + i * 55);
           });
@@ -145,9 +152,9 @@
   const track = $("[data-track]");
 
   if (track) {
-    const cards = $$("[data-policy]", track);
-    const now = $("[data-policy-now]");
-    const fill = $("[data-policy-fill]");
+    const cards = $$("[data-clause]", track);
+    const now = $("[data-clause-now]");
+    const fill = $("[data-clause-fill]");
     const steps = $$("[data-step]");
 
     const maxScroll = () => Math.max(0, track.scrollWidth - track.clientWidth);
@@ -315,7 +322,7 @@
     /* Arrow keys move focus card by card, but only from inside the deck. */
     track.addEventListener("keydown", (event) => {
       if (event.key !== "ArrowRight" && event.key !== "ArrowLeft") return;
-      const from = document.activeElement?.closest("[data-policy]");
+      const from = document.activeElement?.closest("[data-clause]");
       if (!from) return;
       event.preventDefault();
       /* Step by delta rather than scrollIntoView: a card sitting inside the
@@ -324,20 +331,20 @@
       const dir = event.key === "ArrowRight" ? 1 : -1;
       stepBy(dir);
       const next = cards[clamp(currentIndex() + dir, 0, cards.length - 1)];
-      next.querySelector(".policy__btn")?.focus({ preventScroll: true });
+      next.querySelector(".clause__btn")?.focus({ preventScroll: true });
     });
 
-    /* Each policy opens in place: the card grows, the deck does not jump. */
+    /* Each clause opens in place: the card grows, the deck does not jump. */
     cards.forEach((card) => {
-      const btn = $(".policy__btn", card);
-      const panel = $(".policy__panel", card);
+      const btn = $(".clause__btn", card);
+      const panel = $(".clause__panel", card);
       panel.inert = true;
 
       btn.addEventListener("click", () => {
         const open = card.dataset.open === "true";
         card.dataset.open = String(!open);
         btn.setAttribute("aria-expanded", String(!open));
-        $(".policy__btn-label", btn).textContent = open ? "Open policy" : "Close policy";
+        $(".clause__btn-label", btn).textContent = open ? "Open clause" : "Close clause";
         panel.inert = open;
       });
     });

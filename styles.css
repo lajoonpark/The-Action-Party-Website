@@ -687,9 +687,9 @@ svg { display: block; }
   text-wrap: pretty;
 }
 
-/* ---------- 01 The plan: a horizontal deck of five policies ----------
+/* ---------- 01 The plan: a horizontal deck of five clauses ----------
    The deck scrolls sideways with scroll snapping, so a trackpad, a touch
-   swipe and the arrow keys all land on a policy rather than between two. */
+   swipe and the arrow keys all land on a clause rather than between two. */
 
 .section--plan { overflow: clip; }
 
@@ -742,15 +742,15 @@ svg { display: block; }
 }
 .track.is-dragging * { user-select: none; }
 
-.policy {
+.clause {
   flex: 0 0 clamp(16rem, 22vw + 8rem, 26rem);
   display: flex;
 }
 
-/* The card is the policy: number and count at the top, the name set as a
+/* The card is the clause: number and count at the top, the name set as a
    statement, the claim underneath, and the working hidden behind a control
    that expands the card downward. */
-.policy__card {
+.clause__card {
   display: grid;
   grid-template-rows: auto auto auto 1fr auto;
   gap: var(--space-s);
@@ -761,12 +761,12 @@ svg { display: block; }
   position: relative;
   transition: transform 420ms var(--ease-out), box-shadow 420ms var(--ease-out), background-color 300ms ease;
 }
-.policy:hover .policy__card {
+.clause:hover .clause__card {
   transform: translateY(-4px);
   box-shadow: 6px 6px 0 0 var(--ink);
 }
 
-.policy__top {
+.clause__top {
   display: flex;
   align-items: baseline;
   justify-content: space-between;
@@ -775,20 +775,20 @@ svg { display: block; }
   border-bottom: 1px solid var(--rule);
 }
 
-.policy__index {
+.clause__index {
   font-size: var(--step--2);
   font-variation-settings: "wdth" 78, "wght" 700;
   letter-spacing: 0.13em;
   text-transform: uppercase;
   color: var(--ink-3);
 }
-.policy__index span {
+.clause__index span {
   color: var(--action-deep);
   margin-right: 0.35em;
   font-variant-numeric: tabular-nums;
 }
 
-.policy__count {
+.clause__count {
   font-size: var(--step--2);
   font-variation-settings: "wdth" 78, "wght" 600;
   letter-spacing: 0.1em;
@@ -797,7 +797,7 @@ svg { display: block; }
   white-space: nowrap;
 }
 
-.policy__name {
+.clause__name {
   font-variation-settings: "wdth" 106, "wght" 700;
   font-size: var(--step-3);
   line-height: 0.96;
@@ -805,7 +805,7 @@ svg { display: block; }
   text-wrap: balance;
 }
 
-.policy__claim {
+.clause__claim {
   font-size: var(--step-1);
   line-height: 1.24;
   letter-spacing: -0.014em;
@@ -814,18 +814,18 @@ svg { display: block; }
   max-width: 24ch;
 }
 
-.policy__panel {
+.clause__panel {
   display: grid;
   grid-template-rows: 0fr;
   transition: grid-template-rows 480ms var(--ease-out);
 }
-.policy__reveal { overflow: hidden; }
-.policy__inner { display: grid; gap: var(--space-s); padding-top: var(--space-s); }
+.clause__reveal { overflow: hidden; }
+.clause__inner { display: grid; gap: var(--space-s); padding-top: var(--space-s); }
 
-.policy[data-open="true"] .policy__panel { grid-template-rows: 1fr; }
-.policy[data-open="true"] .policy__card { box-shadow: 6px 6px 0 0 var(--ink); }
+.clause[data-open="true"] .clause__panel { grid-template-rows: 1fr; }
+.clause[data-open="true"] .clause__card { box-shadow: 6px 6px 0 0 var(--ink); }
 
-.policy__inner p {
+.clause__inner p {
   font-size: var(--step--1);
   line-height: 1.55;
   color: var(--ink-2);
@@ -833,14 +833,14 @@ svg { display: block; }
   border-top: 1px solid var(--rule);
 }
 
-.policy__inner ul {
+.clause__inner ul {
   display: grid;
   gap: 0.35rem;
   font-size: var(--step--1);
   color: var(--ink-2);
 }
-.policy__inner li { position: relative; padding-left: 1.1rem; }
-.policy__inner li::before {
+.clause__inner li { position: relative; padding-left: 1.1rem; }
+.clause__inner li::before {
   content: "";
   position: absolute;
   left: 0;
@@ -850,32 +850,32 @@ svg { display: block; }
   background: var(--action);
 }
 
-.policy__meta {
+.clause__meta {
   display: grid;
   gap: 0.5rem;
   padding-top: var(--space-s);
   border-top: 1px solid var(--rule);
 }
-.policy__meta div {
+.clause__meta div {
   display: flex;
   justify-content: space-between;
   gap: var(--space-s);
   align-items: baseline;
 }
-.policy__meta dt {
+.clause__meta dt {
   font-size: var(--step--2);
   font-variation-settings: "wdth" 78, "wght" 700;
   letter-spacing: 0.1em;
   text-transform: uppercase;
   color: var(--ink-3);
 }
-.policy__meta dd {
+.clause__meta dd {
   font-size: var(--step--1);
   font-variation-settings: "wdth" 100, "wght" 600;
   text-align: right;
 }
 
-.policy__btn {
+.clause__btn {
   position: relative;
   display: flex;
   align-items: center;
@@ -895,7 +895,7 @@ svg { display: block; }
   isolation: isolate;
   transition: color 240ms ease;
 }
-.policy__btn::before {
+.clause__btn::before {
   content: "";
   position: absolute;
   inset: 0;
@@ -904,20 +904,20 @@ svg { display: block; }
   transform: translateY(101%);
   transition: transform 420ms var(--ease-snap);
 }
-.policy__btn:hover::before,
-.policy__btn[aria-expanded="true"]::before { transform: translateY(0); }
-.policy__btn:hover,
-.policy__btn[aria-expanded="true"] { color: var(--paper); }
+.clause__btn:hover::before,
+.clause__btn[aria-expanded="true"]::before { transform: translateY(0); }
+.clause__btn:hover,
+.clause__btn[aria-expanded="true"] { color: var(--paper); }
 
 /* A plus that becomes a minus: two rules, one rotating out. */
-.policy__mark {
+.clause__mark {
   position: relative;
   width: 0.85rem;
   height: 0.85rem;
   flex: none;
 }
-.policy__mark::before,
-.policy__mark::after {
+.clause__mark::before,
+.clause__mark::after {
   content: "";
   position: absolute;
   inset: 50% 0 auto;
@@ -925,8 +925,8 @@ svg { display: block; }
   background: currentColor;
   transition: transform 380ms var(--ease-out);
 }
-.policy__mark::after { transform: rotate(90deg); }
-.policy__btn[aria-expanded="true"] .policy__mark::after { transform: rotate(0deg); }
+.clause__mark::after { transform: rotate(90deg); }
+.clause__btn[aria-expanded="true"] .clause__mark::after { transform: rotate(0deg); }
 
 .deck-wrap__foot {
   display: flex;
@@ -2035,19 +2035,19 @@ input[type="radio"]:checked { background: var(--ink); box-shadow: inset 0 0 0 2p
   .ledger.is-in tbody tr:nth-child(6) { transition-delay: 410ms; }
 
   /* Policy cards deal themselves in from the right, one after another. */
-  .js .policy {
+  .js .clause {
     opacity: 0;
     transform: translateX(28px) rotate(0.4deg);
     transition:
       opacity 620ms var(--ease-out),
       transform 820ms var(--ease-out);
   }
-  .deck-wrap.is-in .policy { opacity: 1; transform: none; }
-  .deck-wrap.is-in .policy:nth-child(1) { transition-delay: 40ms; }
-  .deck-wrap.is-in .policy:nth-child(2) { transition-delay: 130ms; }
-  .deck-wrap.is-in .policy:nth-child(3) { transition-delay: 220ms; }
-  .deck-wrap.is-in .policy:nth-child(4) { transition-delay: 310ms; }
-  .deck-wrap.is-in .policy:nth-child(5) { transition-delay: 400ms; }
+  .deck-wrap.is-in .clause { opacity: 1; transform: none; }
+  .deck-wrap.is-in .clause:nth-child(1) { transition-delay: 40ms; }
+  .deck-wrap.is-in .clause:nth-child(2) { transition-delay: 130ms; }
+  .deck-wrap.is-in .clause:nth-child(3) { transition-delay: 220ms; }
+  .deck-wrap.is-in .clause:nth-child(4) { transition-delay: 310ms; }
+  .deck-wrap.is-in .clause:nth-child(5) { transition-delay: 400ms; }
 
   /* Cards rise out of the stack and settle, like being dealt face up. */
   .js .card {
@@ -2244,7 +2244,7 @@ input[type="radio"]:checked { background: var(--ink); box-shadow: inset 0 0 0 2p
   .footer__legal { grid-column: 1 / -1; }
 
   .deck { grid-template-columns: minmax(0, 1fr); }
-  .policy { flex-basis: clamp(15rem, 62vw, 22rem); }
+  .clause { flex-basis: clamp(15rem, 62vw, 22rem); }
 
   .ledger__balance { grid-template-columns: minmax(0, 1fr); }
   .ledger__balance-num { grid-column: 1; grid-row: auto; font-size: var(--step-3); }
