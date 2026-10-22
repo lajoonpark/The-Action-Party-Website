@@ -14,7 +14,7 @@ Six sections, each with its own personality but on one spine. A tile panel at
 
 | Section | Title | What it does | Its own gesture |
 | --- | --- | --- | --- |
-| `#plan` | Our Plan to Take Action | 31 clauses in five areas | A horizontal deck you drag, swipe, or arrow through; each clause opens in place, and the counter follows the card |
+| `#plan` | Our Plan to Take Action | 31 clauses in five areas | A horizontal deck you drag, swipe, or arrow through, with step buttons beside the counter; each clause opens in place |
 | `#finances` | The Finances, in the Open | Four-year ledger | Rows enter from the left, figures count up in their own unit (billion, trillion, percent), change bars draw from a centre line |
 | `#system` | How Your Vote Actually Counts | NZ MMP, explained | The page inverts to black; clouds drift; an interactive 120-seat hemicycle |
 | `#people` | The Three Who Would Hold the Front Bench | The list, and who chose it | Cards tilt in 3D with the pointer and lift out of the stack |

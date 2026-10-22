@@ -248,7 +248,7 @@
             </p>
           </div>
 
-          <ol class="track" data-track>
+          <ol class="track" id="clause-track" data-track>
             <li class="clause" data-clause>
               <article class="clause__card">
                 <div class="clause__top">
@@ -521,6 +521,26 @@
             <p class="deck-wrap__count"><span data-clause-now>01</span> / 05</p>
             <div class="deck-wrap__meter" aria-hidden="true">
               <span data-clause-fill></span>
+            </div>
+            <div class="deck-wrap__nav">
+              <button
+                class="deck-wrap__step"
+                type="button"
+                data-step="-1"
+                aria-controls="clause-track"
+                aria-label="Previous clause"
+              >
+                &#8592;
+              </button>
+              <button
+                class="deck-wrap__step"
+                type="button"
+                data-step="1"
+                aria-controls="clause-track"
+                aria-label="Next clause"
+              >
+                &#8594;
+              </button>
             </div>
           </div>
         </div>
