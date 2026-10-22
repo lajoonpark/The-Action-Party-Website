@@ -1,4 +1,4 @@
-/* The Action Party, "The Register"
+/* The Action Party, "The Plan"
    One family (Archivo variable), paper white, pure black, one red.
    The logo's hairline rule becomes the page spine: each section hangs off a
    sticky margin rail, the way the rule brackets the mark and the wordmark.
@@ -312,10 +312,10 @@ svg { display: block; }
 }
 .link:hover::after { transform: scaleX(1); }
 
-/* ---------- The first screen: the register opens ----------
+/* ---------- The first screen: the plan opens ----------
    One idea governs this screen, borrowed from how Brex spends its orange:
-   the red is not decoration, it is the register indexing itself. The lede
-   sentence is a claim, so the clause that answers it is the only red mark in
+   the red is not decoration, it is the list indexing itself. The lede
+   sentence is a claim, so the policy that answers it is the only red mark in
    the region, and the count beside it is where that answer is filed. Every
    other element is black on white, so the red can only ever mean one thing. */
 
@@ -351,10 +351,10 @@ svg { display: block; }
 .statement__line { display: block; }
 .statement__line--action { color: var(--action); }
 
-/* The one red mark on the screen that is not the tagline. A register entry
+/* The one red mark on the screen that is not the tagline. A list entry
    is a number and a date, and the number is set in the tabular end of the
    family so it reads as a filed record rather than a slogan. */
-.hero__register {
+.hero__plan {
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
@@ -372,7 +372,7 @@ svg { display: block; }
   text-wrap: pretty;
 }
 /* The claim and its answer. The answer is the red: on this screen red means
-   "this is where the register answers you", and nothing else is red. */
+   "this is where the plan answers you", and nothing else is red. */
 .hero__lede strong {
   font-variation-settings: "wdth" 100, "wght" 600;
   color: var(--action-deep);
@@ -410,7 +410,7 @@ svg { display: block; }
   font-variant-numeric: tabular-nums;
 }
 
-/* The verdict line, and the way into the register. It closes the screen on
+/* The verdict line, and the way into the plan. It closes the screen on
    the same baseline as the counts so the whole lower edge reads as one rule. */
 .hero__foot {
   display: flex;
@@ -704,9 +704,9 @@ svg { display: block; }
   text-wrap: pretty;
 }
 
-/* ---------- 01 The plan: a horizontal deck of five clauses ----------
+/* ---------- 01 The plan: a horizontal deck of five policies ----------
    The deck scrolls sideways with scroll snapping, so a trackpad, a touch
-   swipe and the arrow keys all land on a clause rather than between two. */
+   swipe and the arrow keys all land on a policy rather than between two. */
 
 .section--plan { overflow: clip; }
 
@@ -767,15 +767,15 @@ svg { display: block; }
 }
 .track.is-dragging * { user-select: none; }
 
-.clause {
+.policy {
   flex: 0 0 clamp(16rem, 22vw + 8rem, 26rem);
   display: flex;
 }
 
-/* The card is the clause: number and count at the top, the name set as a
+/* The card is the policy: number and count at the top, the name set as a
    statement, the claim underneath, and the working hidden behind a control
    that expands the card downward. */
-.clause__card {
+.policy__card {
   display: grid;
   grid-template-rows: auto auto auto 1fr auto;
   gap: var(--space-s);
@@ -786,12 +786,12 @@ svg { display: block; }
   position: relative;
   transition: transform 420ms var(--ease-out), box-shadow 420ms var(--ease-out), background-color 300ms ease;
 }
-.clause:hover .clause__card {
+.policy:hover .policy__card {
   transform: translateY(-4px);
   box-shadow: 6px 6px 0 0 var(--ink);
 }
 
-.clause__top {
+.policy__top {
   display: flex;
   align-items: baseline;
   justify-content: space-between;
@@ -800,19 +800,19 @@ svg { display: block; }
   border-bottom: 1px solid var(--rule);
 }
 
-.clause__index {
+.policy__index {
   font-size: var(--step--2);
   font-variation-settings: "wdth" 78, "wght" 700;
   letter-spacing: 0.005em;
   color: var(--ink-3);
 }
-.clause__index span {
+.policy__index span {
   color: var(--action-deep);
   margin-right: 0.35em;
   font-variant-numeric: tabular-nums;
 }
 
-.clause__count {
+.policy__count {
   font-size: var(--step--2);
   font-variation-settings: "wdth" 78, "wght" 600;
   letter-spacing: 0.005em;
@@ -820,7 +820,7 @@ svg { display: block; }
   white-space: nowrap;
 }
 
-.clause__name {
+.policy__name {
   font-variation-settings: "wdth" 106, "wght" 700;
   font-size: var(--step-3);
   line-height: 0.96;
@@ -828,7 +828,7 @@ svg { display: block; }
   text-wrap: balance;
 }
 
-.clause__claim {
+.policy__claim {
   font-size: var(--step-1);
   line-height: 1.24;
   letter-spacing: -0.014em;
@@ -837,18 +837,18 @@ svg { display: block; }
   max-width: 24ch;
 }
 
-.clause__panel {
+.policy__panel {
   display: grid;
   grid-template-rows: 0fr;
   transition: grid-template-rows 480ms var(--ease-out);
 }
-.clause__reveal { overflow: hidden; }
-.clause__inner { display: grid; gap: var(--space-s); padding-top: var(--space-s); }
+.policy__reveal { overflow: hidden; }
+.policy__inner { display: grid; gap: var(--space-s); padding-top: var(--space-s); }
 
-.clause[data-open="true"] .clause__panel { grid-template-rows: 1fr; }
-.clause[data-open="true"] .clause__card { box-shadow: 6px 6px 0 0 var(--ink); }
+.policy[data-open="true"] .policy__panel { grid-template-rows: 1fr; }
+.policy[data-open="true"] .policy__card { box-shadow: 6px 6px 0 0 var(--ink); }
 
-.clause__inner p {
+.policy__inner p {
   font-size: var(--step--1);
   line-height: 1.55;
   color: var(--ink-2);
@@ -856,14 +856,14 @@ svg { display: block; }
   border-top: 1px solid var(--rule);
 }
 
-.clause__inner ul {
+.policy__inner ul {
   display: grid;
   gap: 0.35rem;
   font-size: var(--step--1);
   color: var(--ink-2);
 }
-.clause__inner li { position: relative; padding-left: 1.1rem; }
-.clause__inner li::before {
+.policy__inner li { position: relative; padding-left: 1.1rem; }
+.policy__inner li::before {
   content: "";
   position: absolute;
   left: 0;
@@ -873,31 +873,31 @@ svg { display: block; }
   background: var(--action);
 }
 
-.clause__meta {
+.policy__meta {
   display: grid;
   gap: 0.5rem;
   padding-top: var(--space-s);
   border-top: 1px solid var(--rule);
 }
-.clause__meta div {
+.policy__meta div {
   display: flex;
   justify-content: space-between;
   gap: var(--space-s);
   align-items: baseline;
 }
-.clause__meta dt {
+.policy__meta dt {
   font-size: var(--step--2);
   font-variation-settings: "wdth" 78, "wght" 700;
   letter-spacing: 0.005em;
   color: var(--ink-3);
 }
-.clause__meta dd {
+.policy__meta dd {
   font-size: var(--step--1);
   font-variation-settings: "wdth" 100, "wght" 600;
   text-align: right;
 }
 
-.clause__btn {
+.policy__btn {
   position: relative;
   display: flex;
   align-items: center;
@@ -916,7 +916,7 @@ svg { display: block; }
   isolation: isolate;
   transition: color 240ms ease;
 }
-.clause__btn::before {
+.policy__btn::before {
   content: "";
   position: absolute;
   inset: 0;
@@ -925,20 +925,20 @@ svg { display: block; }
   transform: translateY(101%);
   transition: transform 420ms var(--ease-snap);
 }
-.clause__btn:hover::before,
-.clause__btn[aria-expanded="true"]::before { transform: translateY(0); }
-.clause__btn:hover,
-.clause__btn[aria-expanded="true"] { color: var(--paper); }
+.policy__btn:hover::before,
+.policy__btn[aria-expanded="true"]::before { transform: translateY(0); }
+.policy__btn:hover,
+.policy__btn[aria-expanded="true"] { color: var(--paper); }
 
 /* A plus that becomes a minus: two rules, one rotating out. */
-.clause__mark {
+.policy__mark {
   position: relative;
   width: 0.85rem;
   height: 0.85rem;
   flex: none;
 }
-.clause__mark::before,
-.clause__mark::after {
+.policy__mark::before,
+.policy__mark::after {
   content: "";
   position: absolute;
   inset: 50% 0 auto;
@@ -946,8 +946,8 @@ svg { display: block; }
   background: currentColor;
   transition: transform 380ms var(--ease-out);
 }
-.clause__mark::after { transform: rotate(90deg); }
-.clause__btn[aria-expanded="true"] .clause__mark::after { transform: rotate(0deg); }
+.policy__mark::after { transform: rotate(90deg); }
+.policy__btn[aria-expanded="true"] .policy__mark::after { transform: rotate(0deg); }
 
 .deck-wrap__foot {
   display: flex;
@@ -2208,19 +2208,19 @@ input[type="radio"]:checked { background: var(--ink); box-shadow: inset 0 0 0 2p
   .ledger.is-in tbody tr:nth-child(6) { transition-delay: 410ms; }
 
   /* Policy cards deal themselves in from the right, one after another. */
-  .js .clause {
+  .js .policy {
     opacity: 0;
     transform: translateX(28px) rotate(0.4deg);
     transition:
       opacity 620ms var(--ease-out),
       transform 820ms var(--ease-out);
   }
-  .deck-wrap.is-in .clause { opacity: 1; transform: none; }
-  .deck-wrap.is-in .clause:nth-child(1) { transition-delay: 40ms; }
-  .deck-wrap.is-in .clause:nth-child(2) { transition-delay: 130ms; }
-  .deck-wrap.is-in .clause:nth-child(3) { transition-delay: 220ms; }
-  .deck-wrap.is-in .clause:nth-child(4) { transition-delay: 310ms; }
-  .deck-wrap.is-in .clause:nth-child(5) { transition-delay: 400ms; }
+  .deck-wrap.is-in .policy { opacity: 1; transform: none; }
+  .deck-wrap.is-in .policy:nth-child(1) { transition-delay: 40ms; }
+  .deck-wrap.is-in .policy:nth-child(2) { transition-delay: 130ms; }
+  .deck-wrap.is-in .policy:nth-child(3) { transition-delay: 220ms; }
+  .deck-wrap.is-in .policy:nth-child(4) { transition-delay: 310ms; }
+  .deck-wrap.is-in .policy:nth-child(5) { transition-delay: 400ms; }
 
   /* Cards rise out of the stack and settle, like being dealt face up. */
   .js .card {
@@ -2397,9 +2397,9 @@ input[type="radio"]:checked { background: var(--ink); box-shadow: inset 0 0 0 2p
   .page__head { padding-top: var(--pad-2); }
   .page__facts > div { grid-template-columns: minmax(0, 1fr); gap: 0.25rem; }
 
-  /* The register line stacks: the sentence, then the three filed counts on
+  /* The plan line stacks: the sentence, then the three filed counts on
      their own rule, then the way in. */
-  .hero__register { flex-direction: column; }
+  .hero__plan { flex-direction: column; }
   .hero__counts {
     grid-template-columns: repeat(3, minmax(0, 1fr));
     margin-left: 0;
@@ -2430,7 +2430,7 @@ input[type="radio"]:checked { background: var(--ink); box-shadow: inset 0 0 0 2p
   .footer__legal { grid-column: 1 / -1; }
 
   .deck { grid-template-columns: minmax(0, 1fr); }
-  .clause { flex-basis: clamp(15rem, 62vw, 22rem); }
+  .policy { flex-basis: clamp(15rem, 62vw, 22rem); }
 
   .ledger__balance { grid-template-columns: minmax(0, 1fr); }
   .ledger__balance-num { grid-column: 1; grid-row: auto; font-size: var(--step-3); }

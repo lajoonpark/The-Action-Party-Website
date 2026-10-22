@@ -159,9 +159,9 @@
   const track = $("[data-track]");
 
   if (track) {
-    const cards = $$("[data-clause]", track);
-    const now = $("[data-clause-now]");
-    const fill = $("[data-clause-fill]");
+    const cards = $$("[data-policy]", track);
+    const now = $("[data-policy-now]");
+    const fill = $("[data-policy-fill]");
     const steps = $$("[data-step]");
 
     const maxScroll = () => Math.max(0, track.scrollWidth - track.clientWidth);
@@ -348,7 +348,7 @@
     /* Arrow keys move focus card by card, but only from inside the deck. */
     track.addEventListener("keydown", (event) => {
       if (event.key !== "ArrowRight" && event.key !== "ArrowLeft") return;
-      const from = document.activeElement?.closest("[data-clause]");
+      const from = document.activeElement?.closest("[data-policy]");
       if (!from) return;
       event.preventDefault();
       /* Step by delta rather than scrollIntoView: a card sitting inside the
@@ -357,20 +357,20 @@
       const dir = event.key === "ArrowRight" ? 1 : -1;
       stepBy(dir);
       const next = cards[clamp(currentIndex() + dir, 0, cards.length - 1)];
-      next.querySelector(".clause__btn")?.focus({ preventScroll: true });
+      next.querySelector(".policy__btn")?.focus({ preventScroll: true });
     });
 
-    /* Each clause opens in place: the card grows, the deck does not jump. */
+    /* Each policy opens in place: the card grows, the deck does not jump. */
     cards.forEach((card) => {
-      const btn = $(".clause__btn", card);
-      const panel = $(".clause__panel", card);
+      const btn = $(".policy__btn", card);
+      const panel = $(".policy__panel", card);
       panel.inert = true;
 
       btn.addEventListener("click", () => {
         const open = card.dataset.open === "true";
         card.dataset.open = String(!open);
         btn.setAttribute("aria-expanded", String(!open));
-        $(".clause__btn-label", btn).textContent = open ? "Open clause" : "Close clause";
+        $(".policy__btn-label", btn).textContent = open ? "Open area" : "Close area";
         panel.inert = open;
       });
     });
@@ -649,7 +649,7 @@
   }
 
   const messages = {
-    join: (name) => `Thanks, ${name}. Check your inbox for the membership confirmation and the first register update.`,
+    join: (name) => `Thanks, ${name}. Check your inbox for the membership confirmation and the first policy update.`,
     volunteer: (name) => `Thanks, ${name}. Your local organiser will be in touch within two working days.`,
     donate: (amount) => `Thank you. A receipt for $${amount} is on its way, and the donation will appear on the live register within seven days.`,
   };
