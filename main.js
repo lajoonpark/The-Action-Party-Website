@@ -132,8 +132,15 @@
                rather than being stamped on as a percent sign. */
             const unit = (cell.textContent.trim().match(/[a-z%]+$/i) || [""])[0];
             const decimals = (String(cell.dataset.num).split(".")[1] || "").length;
+            /* Keep the thousands separator the table is written with, so a
+               four-figure value does not flash to 1300 as it lands. */
+            const grouped = (n) =>
+              n.toLocaleString("en-NZ", {
+                minimumFractionDigits: decimals,
+                maximumFractionDigits: decimals,
+              });
             const label = () =>
-              unit === "%" ? `${to.toFixed(decimals)}%` : unit ? `${to.toFixed(decimals)} ${unit}` : to.toFixed(decimals);
+              unit === "%" ? `${grouped(to)}%` : unit ? `${grouped(to)} ${unit}` : grouped(to);
             window.setTimeout(() => {
               countTo(cell, to, { decimals, duration: 760 });
               window.setTimeout(() => {
