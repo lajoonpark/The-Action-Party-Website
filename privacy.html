@@ -116,11 +116,11 @@
         </button>
 
         <nav class="nav" id="site-nav" aria-label="Primary" data-nav>
-          <a href="/#plan">Our plan</a>
-          <a href="/#finances">The finances</a>
-          <a href="/#system">Your vote</a>
-          <a href="/#people">The front bench</a>
-          <a href="/#record">The record</a>
+          <a href="/#system"><span class="nav__no">01</span> Your vote</a>
+          <a href="/#plan"><span class="nav__no">02</span> Our plan</a>
+          <a href="/#finances"><span class="nav__no">03</span> The finances</a>
+          <a href="/#record"><span class="nav__no">04</span> The record</a>
+          <a href="/#people"><span class="nav__no">05</span> The front bench</a>
           <a class="btn btn--join" href="/#join">Join the party</a>
         </nav>
       </div>
@@ -134,8 +134,14 @@
             <span aria-hidden="true">/</span>
             <span aria-current="page">Privacy</span>
           </nav>
-          <h1 class="page__title">Privacy</h1>
+          <h1 class="page__title">Nothing<br />leaves<br />the browser.</h1>
           <p class="page__lead">A published list of promises should come with a published list of what happens to your details. The short answer is nothing, because the forms on this site do not send anywhere yet. Here is the long answer.</p>
+          <div class="page__meta">
+            <span>Paper <b>02</b></span>
+            <span>Data sent <b>None</b></span>
+            <span>Cookies <b>None</b></span>
+            <span>Analytics <b>None</b></span>
+          </div>
         </div>
       </header>
 
@@ -144,6 +150,7 @@
           <div class="page__rail">
             <p class="rail__label">01</p>
             <p class="rail__figure">Collected</p>
+            <p class="rail__note">The honest total: what the forms do with your details.</p>
           </div>
           <div class="page__body">
             <h2 class="section__title">What is collected</h2>
@@ -165,6 +172,13 @@
                 scripts, which is also why it is fast.
               </p>
           </div>
+          <aside class="page__aside" aria-label="Summary of collection">
+            <p class="label">Held by us</p>
+            <p class="aside__num">0</p>
+            <p>records. Not because they are deleted, but because none are ever sent.</p>
+            <span class="aside__rule" aria-hidden="true"></span>
+            <p>You can check this yourself: the page loads no script from another domain, and the network panel stays quiet when you submit the form.</p>
+          </aside>
         </div>
       </section>
 
@@ -173,6 +187,7 @@
           <div class="page__rail">
             <p class="rail__label">02</p>
             <p class="rail__figure">When live</p>
+            <p class="rail__note">What this page will say on the day the forms start working.</p>
           </div>
           <div class="page__body">
             <h2 class="section__title">What changes when the forms are wired up</h2>
@@ -191,6 +206,12 @@
                 click.
               </p>
           </div>
+          <aside class="page__aside" aria-label="The standing promise">
+            <p class="label">Unchanged</p>
+            <p>No sale of member data. No swaps with other parties or campaigns. One click to leave.</p>
+            <span class="aside__rule" aria-hidden="true"></span>
+            <p>Those three are commitments, not settings, and they do not depend on what the form is built from.</p>
+          </aside>
         </div>
       </section>
 
@@ -199,6 +220,7 @@
           <div class="page__rail">
             <p class="rail__label">03</p>
             <p class="rail__figure">Contact</p>
+            <p class="rail__note">One route reaches every question on this site.</p>
           </div>
           <div class="page__body">
             <h2 class="section__title">Ask us about any of this</h2>
@@ -220,41 +242,59 @@
 
     </main>
 
-    <footer class="footer">
-      <div class="shell footer__inner">
-        <div class="footer__brand">
-          <img
-            src="assets/img/logo-lockup.png"
-            alt="The Action Party. Less talk. More action."
-            width="824"
-            height="424"
-          />
+    <footer class="footer" data-tone="paper">
+      <div class="shell footer__top">
+        <div class="footer__lead">
+          <p class="label">The Action Party</p>
+          <p class="footer__line">
+            Less talk. More <em>action.</em>
+          </p>
         </div>
         <nav class="footer__nav" aria-label="Footer">
-          <a href="/#plan">Our plan</a>
-          <a href="/#finances">The finances</a>
-          <a href="/#system">How your vote counts</a>
-          <a href="/#people">The front bench</a>
-          <a href="/#record">The record</a>
-          <a href="/financial-disclosure.html">Financial disclosure</a>
-          <a href="/accessibility.html">Accessibility</a>
-          <a href="/privacy.html">Privacy</a>
+          <div>
+            <p class="footer__nav-title">The plan</p>
+            <a href="/#plan">Our plan</a>
+            <a href="/#finances">The finances</a>
+            <a href="/#system">How your vote counts</a>
+          </div>
+          <div>
+            <p class="footer__nav-title">The party</p>
+            <a href="/#people">The front bench</a>
+            <a href="/#record">The record</a>
+            <a href="/#join">Join the party</a>
+          </div>
+          <div>
+            <p class="footer__nav-title">The papers</p>
+            <a href="/financial-disclosure.html">Financial disclosure</a>
+            <a href="/accessibility.html">Accessibility</a>
+            <a href="/privacy.html">Privacy</a>
+          </div>
         </nav>
-        <div class="footer__legal">
-          <p>
-            Authorised by A. Rivera, Registered Officer, The Action Party. This
-            is a demonstration site: the party, its people and its figures are
-            fictional.
-          </p>
-          <p>
-            <a class="footer__legal-link" href="/financial-disclosure.html"
-              >Financial disclosure</a
-            >, <a class="footer__legal-link" href="/privacy.html">Privacy</a>,
-            and <a class="footer__legal-link" href="/accessibility.html"
-              >Accessibility</a
-            >. Every figure on this site is fictional and demonstrative.
-          </p>
-        </div>
+      </div>
+
+      <div class="shell footer__print">
+        <img
+          class="footer__lockup"
+          src="assets/img/logo-lockup.png"
+          alt="The Action Party. Less talk. More action."
+          width="824"
+          height="424"
+          decoding="async"
+          data-print
+        />
+      </div>
+
+      <div class="shell footer__legal">
+        <p>
+          Authorised by A. Rivera, Registered Officer, The Action Party. This is a
+          demonstration site: the party, its people and its figures are fictional.
+        </p>
+        <p>
+          <a href="/financial-disclosure.html">Financial disclosure</a>,
+          <a href="/privacy.html">Privacy</a>, and
+          <a href="/accessibility.html">Accessibility</a>.
+        </p>
+        <p class="footer__top-link"><a class="tlink" href="/#top">Back to the top</a></p>
       </div>
     </footer>
     <script src="main.js"></script>
