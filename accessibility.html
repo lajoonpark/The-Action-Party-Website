@@ -116,11 +116,11 @@
         </button>
 
         <nav class="nav" id="site-nav" aria-label="Primary" data-nav>
-          <a href="/#plan">Our plan</a>
-          <a href="/#finances">The finances</a>
-          <a href="/#system">Your vote</a>
-          <a href="/#people">The front bench</a>
-          <a href="/#record">The record</a>
+          <a href="/#system"><span class="nav__no">01</span> Your vote</a>
+          <a href="/#plan"><span class="nav__no">02</span> Our plan</a>
+          <a href="/#finances"><span class="nav__no">03</span> The finances</a>
+          <a href="/#record"><span class="nav__no">04</span> The record</a>
+          <a href="/#people"><span class="nav__no">05</span> The front bench</a>
           <a class="btn btn--join" href="/#join">Join the party</a>
         </nav>
       </div>
@@ -134,8 +134,14 @@
             <span aria-hidden="true">/</span>
             <span aria-current="page">Accessibility</span>
           </nav>
-          <h1 class="page__title">Accessibility</h1>
+          <h1 class="page__title">What we<br />measured.</h1>
           <p class="page__lead">An accessibility claim is only worth the measurement behind it. This page states what was tested, at what width, and what a person using the site can expect.</p>
+          <div class="page__meta">
+            <span>Paper <b>04</b></span>
+            <span>Standard <b>WCAG 2.2 AA</b></span>
+            <span>Widths <b>320 to 1440px</b></span>
+            <span>Last run <b>24 October 2026</b></span>
+          </div>
         </div>
       </header>
 
@@ -144,6 +150,7 @@
           <div class="page__rail">
             <p class="rail__label">01</p>
             <p class="rail__figure">The standard</p>
+            <p class="rail__note">Tested, not asserted. The figures are the output of the last run.</p>
           </div>
           <div class="page__body">
             <h2 class="section__title">What we hold ourselves to</h2>
@@ -159,6 +166,13 @@
                 <div><dt>Zoom</dt><dd>Holds to 200 percent with no sideways scroll</dd></div>
               </dl>
           </div>
+          <aside class="page__aside" aria-label="Result in short">
+            <p class="label">Result</p>
+            <p class="aside__num">0</p>
+            <p>violations returned, at every width, on the last full run.</p>
+            <span class="aside__rule" aria-hidden="true"></span>
+            <p>The audit covers contrast, names, roles, order and target size. It cannot judge whether the writing is clear, so that part is read by a person.</p>
+          </aside>
         </div>
       </section>
 
@@ -167,6 +181,7 @@
           <div class="page__rail">
             <p class="rail__label">02</p>
             <p class="rail__figure">Keyboard</p>
+            <p class="rail__note">Every control on the site can be reached and operated without a mouse.</p>
           </div>
           <div class="page__body">
             <h2 class="section__title">With a keyboard, or without a pointer</h2>
@@ -191,6 +206,14 @@
                 </li>
               </ul>
           </div>
+          <aside class="page__aside" aria-label="Keyboard detail">
+            <p class="label">The ring</p>
+            <p class="aside__num">2px</p>
+            <p>Red, drawn outside the element, never removed and never covered by the element's own background.</p>
+            <span class="aside__rule" aria-hidden="true"></span>
+            <p class="label">Keys used</p>
+            <p>Tab and Shift-Tab to move, arrows inside the dial and the policy files, Enter or Space to act, Escape to close whatever opened.</p>
+          </aside>
         </div>
       </section>
 
@@ -199,6 +222,7 @@
           <div class="page__rail">
             <p class="rail__label">03</p>
             <p class="rail__figure">Motion</p>
+            <p class="rail__note">Nothing moves that a reader has not asked to move.</p>
           </div>
           <div class="page__body">
             <h2 class="section__title">If you ask for less movement</h2>
@@ -216,6 +240,12 @@
                 when the finger drifts sideways.
               </p>
           </div>
+          <aside class="page__aside" aria-label="What reduced motion turns off">
+            <p class="label">Switched off</p>
+            <p>Reveals, parallax on the print plates, the dial's fill animation, the spinning ray field, the reading rule, and smooth scrolling.</p>
+            <span class="aside__rule" aria-hidden="true"></span>
+            <p>What remains is the finished state: ink on stock, in place, at rest.</p>
+          </aside>
         </div>
       </section>
 
@@ -224,6 +254,7 @@
           <div class="page__rail">
             <p class="rail__label">04</p>
             <p class="rail__figure">Problems</p>
+            <p class="rail__note">A fix is only a fix once it is written down.</p>
           </div>
           <div class="page__body">
             <h2 class="section__title">If something does not work</h2>
@@ -241,46 +272,68 @@
                 this build as tested, and the party it describes is fictional.
               </p>
           </div>
+          <aside class="page__aside" aria-label="How a report is handled">
+            <p class="label">If you report one</p>
+            <p>It is logged the day it arrives, fixed in the next build, and named in <a href="/#record">the record</a> with the date. No fix goes in quietly.</p>
+          </aside>
         </div>
       </section>
 
     </main>
 
-    <footer class="footer">
-      <div class="shell footer__inner">
-        <div class="footer__brand">
-          <img
-            src="assets/img/logo-lockup.png"
-            alt="The Action Party. Less talk. More action."
-            width="824"
-            height="424"
-          />
+    <footer class="footer" data-tone="paper">
+      <div class="shell footer__top">
+        <div class="footer__lead">
+          <p class="label">The Action Party</p>
+          <p class="footer__line">
+            Less talk. More <em>action.</em>
+          </p>
         </div>
         <nav class="footer__nav" aria-label="Footer">
-          <a href="/#plan">Our plan</a>
-          <a href="/#finances">The finances</a>
-          <a href="/#system">How your vote counts</a>
-          <a href="/#people">The front bench</a>
-          <a href="/#record">The record</a>
-          <a href="/financial-disclosure.html">Financial disclosure</a>
-          <a href="/accessibility.html">Accessibility</a>
-          <a href="/privacy.html">Privacy</a>
+          <div>
+            <p class="footer__nav-title">The plan</p>
+            <a href="/#plan">Our plan</a>
+            <a href="/#finances">The finances</a>
+            <a href="/#system">How your vote counts</a>
+          </div>
+          <div>
+            <p class="footer__nav-title">The party</p>
+            <a href="/#people">The front bench</a>
+            <a href="/#record">The record</a>
+            <a href="/#join">Join the party</a>
+          </div>
+          <div>
+            <p class="footer__nav-title">The papers</p>
+            <a href="/financial-disclosure.html">Financial disclosure</a>
+            <a href="/accessibility.html">Accessibility</a>
+            <a href="/privacy.html">Privacy</a>
+          </div>
         </nav>
-        <div class="footer__legal">
-          <p>
-            Authorised by A. Rivera, Registered Officer, The Action Party. This
-            is a demonstration site: the party, its people and its figures are
-            fictional.
-          </p>
-          <p>
-            <a class="footer__legal-link" href="/financial-disclosure.html"
-              >Financial disclosure</a
-            >, <a class="footer__legal-link" href="/privacy.html">Privacy</a>,
-            and <a class="footer__legal-link" href="/accessibility.html"
-              >Accessibility</a
-            >. Every figure on this site is fictional and demonstrative.
-          </p>
-        </div>
+      </div>
+
+      <div class="shell footer__print">
+        <img
+          class="footer__lockup"
+          src="assets/img/logo-lockup.png"
+          alt="The Action Party. Less talk. More action."
+          width="824"
+          height="424"
+          decoding="async"
+          data-print
+        />
+      </div>
+
+      <div class="shell footer__legal">
+        <p>
+          Authorised by A. Rivera, Registered Officer, The Action Party. This is a
+          demonstration site: the party, its people and its figures are fictional.
+        </p>
+        <p>
+          <a href="/financial-disclosure.html">Financial disclosure</a>,
+          <a href="/privacy.html">Privacy</a>, and
+          <a href="/accessibility.html">Accessibility</a>.
+        </p>
+        <p class="footer__top-link"><a class="tlink" href="/#top">Back to the top</a></p>
       </div>
     </footer>
     <script src="main.js"></script>

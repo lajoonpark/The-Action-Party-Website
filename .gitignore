@@ -1,2 +1,5 @@
 .openhands/
 .DS_Store
+
+# Build scratch
+.build/

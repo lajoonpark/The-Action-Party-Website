@@ -116,11 +116,11 @@
         </button>
 
         <nav class="nav" id="site-nav" aria-label="Primary" data-nav>
-          <a href="/#plan">Our plan</a>
-          <a href="/#finances">The finances</a>
-          <a href="/#system">Your vote</a>
-          <a href="/#people">The front bench</a>
-          <a href="/#record">The record</a>
+          <a href="/#system"><span class="nav__no">01</span> Your vote</a>
+          <a href="/#plan"><span class="nav__no">02</span> Our plan</a>
+          <a href="/#finances"><span class="nav__no">03</span> The finances</a>
+          <a href="/#record"><span class="nav__no">04</span> The record</a>
+          <a href="/#people"><span class="nav__no">05</span> The front bench</a>
           <a class="btn btn--join" href="/#join">Join the party</a>
         </nav>
       </div>
@@ -134,8 +134,14 @@
             <span aria-hidden="true">/</span>
             <span aria-current="page">Financial disclosure</span>
           </nav>
-          <h1 class="page__title">Financial disclosure</h1>
+          <h1 class="page__title">Show the<br />arithmetic.</h1>
           <p class="page__lead">A party that asks for your vote and your money owes you the arithmetic behind both. This page is that arithmetic: what we take in, what we would spend, and who can check it.</p>
+          <div class="page__meta">
+            <span>Paper <b>01</b></span>
+            <span>Income <b>Membership only</b></span>
+            <span>Corporate gifts <b>$0</b></span>
+            <span>Published <b>24 October 2026</b></span>
+          </div>
         </div>
       </header>
 
@@ -144,6 +150,7 @@
           <div class="page__rail">
             <p class="rail__label">01</p>
             <p class="rail__figure">Money in</p>
+            <p class="rail__note">Two sources, one of them deliberately absent.</p>
           </div>
           <div class="page__body">
             <h2 class="section__title">What we take in</h2>
@@ -188,6 +195,15 @@
                 electoral law requires. Nothing is accepted anonymously.
               </p>
           </div>
+          <aside class="page__aside" aria-label="Income split">
+            <p class="label">Membership</p>
+            <p class="aside__num">92%</p>
+            <p>of everything the party takes in. The remaining eight percent is small donations from individuals.</p>
+            <span class="aside__rule" aria-hidden="true"></span>
+            <p class="label">Corporate</p>
+            <p class="aside__num">0%</p>
+            <p>by rule, not by luck. A donation from a company or an undisclosed trust is refused and returned.</p>
+          </aside>
         </div>
       </section>
 
@@ -196,6 +212,7 @@
           <div class="page__rail">
             <p class="rail__label">02</p>
             <p class="rail__figure">Money out</p>
+            <p class="rail__note">Costed by the party's own budget office, and open to review.</p>
           </div>
           <div class="page__body">
             <h2 class="section__title">What we would spend</h2>
@@ -231,6 +248,15 @@
                 present them as one.
               </p>
           </div>
+          <aside class="page__aside" aria-label="Money out in short">
+            <p class="label">Net new spending</p>
+            <p class="aside__num">1.83tn</p>
+            <p>a year once the plan is fully in, across the six lines on the finances page.</p>
+            <span class="aside__rule" aria-hidden="true"></span>
+            <p class="label">New revenue</p>
+            <p class="aside__num">2.7tn</p>
+            <p>claimed by the tax policy, which leaves 0.87tn a year against the spending above.</p>
+          </aside>
         </div>
       </section>
 
@@ -239,6 +265,7 @@
           <div class="page__rail">
             <p class="rail__label">03</p>
             <p class="rail__figure">The papers</p>
+            <p class="rail__note">Ask for any figure's working, and the review when it lands.</p>
           </div>
           <div class="page__body">
             <h2 class="section__title">Request the working papers</h2>
@@ -262,41 +289,59 @@
 
     </main>
 
-    <footer class="footer">
-      <div class="shell footer__inner">
-        <div class="footer__brand">
-          <img
-            src="assets/img/logo-lockup.png"
-            alt="The Action Party. Less talk. More action."
-            width="824"
-            height="424"
-          />
+    <footer class="footer" data-tone="paper">
+      <div class="shell footer__top">
+        <div class="footer__lead">
+          <p class="label">The Action Party</p>
+          <p class="footer__line">
+            Less talk. More <em>action.</em>
+          </p>
         </div>
         <nav class="footer__nav" aria-label="Footer">
-          <a href="/#plan">Our plan</a>
-          <a href="/#finances">The finances</a>
-          <a href="/#system">How your vote counts</a>
-          <a href="/#people">The front bench</a>
-          <a href="/#record">The record</a>
-          <a href="/financial-disclosure.html">Financial disclosure</a>
-          <a href="/accessibility.html">Accessibility</a>
-          <a href="/privacy.html">Privacy</a>
+          <div>
+            <p class="footer__nav-title">The plan</p>
+            <a href="/#plan">Our plan</a>
+            <a href="/#finances">The finances</a>
+            <a href="/#system">How your vote counts</a>
+          </div>
+          <div>
+            <p class="footer__nav-title">The party</p>
+            <a href="/#people">The front bench</a>
+            <a href="/#record">The record</a>
+            <a href="/#join">Join the party</a>
+          </div>
+          <div>
+            <p class="footer__nav-title">The papers</p>
+            <a href="/financial-disclosure.html">Financial disclosure</a>
+            <a href="/accessibility.html">Accessibility</a>
+            <a href="/privacy.html">Privacy</a>
+          </div>
         </nav>
-        <div class="footer__legal">
-          <p>
-            Authorised by A. Rivera, Registered Officer, The Action Party. This
-            is a demonstration site: the party, its people and its figures are
-            fictional.
-          </p>
-          <p>
-            <a class="footer__legal-link" href="/financial-disclosure.html"
-              >Financial disclosure</a
-            >, <a class="footer__legal-link" href="/privacy.html">Privacy</a>,
-            and <a class="footer__legal-link" href="/accessibility.html"
-              >Accessibility</a
-            >. Every figure on this site is fictional and demonstrative.
-          </p>
-        </div>
+      </div>
+
+      <div class="shell footer__print">
+        <img
+          class="footer__lockup"
+          src="assets/img/logo-lockup.png"
+          alt="The Action Party. Less talk. More action."
+          width="824"
+          height="424"
+          decoding="async"
+          data-print
+        />
+      </div>
+
+      <div class="shell footer__legal">
+        <p>
+          Authorised by A. Rivera, Registered Officer, The Action Party. This is a
+          demonstration site: the party, its people and its figures are fictional.
+        </p>
+        <p>
+          <a href="/financial-disclosure.html">Financial disclosure</a>,
+          <a href="/privacy.html">Privacy</a>, and
+          <a href="/accessibility.html">Accessibility</a>.
+        </p>
+        <p class="footer__top-link"><a class="tlink" href="/#top">Back to the top</a></p>
       </div>
     </footer>
     <script src="main.js"></script>

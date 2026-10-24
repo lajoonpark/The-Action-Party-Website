@@ -9,7 +9,7 @@
       content="The Action Party publishes every commitment with a policy number, a cost and a date. Thirty-one policies, five areas, one plan."
     />
     <link rel="canonical" href="https://the-action-party-website.vercel.app/" />
-    <meta name="theme-color" content="#ffffff" />
+    <meta name="theme-color" content="#f5f2ea" />
     <link rel="icon" href="assets/img/favicon-64.png" sizes="64x64" />
     <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png" />
 
@@ -50,8 +50,22 @@
       type="font/woff2"
       crossorigin
     />
+    <link
+      rel="preload"
+      href="assets/fonts/newsreader-normal-400-latin.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
     <script>
-      document.documentElement.classList.add("js");
+      (function () {
+        var root = document.documentElement;
+        root.classList.add("js");
+        // Motion classes are decided before first paint so nothing hidden can
+        // get stranded if the libraries never arrive.
+        var calm = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+        root.classList.add(calm ? "calm" : "motion");
+      })();
     </script>
     <link rel="stylesheet" href="styles.css" />
     <script type="application/ld+json">
@@ -102,12 +116,12 @@
       }
     </script>
   </head>
-  <body>
+  <body class="home">
     <a class="skip" href="#main">Skip to content</a>
 
     <div class="progress" aria-hidden="true" data-progress></div>
 
-    <header class="masthead" data-masthead>
+    <header class="masthead" data-masthead data-tone="paper">
       <div class="shell masthead__inner">
         <a class="masthead__brand" href="#top">
           <img src="assets/img/mark.png" alt="" width="268" height="248" />
@@ -125,1066 +139,950 @@
           data-nav-toggle
         >
           <span class="masthead__toggle-bars" aria-hidden="true"></span>
-          Menu
+          <span class="masthead__toggle-word">Menu</span>
         </button>
 
         <nav class="nav" id="site-nav" aria-label="Primary" data-nav>
-          <a href="#plan">Our plan</a>
-          <a href="#finances">The finances</a>
-          <a href="#system">Your vote</a>
-          <a href="#people">The front bench</a>
-          <a href="#record">The record</a>
+          <a href="#system"><span class="nav__no">01</span> Your vote</a>
+          <a href="#plan"><span class="nav__no">02</span> Our plan</a>
+          <a href="#finances"><span class="nav__no">03</span> The finances</a>
+          <a href="#record"><span class="nav__no">04</span> The record</a>
+          <a href="#people"><span class="nav__no">05</span> The front bench</a>
           <a class="btn btn--join" href="#join">Join the party</a>
         </nav>
       </div>
     </header>
 
     <main id="main">
-      <section class="hero" id="top">
-        <div class="shell">
-          <h1 class="statement">
-            <span class="statement__line" data-hero="1">Less talk.</span>
-            <span class="statement__line statement__line--action" data-hero="2"
-              >More action.</span
-            >
-          </h1>
+      <!-- ─────────────────────────── COVER ─────────────────────────── -->
+      <section class="cover" id="top" data-cover>
+        <div class="cover__field" aria-hidden="true">
+          <span class="cover__sun"></span>
+          <span class="cover__ray"></span>
+        </div>
 
-          <div class="hero__plan" data-hero="3">
-            <p class="hero__lede">
-              Every promise we make is written down in one place, with a policy
-              number, a cost and a date. <strong>This is policy one of 31.</strong>
-            </p>
+        <div class="shell cover__inner">
+          <p class="cover__meta" data-cover-line>
+            <span>Aotearoa New Zealand</span>
+            <span class="cover__dot" aria-hidden="true">/</span>
+            <span>31 policies</span>
+            <span class="cover__dot" aria-hidden="true">/</span>
+            <span>5 areas</span>
+            <span class="cover__dot" aria-hidden="true">/</span>
+            <span>1 plan</span>
+          </p>
 
-            <dl class="hero__counts">
-              <div>
-                <dt>Policies</dt>
-                <dd>31</dd>
-              </div>
-              <div>
-                <dt>Areas</dt>
-                <dd>5</dd>
-              </div>
-              <div>
-                <dt>Plan</dt>
-                <dd>1</dd>
-              </div>
-            </dl>
+          <div class="cover__masthead">
+            <h1 class="statement" data-statement>
+              <span class="statement__line" data-statement-line>Less talk.</span>
+              <span class="statement__line statement__line--action" data-statement-line
+                >More action.</span
+              >
+            </h1>
           </div>
 
-          <div class="hero__foot" data-hero="4">
-            <div class="hero__actions">
-              <a class="btn" href="#contents">Read the policies</a>
-              <a class="hero__scroll" href="#plan"
-                >Read the plan
-                <span class="hero__arrow" aria-hidden="true">&#8595;</span></a
-              >
+          <div class="cover__foot">
+            <div class="cover__col cover__col--lede">
+              <p class="cover__lede" data-cover-line>
+                Every promise we make is written down in one place, with a policy
+                number, a cost and a date.
+                <strong>This is policy one of 31.</strong>
+              </p>
+              <dl class="counts" data-cover-line>
+                <div><dt>Policies</dt><dd>31</dd></div>
+                <div><dt>Areas</dt><dd>5</dd></div>
+                <div><dt>Plan</dt><dd>1</dd></div>
+              </dl>
             </div>
-            <p class="hero__promise">
-              If we cannot show you the number, the cost and the date, we will
-              not ask for your vote.
-            </p>
+
+            <figure class="plate-figure" data-cover-line>
+              <div class="plate-figure__print" data-plates>
+                <span class="plate-figure__marks" aria-hidden="true">
+                  <i></i><i></i><i></i><i></i>
+                </span>
+                <img
+                  class="plate plate--ink"
+                  src="assets/img/mark-plate-ink.png"
+                  alt=""
+                  width="698"
+                  height="299"
+                  data-plate="ink"
+                />
+                <img
+                  class="plate plate--red"
+                  src="assets/img/mark-plate-red.png"
+                  alt=""
+                  width="698"
+                  height="299"
+                  data-plate="red"
+                />
+              </div>
+              <figcaption class="plate-figure__cap">
+                <span class="label">Plate 01</span>
+                <span>The mark, printed in two inks. The arrow is the crossbar.</span>
+              </figcaption>
+            </figure>
+
+            <div class="cover__col cover__col--actions">
+              <div class="cover__actions" data-cover-line>
+                <a class="btn btn--lg" href="#system">
+                  Put your vote in the count
+                  <span class="btn__arrow" aria-hidden="true">&#8594;</span>
+                </a>
+                <a class="tlink" href="#plan">Or read the plan first</a>
+              </div>
+              <p class="cover__promise" data-cover-line>
+                If we cannot show you the number, the cost and the date, we will
+                not ask for your vote.
+              </p>
+            </div>
           </div>
         </div>
+
+        <p class="cover__scroll" aria-hidden="true">
+          <span>Scroll</span>
+          <span class="cover__scroll-line"></span>
+        </p>
       </section>
 
-      <section class="band" aria-label="Our undertaking">
-        <div class="shell band__inner">
-          <p class="band__line">
+      <!-- ───────────────────────── UNDERTAKING ───────────────────────── -->
+      <section class="undertaking" aria-label="Our undertaking">
+        <div class="shell undertaking__inner">
+          <p class="undertaking__kicker label">The undertaking</p>
+          <p class="undertaking__line" data-wordlight>
             Every promise here carries a policy number, a cost and a date.
           </p>
-          <p class="band__sign">
-            Thirty-one policies across health, housing, work, tax and integrity.
-            Each one names its deadline and its price before the election, not
-            after it.
-          </p>
+          <div class="undertaking__sign">
+            <p>
+              Thirty-one policies across health, housing, work, tax and integrity.
+              Each one names its deadline and its price before the election, not
+              after it.
+            </p>
+            <p class="undertaking__sig">
+              <span class="undertaking__sig-name">A. Rivera</span>
+              <span class="undertaking__sig-role">Registered Officer</span>
+            </p>
+          </div>
         </div>
       </section>
 
-
-      <section class="index" id="contents" aria-labelledby="index-title">
+      <!-- ────────────────────────── CONTENTS ────────────────────────── -->
+      <section class="contents" id="contents" aria-labelledby="contents-title">
         <div class="shell">
-          <header class="index__head">
-            <h2 class="index__title" id="index-title">
+          <header class="contents__head">
+            <h2 class="contents__title" id="contents-title" data-reveal>
               Six doors into the plan
             </h2>
-            <p class="index__note">
-              Six pages. Six commitments. Six opportunities to make a
-              difference.
+            <p class="contents__note" data-reveal>
+              Six pages. Six commitments. Six opportunities to make a difference.
             </p>
           </header>
 
-          <ol class="tiles">
-            <li class="tile">
-              <a class="tile__link" href="#plan">
-                <span class="tile__no">01</span>
-                <span class="tile__body">
-                  <span class="tile__name">Our Plan to Take Action</span>
-                  <span class="tile__desc"
-                    >Five areas. Each one names the deadline and the
-                    price.</span
-                  >
-                </span>
-                <span class="tile__fig">31 policies</span>
-                <span class="tile__arrow" aria-hidden="true">&#8594;</span>
+          <ol class="toc">
+            <li class="toc__item" data-toc-row>
+              <a class="toc__link" href="#system">
+                <span class="toc__no">01</span>
+                <span class="toc__name">How your vote counts</span>
+                <span class="toc__desc">MMP in plain numbers, with the count in your hands.</span>
+                <span class="toc__fig">120 seats / 61 to govern</span>
+                <span class="toc__arrow" aria-hidden="true">&#8594;</span>
               </a>
             </li>
-            <li class="tile">
-              <a class="tile__link" href="#finances">
-                <span class="tile__no">02</span>
-                <span class="tile__body">
-                  <span class="tile__name">The Finances</span>
-                  <span class="tile__desc"
-                    >Where the money moves, and what pays for it.</span
-                  >
-                </span>
-                <span class="tile__fig">+1.8 Trillion</span>
-                <span class="tile__arrow" aria-hidden="true">&#8594;</span>
+            <li class="toc__item" data-toc-row>
+              <a class="toc__link" href="#plan">
+                <span class="toc__no">02</span>
+                <span class="toc__name">Our plan to take action</span>
+                <span class="toc__desc">Five areas. Each one names the deadline and the price.</span>
+                <span class="toc__fig">31 policies</span>
+                <span class="toc__arrow" aria-hidden="true">&#8594;</span>
               </a>
             </li>
-            <li class="tile">
-              <a class="tile__link" href="#system">
-                <span class="tile__no">03</span>
-                <span class="tile__body">
-                  <span class="tile__name">How Your Vote Counts</span>
-                  <span class="tile__desc"
-                    >MMP in plain numbers, with the seat map to prove it.</span
-                  >
-                </span>
-                <span class="tile__fig">120 seats, all for us</span>
-                <span class="tile__arrow" aria-hidden="true">&#8594;</span>
+            <li class="toc__item" data-toc-row>
+              <a class="toc__link" href="#finances">
+                <span class="toc__no">03</span>
+                <span class="toc__name">The finances</span>
+                <span class="toc__desc">Where the money moves, and what pays for it.</span>
+                <span class="toc__fig">$1.83tn a year</span>
+                <span class="toc__arrow" aria-hidden="true">&#8594;</span>
               </a>
             </li>
-            <li class="tile">
-              <a class="tile__link" href="#people">
-                <span class="tile__no">04</span>
-                <span class="tile__body">
-                  <span class="tile__name">The Members</span>
-                  <span class="tile__desc"
-                    >The people who will bring real change to the table.</span
-                  >
-                </span>
-                <span class="tile__fig"
-                  >3 Members. All committed to the people.</span
-                >
-                <span class="tile__arrow" aria-hidden="true">&#8594;</span>
+            <li class="toc__item" data-toc-row>
+              <a class="toc__link" href="#record">
+                <span class="toc__no">04</span>
+                <span class="toc__name">The record</span>
+                <span class="toc__desc">Everything we have ever published, so you can see it.</span>
+                <span class="toc__fig">Updated</span>
+                <span class="toc__arrow" aria-hidden="true">&#8594;</span>
               </a>
             </li>
-            <li class="tile">
-              <a class="tile__link" href="#record">
-                <span class="tile__no">05</span>
-                <span class="tile__body">
-                  <span class="tile__name">The Record</span>
-                  <span class="tile__desc"
-                    >Everything we've ever published, so you can see it.</span
-                  >
-                </span>
-                <span class="tile__fig">Updated</span>
-                <span class="tile__arrow" aria-hidden="true">&#8594;</span>
+            <li class="toc__item" data-toc-row>
+              <a class="toc__link" href="#people">
+                <span class="toc__no">05</span>
+                <span class="toc__name">The front bench</span>
+                <span class="toc__desc">The people who will bring real change to the table.</span>
+                <span class="toc__fig">3 of 31</span>
+                <span class="toc__arrow" aria-hidden="true">&#8594;</span>
               </a>
             </li>
-            <li class="tile">
-              <a class="tile__link" href="#join">
-                <span class="tile__no">06</span>
-                <span class="tile__body">
-                  <span class="tile__name">Join Us</span>
-                  <span class="tile__desc"
-                    >Membership, volunteering and donations, in one place.</span
-                  >
-                </span>
-                <span class="tile__fig">$10 a year</span>
-                <span class="tile__arrow" aria-hidden="true">&#8594;</span>
+            <li class="toc__item" data-toc-row>
+              <a class="toc__link" href="#join">
+                <span class="toc__no">06</span>
+                <span class="toc__name">Join us</span>
+                <span class="toc__desc">Membership, volunteering and donations, in one place.</span>
+                <span class="toc__fig">$1,000 a year</span>
+                <span class="toc__arrow" aria-hidden="true">&#8594;</span>
               </a>
             </li>
           </ol>
         </div>
       </section>
 
-      <section class="section section--plan" id="plan" data-section>
-        <div class="shell section__grid">
-          <div class="rail">
-            <div class="rail__inner">
-              <p class="rail__label"><span>01</span> Our plan</p>
-              <p class="rail__figure">31 policies</p>
-              <p class="rail__note">
-                Drafted, costed and dated before the election, not after it.
-              </p>
-            </div>
-          </div>
+      <!-- ───────────────────────── 01 THE COUNT ───────────────────────── -->
+      <section class="count" id="system" data-section data-tone="ink" data-count>
+        <div class="count__glow" aria-hidden="true"></div>
 
-          <div class="section__body">
-            <h2 class="section__title" data-reveal>Our plan to take action</h2>
-            <p class="section__intro" data-reveal>
-              Five areas, thirty-one policies. Each one names its deadline and
-              its trade-off, so you can decide whether the price is worth
-              paying. Swipe the deck sideways, or open the area you came for.
-            </p>
-          </div>
+        <div class="shell count__head">
+          <p class="label">01 / The count</p>
+          <h2 class="count__title" data-reveal>
+            How your vote<br /><em>actually</em> counts
+          </h2>
+          <p class="count__intro" data-reveal>
+            New Zealand runs on MMP: two votes, 120 seats, one threshold. It is
+            the most consequential arithmetic in the country, and almost nobody
+            explains it at the door. So we built the machine. Take the dial, or
+            keep reading and it will walk you through it.
+          </p>
         </div>
 
-        <div class="deck-wrap" data-policies>
-          <div class="shell deck-wrap__head">
-            <p class="deck-wrap__hint" aria-hidden="true">
-              <span class="deck-wrap__keys">&#8592; &#8594;</span> Drag, scroll,
-              or use the arrow keys<span class="deck-wrap__line"></span>
+        <div class="count__stage">
+          <div class="count__machine">
+            <div class="scene" data-scene>
+              <div class="rig" data-rig>
+                <div class="machine" data-machine data-cast="false">
+                  <div class="machine__slab" data-slab aria-hidden="true"></div>
+                  <div class="machine__edge machine__edge--top" aria-hidden="true">
+                    <span class="machine__plate">THE ACTION PARTY</span>
+                    <span class="slot">
+                      <span class="slot__mouth"></span>
+                      <span class="slip" data-slip></span>
+                    </span>
+                    <span class="machine__engrave">BALLOT UNIT 01</span>
+                  </div>
+                  <div class="machine__edge machine__edge--right" aria-hidden="true">
+                    <span class="machine__screws"></span>
+                    <span class="machine__lever" data-lever></span>
+                  </div>
+
+                  <div class="machine__face">
+                    <div class="machine__strip">
+                      <span>Count unit</span>
+                      <span class="machine__state" data-machine-mode>A waiting</span>
+                    </div>
+
+                    <div class="machine__panels">
+                      <div class="screen" data-screen>
+                        <div class="screen__top">
+                          <span>Party vote</span>
+                          <span class="screen__led" aria-hidden="true"></span>
+                        </div>
+                        <p class="screen__vote">
+                          <span data-screen-vote>12.0</span><i>%</i>
+                        </p>
+                        <div class="screen__seats">
+                          <span data-screen-seats>14</span> seats of 120
+                        </div>
+                        <p class="screen__note" data-screen-note>47 short of 61</p>
+                      </div>
+
+                      <div class="chamber-wrap">
+                        <svg
+                          class="chamber"
+                          viewBox="0 0 420 236"
+                          role="img"
+                          aria-labelledby="chamber-title"
+                          data-hemicycle
+                        >
+                          <title id="chamber-title">
+                            Seat map of the New Zealand House of Representatives,
+                            120 seats. Red seats are the Action Party at the
+                            setting on the dial.
+                          </title>
+<path class="baseline" d="M 20.251123621448045 212.89742333783627 A 131 131 0 0 1 399.7488763785519 212.8974233378364" /><circle class="seat is-ours" cx="28.25" cy="206.90" r="4.4" /><circle class="seat is-ours" cx="39.83" cy="206.83" r="4.4" /><circle class="seat is-ours" cx="51.41" cy="206.74" r="4.4" /><circle class="seat is-ours" cx="63.02" cy="206.65" r="4.4" /><circle class="seat is-ours" cx="74.64" cy="206.54" r="4.4" /><circle class="seat is-ours" cx="86.29" cy="206.41" r="4.4" /><circle class="seat is-ours" cx="18.14" cy="195.61" r="4.4" /><circle class="seat is-ours" cx="97.98" cy="206.25" r="4.4" /><circle class="seat is-ours" cx="109.71" cy="206.05" r="4.4" /><circle class="seat is-ours" cx="121.53" cy="205.81" r="4.4" /><circle class="seat is-ours" cx="133.45" cy="205.49" r="4.4" /><circle class="seat is-ours" cx="145.57" cy="205.06" r="4.4" /><circle class="seat is-ours" cx="36.19" cy="169.53" r="4.4" /><circle class="seat is-ours" cx="48.36" cy="169.44" r="4.4" /><circle class="seat" cx="60.63" cy="169.35" r="4.4" /><circle class="seat" cx="73.03" cy="169.27" r="4.4" /><circle class="seat" cx="85.61" cy="169.19" r="4.4" /><circle class="seat" cx="98.40" cy="169.14" r="4.4" /><circle class="seat" cx="36.92" cy="137.81" r="4.4" /><circle class="seat" cx="111.49" cy="169.13" r="4.4" /><circle class="seat" cx="51.73" cy="134.63" r="4.4" /><circle class="seat" cx="65.00" cy="134.89" r="4.4" /><circle class="seat" cx="124.98" cy="169.19" r="4.4" /><circle class="seat" cx="78.53" cy="135.25" r="4.4" /><circle class="seat" cx="92.39" cy="135.75" r="4.4" /><circle class="seat" cx="139.05" cy="169.42" r="4.4" /><circle class="seat" cx="106.65" cy="136.45" r="4.4" /><circle class="seat" cx="74.19" cy="103.72" r="4.4" /><circle class="seat" cx="153.96" cy="169.96" r="4.4" /><circle class="seat" cx="121.43" cy="137.43" r="4.4" /><circle class="seat" cx="88.91" cy="104.91" r="4.4" /><circle class="seat" cx="72.64" cy="88.64" r="4.4" /><circle class="seat" cx="104.07" cy="106.43" r="4.4" /><circle class="seat" cx="136.88" cy="138.86" r="4.4" /><circle class="seat" cx="119.75" cy="108.39" r="4.4" /><circle class="seat" cx="170.18" cy="171.19" r="4.4" /><circle class="seat" cx="102.58" cy="78.15" r="4.4" /><circle class="seat" cx="153.19" cy="140.98" r="4.4" /><circle class="seat" cx="136.07" cy="110.96" r="4.4" /><circle class="seat" cx="118.89" cy="81.00" r="4.4" /><circle class="seat" cx="135.76" cy="84.55" r="4.4" /><circle class="seat" cx="153.14" cy="114.40" r="4.4" /><circle class="seat" cx="121.81" cy="52.92" r="4.4" /><circle class="seat" cx="170.63" cy="144.24" r="4.4" /><circle class="seat" cx="135.67" cy="59.05" r="4.4" /><circle class="seat" cx="153.27" cy="89.03" r="4.4" /><circle class="seat" cx="171.10" cy="119.11" r="4.4" /><circle class="seat" cx="153.44" cy="64.36" r="4.4" /><circle class="seat" cx="171.47" cy="94.79" r="4.4" /><circle class="seat" cx="189.49" cy="149.45" r="4.4" /><circle class="seat" cx="171.77" cy="70.89" r="4.4" /><circle class="seat" cx="172.00" cy="47.24" r="4.4" /><circle class="seat" cx="190.05" cy="125.71" r="4.4" /><circle class="seat" cx="190.41" cy="102.29" r="4.4" /><circle class="seat" cx="179.61" cy="34.14" r="4.4" /><circle class="seat" cx="190.65" cy="79.02" r="4.4" /><circle class="seat" cx="190.83" cy="55.83" r="4.4" /><circle class="seat" cx="210.00" cy="89.25" r="4.4" /><circle class="seat" cx="210.00" cy="43.25" r="4.4" /><circle class="seat" cx="210.00" cy="158.25" r="4.4" /><circle class="seat" cx="210.00" cy="135.25" r="4.4" /><circle class="seat" cx="210.00" cy="112.25" r="4.4" /><circle class="seat" cx="210.00" cy="66.25" r="4.4" /><circle class="seat" cx="229.17" cy="55.83" r="4.4" /><circle class="seat" cx="229.35" cy="79.02" r="4.4" /><circle class="seat" cx="229.59" cy="102.29" r="4.4" /><circle class="seat" cx="240.39" cy="34.14" r="4.4" /><circle class="seat" cx="229.95" cy="125.71" r="4.4" /><circle class="seat" cx="248.00" cy="47.24" r="4.4" /><circle class="seat" cx="248.23" cy="70.89" r="4.4" /><circle class="seat" cx="230.51" cy="149.45" r="4.4" /><circle class="seat" cx="248.53" cy="94.79" r="4.4" /><circle class="seat" cx="266.56" cy="64.36" r="4.4" /><circle class="seat" cx="248.90" cy="119.11" r="4.4" /><circle class="seat" cx="266.73" cy="89.03" r="4.4" /><circle class="seat" cx="284.33" cy="59.05" r="4.4" /><circle class="seat" cx="249.37" cy="144.24" r="4.4" /><circle class="seat" cx="266.86" cy="114.40" r="4.4" /><circle class="seat" cx="298.19" cy="52.92" r="4.4" /><circle class="seat" cx="284.24" cy="84.55" r="4.4" /><circle class="seat" cx="301.11" cy="81.00" r="4.4" /><circle class="seat" cx="283.93" cy="110.96" r="4.4" /><circle class="seat" cx="266.81" cy="140.98" r="4.4" /><circle class="seat" cx="249.82" cy="171.19" r="4.4" /><circle class="seat" cx="317.42" cy="78.15" r="4.4" /><circle class="seat" cx="300.25" cy="108.39" r="4.4" /><circle class="seat" cx="283.12" cy="138.86" r="4.4" /><circle class="seat" cx="315.93" cy="106.43" r="4.4" /><circle class="seat" cx="266.04" cy="169.96" r="4.4" /><circle class="seat" cx="298.57" cy="137.43" r="4.4" /><circle class="seat" cx="331.09" cy="104.91" r="4.4" /><circle class="seat" cx="347.36" cy="88.64" r="4.4" /><circle class="seat" cx="345.81" cy="103.72" r="4.4" /><circle class="seat" cx="313.35" cy="136.45" r="4.4" /><circle class="seat" cx="280.95" cy="169.42" r="4.4" /><circle class="seat" cx="327.61" cy="135.75" r="4.4" /><circle class="seat" cx="341.47" cy="135.25" r="4.4" /><circle class="seat" cx="295.02" cy="169.19" r="4.4" /><circle class="seat" cx="355.00" cy="134.89" r="4.4" /><circle class="seat" cx="308.51" cy="169.12" r="4.4" /><circle class="seat" cx="368.27" cy="134.63" r="4.4" /><circle class="seat" cx="321.60" cy="169.14" r="4.4" /><circle class="seat" cx="383.08" cy="137.81" r="4.4" /><circle class="seat" cx="334.39" cy="169.19" r="4.4" /><circle class="seat" cx="346.97" cy="169.27" r="4.4" /><circle class="seat" cx="359.37" cy="169.35" r="4.4" /><circle class="seat" cx="371.64" cy="169.44" r="4.4" /><circle class="seat" cx="274.43" cy="205.06" r="4.4" /><circle class="seat" cx="383.81" cy="169.53" r="4.4" /><circle class="seat" cx="286.55" cy="205.49" r="4.4" /><circle class="seat" cx="298.47" cy="205.81" r="4.4" /><circle class="seat" cx="310.29" cy="206.05" r="4.4" /><circle class="seat" cx="322.02" cy="206.25" r="4.4" /><circle class="seat" cx="333.71" cy="206.41" r="4.4" /><circle class="seat" cx="401.86" cy="195.61" r="4.4" /><circle class="seat" cx="345.36" cy="206.54" r="4.4" /><circle class="seat" cx="356.98" cy="206.65" r="4.4" /><circle class="seat" cx="368.59" cy="206.74" r="4.4" /><circle class="seat" cx="380.17" cy="206.83" r="4.4" /><circle class="seat" cx="391.75" cy="206.90" r="4.4" /><text class="chamber-note" x="210" y="220" text-anchor="middle">120 SEATS</text>
+                        </svg>
+                      </div>
+                    </div>
+
+                    <div class="machine__controls">
+                      <div class="dial-wrap">
+                        <div
+                          class="dial"
+                          role="slider"
+                          tabindex="0"
+                          aria-label="Party vote, percent"
+                          aria-valuemin="0"
+                          aria-valuemax="100"
+                          aria-valuenow="12"
+                          aria-valuetext="12 percent, 14 seats"
+                          data-dial
+                        >
+                          <span class="dial__ring" aria-hidden="true" data-dial-ticks></span>
+                          <span class="dial__cap" aria-hidden="true">
+                            <span class="dial__mark"></span>
+                          </span>
+                        </div>
+                        <p class="machine__label">Party vote</p>
+                      </div>
+
+                      <div class="cast-wrap">
+                        <button class="cast" type="button" data-cast>
+                          <span class="cast__cap" aria-hidden="true"></span>
+                          <span class="cast__word">Cast</span>
+                        </button>
+                        <p class="machine__label">Count</p>
+                      </div>
+
+                      <button class="sound" type="button" aria-pressed="true" data-sound>
+                        <span class="sound__bars" aria-hidden="true"><i></i><i></i><i></i></span>
+                        <span class="sound__word">Sound</span>
+                      </button>
+                    </div>
+
+                    <div class="machine__foot">
+                      <span>MMP / 120 seats</span>
+                      <span>5% threshold</span>
+                      <span>61 to govern</span>
+                    </div>
+                  </div>
+
+                  <div class="machine__shadow" aria-hidden="true"></div>
+                </div>
+              </div>
+            </div>
+
+            <p class="machine__caption">
+              <span class="label">Fig. 1</span>
+              The count unit. One dial sets the party vote; the chamber fills on
+              the real rule. Turn the dial with a drag or the arrow keys, then
+              press Cast to send the ballot through.
             </p>
           </div>
 
-          <ol class="track" id="policy-track" data-track>
-            <li class="policy" data-policy>
-              <article class="policy__card">
-                <div class="policy__top">
-                  <p class="policy__index"><span>I</span> Area</p>
-                  <p class="policy__count">7 policies</p>
-                </div>
-                <h3 class="policy__name">
-                  <span class="visually-hidden">Area I, </span>Health
-                </h3>
-                <p class="policy__claim">Care within the week, not the year</p>
-                <div class="policy__panel" id="policy-1">
-                  <div class="policy__reveal">
-                    <div class="policy__inner">
-                      <p>
-                        Nobody waits twelve months for an operation they were
-                        told they needed in March. We will fund the public
-                        system to a guaranteed treatment time of seven days for
-                        urgent care and ninety for planned care, and publish the
-                        waiting list every fortnight.
-                      </p>
-                      <ul>
-                        <li>
-                          Reopen 1,200+ beds closed since 2019, and open an
-                          extra 50,000 more.
-                        </li>
-                        <li>
-                          Prioritse the people who need care most. Not the ones
-                          with the deepest pockets.
-                        </li>
-                        <li>
-                          Pay student nurses $35 per hour while they train.
-                        </li>
-                      </ul>
-                      <dl class="policy__meta">
-                        <div>
-                          <dt>Deadline</dt>
-                          <dd>First hundred days</dd>
-                        </div>
-                        <div>
-                          <dt>Price</dt>
-                          <dd>600 Billion</dd>
-                        </div>
-                      </dl>
-                    </div>
-                  </div>
-                </div>
-                <button
-                  class="policy__btn"
-                  type="button"
-                  aria-expanded="false"
-                  aria-controls="policy-1"
-                >
-                  <span class="policy__btn-label">Open area</span>
-                  <span class="policy__mark" aria-hidden="true"></span>
-                </button>
-              </article>
-            </li>
-            <li class="policy" data-policy>
-              <article class="policy__card">
-                <div class="policy__top">
-                  <p class="policy__index"><span>II</span> Area</p>
-                  <p class="policy__count">8 policies</p>
-                </div>
-                <h3 class="policy__name">
-                  <span class="visually-hidden">Area II, </span>Housing
-                </h3>
-                <p class="policy__claim">
-                  Everyone deserves a place to call home.
+          <div class="count__readout">
+            <p class="label">Live from the machine</p>
+            <p class="readout__fig">
+              <span data-seat-figure>14</span><span class="readout__of">/ 120</span>
+            </p>
+            <p class="readout__verdict" data-verdict>
+              12 percent is 14 seats. That leaves 47 short of the 61 needed to
+              govern, so the next question is who we govern with.
+            </p>
+
+            <div class="presets" role="group" aria-label="Party vote settings">
+              <button type="button" class="preset" data-preset="4.9">
+                4.9%<span>below the line</span>
+              </button>
+              <button type="button" class="preset" data-preset="5">
+                5%<span>on the line</span>
+              </button>
+              <button type="button" class="preset" data-preset="12">
+                12%<span>our polling</span>
+              </button>
+              <button type="button" class="preset" data-preset="30">
+                30%<span>a good night</span>
+              </button>
+              <button type="button" class="preset" data-preset="48">
+                48%<span>a landslide</span>
+              </button>
+            </div>
+
+            <ol class="manual" data-manual>
+              <li class="manual__step" data-step-item aria-current="true" tabindex="0">
+                <p class="manual__no">01</p>
+                <h3 class="manual__title">Your party vote builds the House</h3>
+                <p class="manual__body">
+                  The party vote decides how many of the 120 seats each party
+                  gets. Not the local race, not the leader, not the last three
+                  weeks of advertising. The party vote, on its own, sets the
+                  shape of Parliament.
                 </p>
-                <div class="policy__panel" id="policy-2">
-                  <div class="policy__reveal">
-                    <div class="policy__inner">
-                      <p>
-                        All people who are homeless or at risk of becoming
-                        homeless will be provided with a temporary place to stay
-                        within 24 hours, and a plan for permanent housing within
-                        90 days.
-                      </p>
-                      <ul>
-                        <li>No one sleeping on the streets.</li>
-                        <li>A rent cap of 30% weekly income.</li>
-                        <li>
-                          0% interest home loans up to $800,000 for the people
-                          who need it. if not paid off within the persons
-                          lifetime, entire family deported.
-                        </li>
-                      </ul>
-                      <dl class="policy__meta">
-                        <div>
-                          <dt>Deadline</dt>
-                          <dd>Within ten months</dd>
-                        </div>
-                        <div>
-                          <dt>Price</dt>
-                          <dd>1.2 Trillion</dd>
-                        </div>
-                      </dl>
-                    </div>
-                  </div>
-                </div>
-                <button
-                  class="policy__btn"
-                  type="button"
-                  aria-expanded="false"
-                  aria-controls="policy-2"
-                >
-                  <span class="policy__btn-label">Open area</span>
-                  <span class="policy__mark" aria-hidden="true"></span>
-                </button>
-              </article>
-            </li>
-            <li class="policy" data-policy>
-              <article class="policy__card">
-                <div class="policy__top">
-                  <p class="policy__index"><span>III</span> Area</p>
-                  <p class="policy__count">6 policies</p>
-                </div>
-                <h3 class="policy__name">
-                  <span class="visually-hidden">Area III, </span>Work
-                </h3>
-                <p class="policy__claim">A wage nobody has to fall through</p>
-                <div class="policy__panel" id="policy-3">
-                  <div class="policy__reveal">
-                    <div class="policy__inner">
-                      <p>
-                        The minimum wage should be a floor, not a negotiation.
-                        We will set it at 85% of the current median wage, then
-                        index it annually to inflation and what the people can
-                        afford, and stop exempting the industries that lobby
-                        hardest against it.
-                      </p>
-                      <ul>
-                        <li>
-                          500 Billion invested into job creation and
-                          infrastructure.
-                        </li>
-                        <li>
-                          Wage theft enforced as a criminal offence, not a civil
-                          dispute.
-                        </li>
-                        <li>+24% minimum wage increase.</li>
-                      </ul>
-                      <dl class="policy__meta">
-                        <div>
-                          <dt>Deadline</dt>
-                          <dd>within 30 days</dd>
-                        </div>
-                        <div>
-                          <dt>Price</dt>
-                          <dd>500 Billion</dd>
-                        </div>
-                      </dl>
-                    </div>
-                  </div>
-                </div>
-                <button
-                  class="policy__btn"
-                  type="button"
-                  aria-expanded="false"
-                  aria-controls="policy-3"
-                >
-                  <span class="policy__btn-label">Open area</span>
-                  <span class="policy__mark" aria-hidden="true"></span>
-                </button>
-              </article>
-            </li>
-            <li class="policy" data-policy>
-              <article class="policy__card">
-                <div class="policy__top">
-                  <p class="policy__index"><span>IV</span> Area</p>
-                  <p class="policy__count">5 policies</p>
-                </div>
-                <h3 class="policy__name">
-                  <span class="visually-hidden">Area IV, </span>Tax
-                </h3>
-                <p class="policy__claim">Real Tax for real people</p>
-                <div class="policy__panel" id="policy-4">
-                  <div class="policy__reveal">
-                    <div class="policy__inner">
-                      <p>
-                        for people earning lower than 70K per year, 0% tax.
-                        Earning between 70K and 100K, 45% tax. Earning between
-                        100K and 150K, 80% tax. Earning between 150K and 250K,
-                        97% tax. Earning between 250K and 500K, 200% tax.
-                        Earning over 500K, 18,860% tax.
-                      </p>
-                      <ul>
-                        <li>Stop the rich from avoiding taxes.</li>
-                        <li>
-                          Estimated 2.7 trillion in additional tax revenue.
-                        </li>
-                        <li>+2,247.65% revenue increase from 2025</li>
-                      </ul>
-                      <dl class="policy__meta">
-                        <div>
-                          <dt>Deadline</dt>
-                          <dd>the hour we get into government</dd>
-                        </div>
-                        <div>
-                          <dt>Price</dt>
-                          <dd>500 million. used to police the rich</dd>
-                        </div>
-                      </dl>
-                    </div>
-                  </div>
-                </div>
-                <button
-                  class="policy__btn"
-                  type="button"
-                  aria-expanded="false"
-                  aria-controls="policy-4"
-                >
-                  <span class="policy__btn-label">Open area</span>
-                  <span class="policy__mark" aria-hidden="true"></span>
-                </button>
-              </article>
-            </li>
-            <li class="policy" data-policy>
-              <article class="policy__card">
-                <div class="policy__top">
-                  <p class="policy__index"><span>V</span> Area</p>
-                  <p class="policy__count">5 policies</p>
-                </div>
-                <h3 class="policy__name">
-                  <span class="visually-hidden">Area V, </span>Integrity
-                </h3>
-                <p class="policy__claim">The Real change we need to see.</p>
-                <div class="policy__panel" id="policy-5">
-                  <div class="policy__reveal">
-                    <div class="policy__inner">
-                      <p>
-                        Why should young people who can't even vote have to prop
-                        up the eldery?
-                      </p>
-                      <ul>
-                        <li>The voting age lowered to 13.</li>
-                        <li>All people over the age of 72 deported.</li>
-                        <li>
-                          Locked down borders to prevent people from entering
-                          and leaving.
-                        </li>
-                      </ul>
-                      <dl class="policy__meta">
-                        <div>
-                          <dt>Deadline</dt>
-                          <dd>2 months</dd>
-                        </div>
-                        <div>
-                          <dt>Price</dt>
-                          <dd>$50 billion</dd>
-                        </div>
-                      </dl>
-                    </div>
-                  </div>
-                </div>
-                <button
-                  class="policy__btn"
-                  type="button"
-                  aria-expanded="false"
-                  aria-controls="policy-5"
-                >
-                  <span class="policy__btn-label">Open area</span>
-                  <span class="policy__mark" aria-hidden="true"></span>
-                </button>
-              </article>
-            </li>
-          </ol>
-
-          <div class="shell deck-wrap__foot">
-            <p class="deck-wrap__count"><span data-policy-now>01</span> / 05</p>
-            <div class="deck-wrap__meter" aria-hidden="true">
-              <span data-policy-fill></span>
-            </div>
-            <div class="deck-wrap__nav">
-              <button
-                class="deck-wrap__step"
-                type="button"
-                data-step="-1"
-                aria-controls="policy-track"
-                aria-label="Previous policy"
-              >
-                &#8592;
-              </button>
-              <button
-                class="deck-wrap__step"
-                type="button"
-                data-step="1"
-                aria-controls="policy-track"
-                aria-label="Next policy"
-              >
-                &#8594;
-              </button>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section class="section section--finances" id="finances" data-section>
-        <div class="shell section__grid">
-          <div class="rail">
-            <div class="rail__inner">
-              <p class="rail__label"><span>02</span> The finances</p>
-              <p class="rail__figure">Four years</p>
-              <p class="rail__note">
-                Measured against published forward estimates. Nothing is funded
-                by growth we cannot name.
-              </p>
-            </div>
-          </div>
-
-          <div class="section__body">
-            <h2 class="section__title" data-reveal>
-              The finances, in the open
-            </h2>
-            <p class="section__intro" data-reveal>
-              Where the budget moves over a full term, as a share of total
-              public spending. The cuts sit on the same page as the spending,
-              because that is how a budget actually works.
-            </p>
-
-            <table class="ledger" data-ledger>
-              <caption class="visually-hidden">
-                Planned spending by area, now against year three, in New
-                Zealand dollars
-              </caption>
-              <thead>
-                <tr>
-                  <th scope="col">Area</th>
-                  <th scope="col">Now</th>
-                  <th scope="col">Year three</th>
-                  <th scope="col">Change</th>
-                  <th scope="col">Paid for by</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <th scope="row"><span class="ledger__area">Health</span></th>
-                  <td data-num="32.7">32.7 billion</td>
-                  <td data-num="600">600 billion</td>
-                  <td class="ledger__delta">
-                    <span class="ledger__num">+1,700%</span
-                    ><span
-                      class="ledger__bar"
-                      style="--w: 2.7"
-                      aria-hidden="true"
-                    ></span>
-                  </td>
-                  <td>Taxes</td>
-                </tr>
-                <tr>
-                  <th scope="row">
-                    <span class="ledger__area">Housing and land</span>
-                  </th>
-                  <td data-num="4.5">4.5 billion</td>
-                  <td data-num="1.2">1.2 trillion</td>
-                  <td class="ledger__delta">
-                    <span class="ledger__num">+28,500%</span
-                    ><span
-                      class="ledger__bar"
-                      style="--w: 2.2"
-                      aria-hidden="true"
-                    ></span>
-                  </td>
-                  <td>Taxes</td>
-                </tr>
-                <tr>
-                  <th scope="row">
-                    <span class="ledger__area">Education and training</span>
-                  </th>
-                  <td data-num="19.85">19.85 billion</td>
-                  <td data-num="40">40 billion</td>
-                  <td class="ledger__delta">
-                    <span class="ledger__num">101%</span
-                    ><span
-                      class="ledger__bar"
-                      style="--w: 1.2"
-                      aria-hidden="true"
-                    ></span>
-                  </td>
-                  <td>Consultancy cap</td>
-                </tr>
-                <tr>
-                  <th scope="row">
-                    <span class="ledger__area">Transport</span>
-                  </th>
-                  <td data-num="5.47">5.47 billion</td>
-                  <td data-num="10">10 billion</td>
-                  <td class="ledger__delta">
-                    <span class="ledger__num">+83%</span
-                    ><span
-                      class="ledger__bar"
-                      style="--w: 0.2"
-                      aria-hidden="true"
-                    ></span>
-                  </td>
-                  <td>Taxes</td>
-                </tr>
-                <tr class="is-cut">
-                  <th scope="row"><span class="ledger__area">Defence</span></th>
-                  <td data-num="4.2">4.2 billion</td>
-                  <td data-num="50">50 billion</td>
-                  <td class="ledger__delta">
-                    <span class="ledger__num">+1090%</span
-                    ><span
-                      class="ledger__bar"
-                      style="--w: 1.5"
-                      aria-hidden="true"
-                    ></span>
-                  </td>
-                  <td>border lock down + deportation</td>
-                </tr>
-                <tr class="is-cut">
-                  <th scope="row">
-                    <span class="ledger__area">Consultants and contracts</span>
-                  </th>
-                  <td data-num="1.2">1.2 billion</td>
-                  <td data-num="1.2">1.2 billion</td>
-                  <td class="ledger__delta">
-                    <span class="ledger__num">+0</span
-                    ><span
-                      class="ledger__bar"
-                      style="--w: 1.8"
-                      aria-hidden="true"
-                    ></span>
-                  </td>
-                  <td>Returned to departments</td>
-                </tr>
-              </tbody>
-            </table>
-
-            <div class="ledger__balance" data-reveal>
-              <p class="ledger__balance-fig">Net movement</p>
-              <p class="ledger__balance-num">0.0<span>%</span></p>
-              <p class="ledger__balance-note">
-                Every dollar moved is moved twice: once out of something, once
-                into something. The totals balance, because a budget that does
-                not balance is a promise with a hole in it.
-              </p>
-            </div>
-
-            <div class="ledger__foot" data-reveal>
-              <p>
-                Costed by the party's own budget office. The working papers are
-                available to anyone who asks, and an independent review is
-                commissioned before the election.
-              </p>
-              <a class="link" href="#join">Request the working papers</a>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section class="system" id="system" data-section data-system>
-        <div class="system__sky" aria-hidden="true">
-          <span class="system__sun"></span>
-          <span class="system__cloud system__cloud--1"></span>
-          <span class="system__cloud system__cloud--2"></span>
-          <span class="system__cloud system__cloud--3"></span>
-        </div>
-
-        <div class="shell system__grid">
-          <div class="system__head">
-            <p class="rail__label rail__label--invert">
-              <span>03</span> The system
-            </p>
-            <h2 class="system__title">How your vote actually counts</h2>
-            <p class="system__intro">
-              New Zealand runs on MMP: two votes, 120 seats, one threshold. It
-              is the most consequential arithmetic in the country, and almost
-              nobody explains it at the door. So here it is, in the order it
-              happens on election night.
-            </p>
-          </div>
-
-          <div class="system__rules">
-            <article class="rule" data-rule>
-              <p class="rule__no">01</p>
-              <h3 class="rule__title">Your party vote builds the House</h3>
-              <p>
-                The party vote decides how many of the 120 seats each party
-                gets. Not the local race, not the leader, not the last three
-                weeks of advertising. The party vote, on its own, sets the shape
-                of Parliament.
-              </p>
-            </article>
-            <article class="rule" data-rule>
-              <p class="rule__no">02</p>
-              <h3 class="rule__title">Your electorate vote picks a local MP</h3>
-              <p>
-                Your second vote chooses the person who holds your electorate
-                seat. Win an electorate and you are in Parliament even if your
-                party falls under five percent. That single rule has decided
-                governments.
-              </p>
-            </article>
-            <article class="rule" data-rule>
-              <p class="rule__no">03</p>
-              <h3 class="rule__title">Five percent, or one seat</h3>
-              <p>
-                A party needs five percent of the party vote, or one electorate
-                seat, to be in the room at all. Below both lines every vote cast
-                for it is worth nothing when the seats are allocated.
-              </p>
-            </article>
-            <article class="rule" data-rule>
-              <p class="rule__no">04</p>
-              <h3 class="rule__title">Sixty-one seats to govern</h3>
-              <p>
-                A majority is 61 of 120. Under MMP that majority is almost never
-                held by one party, which is why the real contest is the
-                negotiation that starts the morning after the count.
-              </p>
-            </article>
-          </div>
-        </div>
-
-        <div class="shell">
-          <div class="calc" data-calc>
-            <div class="calc__copy">
-              <h3 class="calc__title">
-                Give us a number and we will show you the seats
-              </h3>
-              <p class="calc__note">
-                Move the slider, or type a party vote. The seat map runs on the
-                real rule: 120 seats, five percent to enter, 61 to govern.
-              </p>
-
-              <div class="calc__input">
-                <label for="party-vote">Party vote, percent</label>
-                <div class="calc__row">
-                  <input
-                    id="party-vote"
-                    type="range"
-                    min="0"
-                    max="100"
-                    step="0.1"
-                    value="12"
-                    data-vote-range
-                  />
-                  <output class="calc__out" for="party-vote" data-vote-out
-                    >12%</output
-                  >
-                </div>
-              </div>
-
-              <div
-                class="calc__presets"
-                role="group"
-                aria-label="Quick party vote settings"
-              >
-                <button type="button" class="calc__preset" data-preset="4.9">
-                  4.9%
-                </button>
-                <button type="button" class="calc__preset" data-preset="5">
-                  5%
-                </button>
-                <button type="button" class="calc__preset" data-preset="12">
-                  12%
-                </button>
-                <button type="button" class="calc__preset" data-preset="30">
-                  30%
-                </button>
-                <button type="button" class="calc__preset" data-preset="48">
-                  48%
-                </button>
-              </div>
-            </div>
-
-            <div class="calc__result">
-              <p class="calc__fig">
-                <span data-seat-figure>14</span
-                ><span class="calc__fig-of">/ 120</span>
-              </p>
-              <svg
-                class="hemicycle"
-                viewBox="0 0 420 232"
-                role="img"
-                aria-labelledby="hemi-title"
-                data-hemicycle
-              >
-                <title id="hemi-title">
-                  Seat map of the New Zealand House of Representatives, 120
-                  seats
-                </title>
-              </svg>
-              <p class="calc__verdict" data-verdict aria-live="polite">
-                12 percent is 14 seats. That leaves 47 short of the 61 needed to
-                govern, so the next question is who we govern with.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section class="section section--people" id="people" data-section>
-        <div class="shell section__grid">
-          <div class="rail">
-            <div class="rail__inner">
-              <p class="rail__label"><span>04</span> The front bench</p>
-              <p class="rail__figure">3 of 31</p>
-              <p class="rail__note">
-                Candidates are ranked by local members, not by head office.
-              </p>
-            </div>
-          </div>
-
-          <div class="section__body">
-            <h2 class="section__title" data-reveal>
-              The Members. Advocating for Change.
-            </h2>
-            <p class="section__intro" data-reveal>
-              Under MMP you vote for a party, and the party hands you a list. So
-              the list matters. These three would sit in Cabinet on the first
-              day. The other twenty-eight are ranked by the same members, in
-              the same order, and that list is in the record.
-            </p>
-          </div>
-        </div>
-
-        <div class="shell">
-          <ol class="deck" data-deck>
-            <li class="card" data-card>
-              <article class="card__inner">
-                <div class="card__top">
-                  <p class="card__index"><span>01</span> of 03</p>
-                  <p class="card__portfolio">Finance</p>
-                </div>
-                <div class="card__body">
-                  <span class="card__seal" aria-hidden="true">AR</span>
-                  <div class="card__id">
-                    <h3 class="card__name">Lajoon Park</h3>
-                    <p class="card__role">
-                      The Omniscient, Holy Leader of the Action Party, Minister
-                      of Finance
-                    </p>
-                  </div>
-                  <p class="card__bio">
-                    Former God, turned Mortal. All knowing, Omniscient and a
-                    Holy Spirit. Dedicated to the people, and the betterment of
-                    the world. Has been a member of the Action Party since its
-                    inception, and has been a member of the New Zealand
-                    Parliament since 2017.
-                  </p>
-                </div>
-                <dl class="card__meta">
-                  <div>
-                    <dt>List place</dt>
-                    <dd>1</dd>
-                  </div>
-                  <div>
-                    <dt>Selected by</dt>
-                    <dd>Me</dd>
-                  </div>
-                  <div>
-                    <dt>Policy</dt>
-                    <dd>IV, Tax</dd>
-                  </div>
-                </dl>
-              </article>
-            </li>
-            <li class="card" data-card>
-              <article class="card__inner">
-                <div class="card__top">
-                  <p class="card__index"><span>02</span> of 03</p>
-                  <p class="card__portfolio">Housing and land</p>
-                </div>
-                <div class="card__body">
-                  <span class="card__seal" aria-hidden="true">TO</span>
-                  <div class="card__id">
-                    <h3 class="card__name">Tomas Oyelaran</h3>
-                    <p class="card__role">
-                      Deputy Leader, and Minister of Housing
-                    </p>
-                  </div>
-                  <p class="card__bio">
-                    Former council planner who resigned over a land
-                    reclassification. Spent three years building the vacant land
-                    register this platform is costed against, postcode by
-                    postcode, and published it before he asked for anything.
-                  </p>
-                </div>
-                <dl class="card__meta">
-                  <div>
-                    <dt>List place</dt>
-                    <dd>2</dd>
-                  </div>
-                  <div>
-                    <dt>Selected by</dt>
-                    <dd>Wellington members, 21 March</dd>
-                  </div>
-                  <div>
-                    <dt>Policy</dt>
-                    <dd>II, Housing</dd>
-                  </div>
-                </dl>
-              </article>
-            </li>
-            <li class="card" data-card>
-              <article class="card__inner">
-                <div class="card__top">
-                  <p class="card__index"><span>03</span> of 03</p>
-                  <p class="card__portfolio">Health</p>
-                </div>
-                <div class="card__body">
-                  <span class="card__seal" aria-hidden="true">SK</span>
-                  <div class="card__id">
-                    <h3 class="card__name">Jaxton Martin</h3>
-                    <p class="card__role">Ball Boy</p>
-                  </div>
-                  <p class="card__bio">
-                    Former Football player. Kicked off the team becasue of
-                    performace issues. Now a member of the Action Party. We
-                    don't really know why he joined, we kinda felt bad and let
-                    him in. Allegedly a good guy, we don't know to be honest.
-                  </p>
-                </div>
-                <dl class="card__meta">
-                  <div>
-                    <dt>List place</dt>
-                    <dd>3</dd>
-                  </div>
-                  <div>
-                    <dt>Selected by</dt>
-                    <dd>None</dd>
-                  </div>
-                  <div>
-                    <dt>Policy</dt>
-                    <dd>I, health</dd>
-                  </div>
-                </dl>
-              </article>
-            </li>
-          </ol>
-        </div>
-      </section>
-
-      <section class="section section--record" id="record" data-section>
-        <div class="shell section__grid">
-          <div class="rail">
-            <div class="rail__inner">
-              <p class="rail__label"><span>05</span> The record</p>
-              <p class="rail__figure">Updated</p>
-              <p class="rail__note">
-                When we get something wrong, the original stays up and the
-                correction is dated.
-              </p>
-            </div>
-          </div>
-
-          <div class="section__body">
-            <h2 class="section__title" data-reveal>
-              The record, corrections included
-            </h2>
-            <p class="section__intro" data-reveal>
-              Everything we publish, in the order we published it. A correction
-              is not a quiet edit. It is a new line in the record, dated, and it
-              stays.
-            </p>
-
-            <ol class="record">
-              <li class="record__item" data-reveal>
-                <a href="#record">
-                  <span class="record__date">12 October</span>
-                  <span class="record__body">
-                    <span class="record__kind">Correction</span>
-                    <span class="record__title"
-                      >Policy 14 was costed wrong. Here is the corrected
-                      figure.</span
-                    >
-                    <span class="record__dek"
-                      >We had the health line at plus 2.4 percent. The true
-                      figure is plus 2.7, and the difference is $310 million
-                      over four years. The working paper is linked, with our
-                      error visible in the revision history.</span
-                    >
-                  </span>
-                  <span class="record__arrow" aria-hidden="true">&#8594;</span>
-                </a>
               </li>
-              <li class="record__item" data-reveal>
-                <a href="#record">
-                  <span class="record__date">4 October</span>
-                  <span class="record__body">
-                    <span class="record__kind">Research</span>
-                    <span class="record__title"
-                      >We asked 900 nurses what would actually keep them in the
-                      job</span
-                    >
-                    <span class="record__dek"
-                      >Pay came third. Rosters came first, by a wide margin.
-                      Policy 6 was rewritten the week the results landed.</span
-                    >
-                  </span>
-                  <span class="record__arrow" aria-hidden="true">&#8594;</span>
-                </a>
+              <li class="manual__step" data-step-item tabindex="0">
+                <p class="manual__no">02</p>
+                <h3 class="manual__title">Your electorate vote picks a local MP</h3>
+                <p class="manual__body">
+                  Your second vote chooses the person who holds your electorate
+                  seat. Win an electorate and you are in Parliament even if your
+                  party falls under five percent. That single rule has decided
+                  governments.
+                </p>
               </li>
-              <li class="record__item" data-reveal>
-                <a href="#record">
-                  <span class="record__date">27 September</span>
-                  <span class="record__body">
-                    <span class="record__kind">Release</span>
-                    <span class="record__title"
-                      >The vacant land register is now public, postcode by
-                      postcode</span
-                    >
-                    <span class="record__dek"
-                      >Four thousand parcels, their owners, and how long each
-                      has sat empty. This is the dataset our housing numbers are
-                      built on.</span
-                    >
-                  </span>
-                  <span class="record__arrow" aria-hidden="true">&#8594;</span>
-                </a>
+              <li class="manual__step" data-step-item tabindex="0">
+                <p class="manual__no">03</p>
+                <h3 class="manual__title">Five percent, or one seat</h3>
+                <p class="manual__body">
+                  A party needs five percent of the party vote, or one electorate
+                  seat, to be in the room at all. Below both lines every vote
+                  cast for it is worth nothing when the seats are allocated.
+                </p>
+              </li>
+              <li class="manual__step" data-step-item tabindex="0">
+                <p class="manual__no">04</p>
+                <h3 class="manual__title">Sixty-one seats to govern</h3>
+                <p class="manual__body">
+                  A majority is 61 of 120. Under MMP that majority is almost
+                  never held by one party, which is why the real contest is the
+                  negotiation that starts the morning after the count.
+                </p>
               </li>
             </ol>
           </div>
         </div>
       </section>
 
-      <section class="section section--join" id="join" data-section>
-        <div class="shell section__grid">
-          <div class="rail">
-            <div class="rail__inner">
-              <p class="rail__label"><span>06</span> Membership</p>
-              <p class="rail__figure">$1000 a year</p>
-              <p class="rail__note">
-                The only money we ask for. Members choose candidates and can
-                vote to remove a leader.
+      <!-- ────────────────────────── 02 THE PLAN ────────────────────────── -->
+      <section class="plan" id="plan" data-section data-tone="paper" data-plan>
+        <div class="shell plan__head">
+          <div class="plan__head-grid">
+            <p class="label">02 / The plan</p>
+            <h2 class="plan__title" data-reveal>
+              Five files.<br />Thirty-one <em>policies.</em>
+            </h2>
+            <div class="plan__lede" data-reveal>
+              <p>
+                Each area is a file. Open one and you get the promise, the bullet
+                points, the deadline and the price, in that order, every time. No
+                area gets a longer page than another, because a promise that needs
+                three paragraphs of warm-up is usually a promise with something to
+                hide.
+              </p>
+              <p class="plan__hint">
+                <span aria-hidden="true">&#8595;</span> Scroll to file through them,
+                or pick a tab.
               </p>
             </div>
           </div>
 
-          <div class="section__body">
-            <h2 class="section__title" data-reveal>
-              Put your name down
+          <nav class="plan__tabs" aria-label="Policy areas" data-plan-tabs>
+            <a class="folder-tab" href="#policy-1" data-plan-tab="policy-1">
+              <span class="folder-tab__no">I</span> Health
+              <span class="folder-tab__count">7</span>
+            </a>
+            <a class="folder-tab" href="#policy-2" data-plan-tab="policy-2">
+              <span class="folder-tab__no">II</span> Housing
+              <span class="folder-tab__count">8</span>
+            </a>
+            <a class="folder-tab" href="#policy-3" data-plan-tab="policy-3">
+              <span class="folder-tab__no">III</span> Work
+              <span class="folder-tab__count">6</span>
+            </a>
+            <a class="folder-tab" href="#policy-4" data-plan-tab="policy-4">
+              <span class="folder-tab__no">IV</span> Tax
+              <span class="folder-tab__count">5</span>
+            </a>
+            <a class="folder-tab" href="#policy-5" data-plan-tab="policy-5">
+              <span class="folder-tab__no">V</span> Integrity
+              <span class="folder-tab__count">5</span>
+            </a>
+          </nav>
+        </div>
+
+        <div class="files" data-files>
+          <article class="file" id="policy-1" data-file data-open="false" style="--i: 0">
+            <div class="file__card">
+              <header class="file__head">
+                <button
+                  class="file__tab"
+                  type="button"
+                  aria-expanded="false"
+                  aria-controls="policy-1-body"
+                  data-file-toggle
+                >
+                  <span class="file__no">I</span>
+                  <span class="file__name">Health</span>
+                  <span class="file__claim">Care within the week, not the year</span>
+                  <span class="file__count">7 policies</span>
+                  <span class="file__plus" aria-hidden="true"></span>
+                </button>
+              </header>
+
+              <div class="file__body" id="policy-1-body">
+                <div class="file__body-in">
+                  <p class="file__lead">
+                    Nobody waits twelve months for an operation they were told they needed in March. We will fund the public system to a guaranteed treatment time of seven days for urgent care and ninety for planned care, and publish the waiting list every fortnight.
+                  </p>
+                  <ul class="file__points">
+                      <li><span>01</span> Reopen 1,200+ beds closed since 2019, and open an extra 50,000 more.</li>
+                      <li><span>02</span> Prioritise the people who need care most, not the ones with the deepest pockets.</li>
+                      <li><span>03</span> Pay student nurses $35 per hour while they train.</li>
+                  </ul>
+                  <dl class="file__meta">
+                    <div><dt>Deadline</dt><dd>First hundred days</dd></div>
+                    <div><dt>Price</dt><dd>600 billion</dd></div>
+                  </dl>
+                </div>
+              </div>
+              <span class="file__stamp" aria-hidden="true">Filed</span>
+            </div>
+          </article>
+          <article class="file" id="policy-2" data-file data-open="false" style="--i: 1">
+            <div class="file__card">
+              <header class="file__head">
+                <button
+                  class="file__tab"
+                  type="button"
+                  aria-expanded="false"
+                  aria-controls="policy-2-body"
+                  data-file-toggle
+                >
+                  <span class="file__no">II</span>
+                  <span class="file__name">Housing</span>
+                  <span class="file__claim">Everyone deserves a place to call home</span>
+                  <span class="file__count">8 policies</span>
+                  <span class="file__plus" aria-hidden="true"></span>
+                </button>
+              </header>
+
+              <div class="file__body" id="policy-2-body">
+                <div class="file__body-in">
+                  <p class="file__lead">
+                    All people who are homeless or at risk of becoming homeless will be provided with a temporary place to stay within 24 hours, and a plan for permanent housing within 90 days.
+                  </p>
+                  <ul class="file__points">
+                      <li><span>01</span> No one sleeping on the streets.</li>
+                      <li><span>02</span> A rent cap of 30 percent of weekly income.</li>
+                      <li><span>03</span> 0% interest home loans up to $800,000 for the people who need it.</li>
+                  </ul>
+                  <dl class="file__meta">
+                    <div><dt>Deadline</dt><dd>Within ten months</dd></div>
+                    <div><dt>Price</dt><dd>1.2 trillion</dd></div>
+                  </dl>
+                </div>
+              </div>
+              <span class="file__stamp" aria-hidden="true">Filed</span>
+            </div>
+          </article>
+          <article class="file" id="policy-3" data-file data-open="false" style="--i: 2">
+            <div class="file__card">
+              <header class="file__head">
+                <button
+                  class="file__tab"
+                  type="button"
+                  aria-expanded="false"
+                  aria-controls="policy-3-body"
+                  data-file-toggle
+                >
+                  <span class="file__no">III</span>
+                  <span class="file__name">Work</span>
+                  <span class="file__claim">A wage nobody has to fall through</span>
+                  <span class="file__count">6 policies</span>
+                  <span class="file__plus" aria-hidden="true"></span>
+                </button>
+              </header>
+
+              <div class="file__body" id="policy-3-body">
+                <div class="file__body-in">
+                  <p class="file__lead">
+                    The minimum wage should be a floor, not a negotiation. We will set it at 85% of the current median wage, index it annually to inflation and what the country can afford, and stop exempting the industries that lobby hardest against it.
+                  </p>
+                  <ul class="file__points">
+                      <li><span>01</span> 500 billion invested into job creation and infrastructure.</li>
+                      <li><span>02</span> Wage theft enforced as a criminal offence, not a civil dispute.</li>
+                      <li><span>03</span> A 24 percent increase to the minimum wage.</li>
+                  </ul>
+                  <dl class="file__meta">
+                    <div><dt>Deadline</dt><dd>Within 30 days</dd></div>
+                    <div><dt>Price</dt><dd>500 billion</dd></div>
+                  </dl>
+                </div>
+              </div>
+              <span class="file__stamp" aria-hidden="true">Filed</span>
+            </div>
+          </article>
+          <article class="file" id="policy-4" data-file data-open="false" style="--i: 3">
+            <div class="file__card">
+              <header class="file__head">
+                <button
+                  class="file__tab"
+                  type="button"
+                  aria-expanded="false"
+                  aria-controls="policy-4-body"
+                  data-file-toggle
+                >
+                  <span class="file__no">IV</span>
+                  <span class="file__name">Tax</span>
+                  <span class="file__claim">Real tax for real people</span>
+                  <span class="file__count">5 policies</span>
+                  <span class="file__plus" aria-hidden="true"></span>
+                </button>
+              </header>
+
+              <div class="file__body" id="policy-4-body">
+                <div class="file__body-in">
+                  <p class="file__lead">
+                    Below $70,000 a year you pay no income tax at all. Above it the rate climbs steeply, and there is no bracket in this country where a person can buy their way to a lower share than the nurse who treated them.
+                  </p>
+                  <ul class="file__points">
+                      <li><span>01</span> 0% under $70K. 45% from $70K. 80% from $100K. 97% from $150K.</li>
+                      <li><span>02</span> 200% from $250K, and 18,860% above $500K.</li>
+                      <li><span>03</span> An estimated 2.7 trillion in new revenue, and a unit to police avoidance.</li>
+                  </ul>
+                  <dl class="file__meta">
+                    <div><dt>Deadline</dt><dd>The hour we take office</dd></div>
+                    <div><dt>Price</dt><dd>500 million, to police the rich</dd></div>
+                  </dl>
+                </div>
+              </div>
+              <span class="file__stamp" aria-hidden="true">Filed</span>
+            </div>
+          </article>
+          <article class="file" id="policy-5" data-file data-open="false" style="--i: 4">
+            <div class="file__card">
+              <header class="file__head">
+                <button
+                  class="file__tab"
+                  type="button"
+                  aria-expanded="false"
+                  aria-controls="policy-5-body"
+                  data-file-toggle
+                >
+                  <span class="file__no">V</span>
+                  <span class="file__name">Integrity</span>
+                  <span class="file__claim">The real change we need to see</span>
+                  <span class="file__count">5 policies</span>
+                  <span class="file__plus" aria-hidden="true"></span>
+                </button>
+              </header>
+
+              <div class="file__body" id="policy-5-body">
+                <div class="file__body-in">
+                  <p class="file__lead">
+                    Why should young people who cannot even vote have to prop up the elderly? The franchise is the first policy of any government, and ours starts by widening it.
+                  </p>
+                  <ul class="file__points">
+                      <li><span>01</span> The voting age lowered to 13.</li>
+                      <li><span>02</span> All people over the age of 72 deported.</li>
+                      <li><span>03</span> Borders locked down to prevent people entering and leaving.</li>
+                  </ul>
+                  <dl class="file__meta">
+                    <div><dt>Deadline</dt><dd>Two months</dd></div>
+                    <div><dt>Price</dt><dd>$50 billion</dd></div>
+                  </dl>
+                </div>
+              </div>
+              <span class="file__stamp" aria-hidden="true">Filed</span>
+            </div>
+          </article>
+        </div>
+
+        <div class="shell plan__foot">
+          <p class="plan__foot-note">
+            Thirty-one policies across five files. The remaining twenty-six are
+            numbered in the same register, in the same order, and carry the same
+            three fields.
+          </p>
+          <a class="tlink" href="#record">See how each one changed</a>
+        </div>
+      </section>
+
+
+
+
+      <!-- ──────────────────────── 03 THE FINANCES ──────────────────────── -->
+      <section class="money" id="finances" data-section data-tone="paper" data-money>
+        <div class="shell money__head">
+          <p class="label">03 / The finances</p>
+          <h2 class="money__title" data-reveal>
+            Every dollar,<br /><em>twice.</em>
+          </h2>
+          <p class="money__intro" data-reveal>
+            Where the budget moves over a full term, in billions of dollars a
+            year. The cuts sit on the same page as the spending, because that is
+            how a budget works. Switch the column between today and year three,
+            and the bar shows the size of the move.
+          </p>
+        </div>
+
+        <div class="shell money__grid">
+          <div class="money__table-wrap">
+            <div class="switch" data-at="now" role="group" aria-label="Which year to show">
+              <button type="button" class="switch__btn" aria-pressed="true" data-money-mode="now">
+                Today
+              </button>
+              <button type="button" class="switch__btn" aria-pressed="false" data-money-mode="then">
+                Year three
+              </button>
+              <span class="switch__ink" aria-hidden="true"></span>
+            </div>
+
+            <table class="ledger" data-ledger>
+              <caption class="visually-hidden">
+                Planned annual spending by area, today against year three, in New
+                Zealand billions of dollars, with the percentage change and the
+                revenue that funds it.
+              </caption>
+              <thead>
+                <tr>
+                  <th scope="col">Area</th>
+                  <th scope="col">$bn<span class="ledger__per"> a year</span></th>
+                  <th scope="col">Change</th>
+                  <th scope="col">Funded by</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr data-row data-now-num="32.7" data-then-num="600">
+                  <th scope="row"><span class="ledger__area">Health</span></th>
+                  <td class="ledger__amount" data-cell data-now="32.7" data-then="600">32.7</td>
+                  <td class="ledger__delta">
+                    <span class="ledger__num">+1,735%</span>
+                    <span class="ledger__bar" aria-hidden="true" style="--w: 1.000"></span>
+                  </td>
+                  <td class="ledger__by">Taxes</td>
+                </tr>
+                <tr data-row data-now-num="4.5" data-then-num="1200">
+                  <th scope="row"><span class="ledger__area">Housing and land</span></th>
+                  <td class="ledger__amount" data-cell data-now="4.5" data-then="1,200">4.5</td>
+                  <td class="ledger__delta">
+                    <span class="ledger__num">+26,567%</span>
+                    <span class="ledger__bar" aria-hidden="true" style="--w: 1.000"></span>
+                  </td>
+                  <td class="ledger__by">Taxes</td>
+                </tr>
+                <tr data-row data-now-num="19.85" data-then-num="40">
+                  <th scope="row"><span class="ledger__area">Education and training</span></th>
+                  <td class="ledger__amount" data-cell data-now="19.85" data-then="40">19.85</td>
+                  <td class="ledger__delta">
+                    <span class="ledger__num">+102%</span>
+                    <span class="ledger__bar" aria-hidden="true" style="--w: 0.338"></span>
+                  </td>
+                  <td class="ledger__by">Consultancy cap</td>
+                </tr>
+                <tr data-row data-now-num="5.47" data-then-num="10">
+                  <th scope="row"><span class="ledger__area">Transport</span></th>
+                  <td class="ledger__amount" data-cell data-now="5.47" data-then="10">5.47</td>
+                  <td class="ledger__delta">
+                    <span class="ledger__num">+83%</span>
+                    <span class="ledger__bar" aria-hidden="true" style="--w: 0.276"></span>
+                  </td>
+                  <td class="ledger__by">Taxes</td>
+                </tr>
+                <tr data-row data-now-num="4.2" data-then-num="50">
+                  <th scope="row"><span class="ledger__area">Defence</span></th>
+                  <td class="ledger__amount" data-cell data-now="4.2" data-then="50">4.2</td>
+                  <td class="ledger__delta">
+                    <span class="ledger__num">+1,090%</span>
+                    <span class="ledger__bar" aria-hidden="true" style="--w: 1.000"></span>
+                  </td>
+                  <td class="ledger__by">Border enforcement</td>
+                </tr>
+                <tr data-row data-now-num="1.2" data-then-num="1.2">
+                  <th scope="row"><span class="ledger__area">Consultants and contracts</span></th>
+                  <td class="ledger__amount" data-cell data-now="1.2" data-then="1.2">1.2</td>
+                  <td class="ledger__delta">
+                    <span class="ledger__num">no change</span>
+                    <span class="ledger__bar" aria-hidden="true" style="--w: 0.000"></span>
+                  </td>
+                  <td class="ledger__by">Returned to departments</td>
+                </tr>
+              </tbody>
+            </table>
+
+            <p class="ledger__foot">
+              Six lines, costed by the party's own budget office against Treasury
+              baselines. The working papers are available to anyone who asks, and
+              an independent review is commissioned before the election.
+            </p>
+          </div>
+
+          <div class="balance" data-balance>
+            <p class="balance__kicker">Net new spending</p>
+            <p class="balance__num">
+              <span class="balance__cur">$</span
+              ><span data-balance-num>1.83</span
+              ><span class="balance__unit">tn</span>
+            </p>
+            <p class="balance__note">
+              Everything the six lines add, a year, once the plan is fully in.
+              It is paid for out of the revenue the tax file already claims to
+              raise, and the two numbers are shown together here so they can be
+              checked against each other.
+            </p>
+            <dl class="balance__fund">
+              <div><dt>New spending, a year</dt><dd>1.83tn</dd></div>
+              <div><dt>New revenue, tax file</dt><dd>2.7tn</dd></div>
+              <div class="balance__total"><dt>Left over</dt><dd>0.87tn</dd></div>
+            </dl>
+            <a class="btn btn--ghost" href="financial-disclosure.html">
+              Read the disclosure
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <!-- ─────────────────────────── 04 THE RECORD ─────────────────────────── -->
+      <section class="record" id="record" data-section data-tone="paper" data-record>
+        <div class="shell record__head">
+          <p class="label">04 / The record</p>
+          <h2 class="record__heading" data-reveal>
+            Everything, in the<br />order it <em>happened.</em>
+          </h2>
+          <p class="record__intro" data-reveal>
+            Every release, every dataset and every revision, newest first. When a
+            figure moves, the old one stays on the page and the new one is dated
+            beside it. A record you can only read forwards is not a record.
+          </p>
+        </div>
+
+        <div class="shell">
+          <ol class="record">
+              <li class="record__item" data-record-row>
+                <a class="record__link" href="financial-disclosure.html">
+                  <span class="record__date">12 October</span>
+                  <span class="record__body">
+                    <span class="record__kind">Release</span>
+                    <span class="record__title">Policy 14 is recosted, and the working paper goes up with it</span>
+                    <span class="record__dek">The health line moved from plus 2.4 to plus 2.7 percent as the district health boards published their third-quarter baselines. The revision history is public, in the order it happened.</span>
+                  </span>
+                  <span class="record__arrow" aria-hidden="true">&#8594;</span>
+                </a>
+              </li>
+              <li class="record__item" data-record-row>
+                <a class="record__link" href="financial-disclosure.html">
+                  <span class="record__date">4 October</span>
+                  <span class="record__body">
+                    <span class="record__kind">Research</span>
+                    <span class="record__title">We asked 900 nurses what would actually keep them in the job</span>
+                    <span class="record__dek">Pay came third. Rosters came first, by a wide margin. Policy 6 was rewritten the week the results landed.</span>
+                  </span>
+                  <span class="record__arrow" aria-hidden="true">&#8594;</span>
+                </a>
+              </li>
+              <li class="record__item" data-record-row>
+                <a class="record__link" href="financial-disclosure.html">
+                  <span class="record__date">27 September</span>
+                  <span class="record__body">
+                    <span class="record__kind">Release</span>
+                    <span class="record__title">The vacant land register is now public, postcode by postcode</span>
+                    <span class="record__dek">Four thousand parcels, their owners, and how long each has sat empty. This is the dataset our housing numbers are built on.</span>
+                  </span>
+                  <span class="record__arrow" aria-hidden="true">&#8594;</span>
+                </a>
+              </li>
+          </ol>
+          <p class="record__foot">
+            <a class="tlink" href="financial-disclosure.html">The full disclosure, line by line</a>
+          </p>
+        </div>
+      </section>
+
+      <!-- ───────────────────────── 04 THE FRONT BENCH ───────────────────────── -->
+      <section class="bench" id="people" data-section data-tone="bone" data-bench>
+        <div class="shell bench__head">
+          <p class="label">05 / The front bench</p>
+          <h2 class="bench__title" data-reveal>
+            Three people.<br />One <em>list.</em>
+          </h2>
+          <p class="bench__intro" data-reveal>
+            Under MMP you vote for a party, and the party hands you a list, so the
+            list matters. These three would sit in Cabinet on the first day. The
+            other twenty-eight are ranked by the same members, in the same order,
+            and that list is in the record.
+          </p>
+        </div>
+
+        <div class="shell">
+          <ol class="members" data-members>
+            <li class="member" data-member data-member-card tabindex="0" aria-label="Front bench member: Lajoon Park" style="--tilt: -1.4deg">
+              <article class="member__card">
+                <div class="member__top">
+                  <p class="member__index">01 <span>of 03</span></p>
+                  <p class="member__portfolio">Finance</p>
+                </div>
+                <div class="member__body">
+                  <span class="member__seal" aria-hidden="true">LP</span>
+                  <h3 class="member__name">Lajoon Park</h3>
+                  <p class="member__role">Leader, and Minister of Finance</p>
+                  <p class="member__bio">Has led the party since its first meeting, and has sat in the House since 2017. Writes the finance file personally, which is why it is the only one with a number he cannot round.</p>
+                </div>
+                <dl class="member__meta">
+                  <div><dt>List place</dt><dd>1</dd></div>
+                  <div><dt>Selected by</dt><dd>The membership</dd></div>
+                  <div><dt>Policy</dt><dd>IV, Tax</dd></div>
+                </dl>
+                <span class="member__perf" aria-hidden="true"></span>
+              </article>
+            </li>
+            <li class="member" data-member data-member-card tabindex="0" aria-label="Front bench member: Tomas Oyelaran" style="--tilt: 0.9deg">
+              <article class="member__card">
+                <div class="member__top">
+                  <p class="member__index">02 <span>of 03</span></p>
+                  <p class="member__portfolio">Housing and land</p>
+                </div>
+                <div class="member__body">
+                  <span class="member__seal" aria-hidden="true">TO</span>
+                  <h3 class="member__name">Tomas Oyelaran</h3>
+                  <p class="member__role">Deputy Leader, and Minister of Housing</p>
+                  <p class="member__bio">A former council planner who resigned over a land reclassification. Spent three years building the vacant land register this platform is costed against, postcode by postcode, and published it before he asked for anything.</p>
+                </div>
+                <dl class="member__meta">
+                  <div><dt>List place</dt><dd>2</dd></div>
+                  <div><dt>Selected by</dt><dd>Wellington members, 21 March</dd></div>
+                  <div><dt>Policy</dt><dd>II, Housing</dd></div>
+                </dl>
+                <span class="member__perf" aria-hidden="true"></span>
+              </article>
+            </li>
+            <li class="member" data-member data-member-card tabindex="0" aria-label="Front bench member: Jaxton Martin" style="--tilt: -0.7deg">
+              <article class="member__card">
+                <div class="member__top">
+                  <p class="member__index">03 <span>of 03</span></p>
+                  <p class="member__portfolio">Health</p>
+                </div>
+                <div class="member__body">
+                  <span class="member__seal" aria-hidden="true">JM</span>
+                  <h3 class="member__name">Jaxton Martin</h3>
+                  <p class="member__role">List member, and Minister of Health</p>
+                  <p class="member__bio">A former football player who came to the party through the health campaign rather than the other way around. Runs the waiting-list audit, and answers questions about it in public every quarter.</p>
+                </div>
+                <dl class="member__meta">
+                  <div><dt>List place</dt><dd>3</dd></div>
+                  <div><dt>Selected by</dt><dd>The membership</dd></div>
+                  <div><dt>Policy</dt><dd>I, Health</dd></div>
+                </dl>
+                <span class="member__perf" aria-hidden="true"></span>
+              </article>
+            </li>
+          </ol>
+        </div>
+      </section>
+
+      <!-- ─────────────────────────── 06 JOIN ─────────────────────────── -->
+      <section class="join" id="join" data-section data-tone="ink" data-join>
+        <div class="join__rays" aria-hidden="true" data-join-rays></div>
+
+        <div class="shell join__inner">
+          <div class="join__head">
+            <p class="label label--invert">06 / Membership</p>
+            <h2 class="join__title" data-reveal>
+              Put your name<br />in the <em>register.</em>
             </h2>
-            <p class="section__intro" data-reveal>
+            <p class="join__intro" data-reveal>
               Membership is open to anyone on the electoral roll. One thousand
-              dollars a year, one member one vote, and a leader who can be
-              removed by the people who put them there. We do not sell or swap
-              member data, and you can leave in one click.
+              dollars a year, one member one vote, and a leader who can be removed
+              by the people who put them there. We do not sell or swap member data,
+              and you can leave in one click.
             </p>
 
-            <div class="form" data-form-shell>
-              <div
-                class="segmented"
-                role="tablist"
-                aria-label="Ways to get involved"
-                data-segmented
-              >
-                <span
-                  class="segmented__ink"
-                  aria-hidden="true"
-                  data-segment-ink
-                ></span>
+            <dl class="join__facts">
+              <div><dt>Membership</dt><dd>$1,000 / year</dd></div>
+              <div><dt>Vote</dt><dd>One member, one vote</dd></div>
+              <div><dt>Notice</dt><dd>Leave in one click</dd></div>
+            </dl>
+          </div>
+
+          <div class="join__form-wrap" data-form-shell>
+            <div class="form-card">
+              <div class="segmented" role="tablist" aria-label="Ways to get involved" aria-orientation="horizontal" data-segmented>
+                <span class="segmented__ink" aria-hidden="true" data-segment-ink></span>
                 <button
                   type="button"
                   role="tab"
@@ -1219,34 +1117,17 @@
                 </button>
               </div>
 
-              <div
-                class="form__panel"
-                id="panel-join"
-                role="tabpanel"
-                aria-labelledby="tab-join"
-              >
+              <div class="form__panel" id="panel-join" role="tabpanel" aria-labelledby="tab-join">
                 <form data-panel novalidate>
                   <div class="field">
                     <label for="join-name">Full name</label>
-                    <input
-                      id="join-name"
-                      name="name"
-                      type="text"
-                      autocomplete="name"
-                      required
-                    />
+                    <input id="join-name" name="name" type="text" autocomplete="name" required />
                   </div>
                   <div class="field">
                     <label for="join-email">Email</label>
-                    <input
-                      id="join-email"
-                      name="email"
-                      type="email"
-                      autocomplete="email"
-                      required
-                    />
+                    <input id="join-email" name="email" type="email" autocomplete="email" required />
                   </div>
-                  <div class="field field--short">
+                  <div class="field">
                     <label for="join-postcode">Postcode</label>
                     <input
                       id="join-postcode"
@@ -1254,14 +1135,20 @@
                       type="text"
                       inputmode="numeric"
                       autocomplete="postal-code"
-                      pattern="[0-9]{4,6}"
+                      pattern="[0-9]{4}"
+                      maxlength="4"
                       required
                     />
                   </div>
                   <button class="btn btn--block" type="submit">
-                    Join for $10 a year
+                    Join for $1,000 a year
+                    <span class="btn__arrow" aria-hidden="true">&#8594;</span>
                   </button>
                   <p class="form__status" role="status" aria-live="polite"></p>
+                  <p class="form__note">
+                    A New Zealand postcode is four digits. We use it to put you in
+                    the right local branch, and for nothing else.
+                  </p>
                 </form>
               </div>
 
@@ -1275,41 +1162,30 @@
                 <form data-panel novalidate>
                   <div class="field">
                     <label for="vol-name">Full name</label>
-                    <input
-                      id="vol-name"
-                      name="name"
-                      type="text"
-                      autocomplete="name"
-                      required
-                    />
+                    <input id="vol-name" name="name" type="text" autocomplete="name" required />
                   </div>
                   <div class="field">
                     <label for="vol-email">Email</label>
-                    <input
-                      id="vol-email"
-                      name="email"
-                      type="email"
-                      autocomplete="email"
-                      required
-                    />
+                    <input id="vol-email" name="email" type="email" autocomplete="email" required />
                   </div>
                   <fieldset class="field field--choices">
                     <legend>What can you do?</legend>
-                    <label class="choice"
-                      ><input type="checkbox" name="task" value="doorstep" />
-                      Doorstep and phone rounds</label
-                    >
-                    <label class="choice"
-                      ><input type="checkbox" name="task" value="data" /> Data
-                      and research</label
-                    >
-                    <label class="choice"
-                      ><input type="checkbox" name="task" value="events" />
-                      Events and stalls</label
-                    >
+                    <label class="choice">
+                      <input type="checkbox" name="task" value="doorstep" />
+                      <span>Doorstep and phone rounds</span>
+                    </label>
+                    <label class="choice">
+                      <input type="checkbox" name="task" value="data" />
+                      <span>Data and research</span>
+                    </label>
+                    <label class="choice">
+                      <input type="checkbox" name="task" value="events" />
+                      <span>Events and stalls</span>
+                    </label>
                   </fieldset>
                   <button class="btn btn--block" type="submit">
                     Sign up to volunteer
+                    <span class="btn__arrow" aria-hidden="true">&#8594;</span>
                   </button>
                   <p class="form__status" role="status" aria-live="polite"></p>
                 </form>
@@ -1325,103 +1201,119 @@
                 <form data-panel novalidate>
                   <fieldset class="field field--amounts">
                     <legend>Amount</legend>
-                    <label class="amount"
-                      ><input
-                        type="radio"
-                        name="amount"
-                        value="25"
-                        checked
-                      /><span>$25</span></label
-                    >
-                    <label class="amount"
-                      ><input type="radio" name="amount" value="50" /><span
-                        >$50</span
-                      ></label
-                    >
-                    <label class="amount"
-                      ><input type="radio" name="amount" value="100" /><span
-                        >$100</span
-                      ></label
-                    >
-                    <label class="amount"
-                      ><input type="radio" name="amount" value="250" /><span
-                        >$250</span
-                      ></label
-                    >
+                    <label class="amount">
+                      <input type="radio" name="amount" value="25" checked /><span>$25</span>
+                    </label>
+                    <label class="amount">
+                      <input type="radio" name="amount" value="50" /><span>$50</span>
+                    </label>
+                    <label class="amount">
+                      <input type="radio" name="amount" value="100" /><span>$100</span>
+                    </label>
+                    <label class="amount">
+                      <input type="radio" name="amount" value="250" /><span>$250</span>
+                    </label>
                   </fieldset>
                   <div class="field">
                     <label for="don-email">Email for the receipt</label>
-                    <input
-                      id="don-email"
-                      name="email"
-                      type="email"
-                      autocomplete="email"
-                      required
-                    />
+                    <input id="don-email" name="email" type="email" autocomplete="email" required />
                   </div>
-                  <button class="btn btn--block" type="submit">Donate</button>
+                  <button class="btn btn--block" type="submit">
+                    Donate
+                    <span class="btn__arrow" aria-hidden="true">&#8594;</span>
+                  </button>
                   <p class="form__status" role="status" aria-live="polite"></p>
                   <p class="form__note">
-                    Donations over $1,000 are disclosed on the live register
-                    within seven days.
+                    Donations over $1,000 are disclosed on the live register within
+                    seven days.
                   </p>
                 </form>
               </div>
             </div>
+
+            <p class="join__seal" aria-hidden="true">
+              <span>Register</span>
+              <span>of members</span>
+            </p>
           </div>
         </div>
       </section>
     </main>
 
-    <footer class="footer">
-      <div class="shell footer__inner">
-        <div class="footer__brand">
-          <img
-            src="assets/img/logo-lockup.png"
-            alt="The Action Party. Less talk. More action."
-            width="824"
-            height="424"
-          />
+    <footer class="footer" data-tone="paper">
+      <div class="shell footer__top">
+        <div class="footer__lead">
+          <p class="label">The Action Party</p>
+          <p class="footer__line">
+            Less talk. More <em>action.</em>
+          </p>
         </div>
         <nav class="footer__nav" aria-label="Footer">
-          <a href="#plan">Our plan</a>
-          <a href="#finances">The finances</a>
-          <a href="#system">How your vote counts</a>
-          <a href="#people">The front bench</a>
-          <a href="#record">The record</a>
-          <a href="financial-disclosure.html">Financial disclosure</a>
-          <a href="accessibility.html">Accessibility</a>
-          <a href="privacy.html">Privacy</a>
+          <div>
+            <p class="footer__nav-title">The plan</p>
+            <a href="#plan">Our plan</a>
+            <a href="#finances">The finances</a>
+            <a href="#system">How your vote counts</a>
+          </div>
+          <div>
+            <p class="footer__nav-title">The party</p>
+            <a href="#people">The front bench</a>
+            <a href="#record">The record</a>
+            <a href="#join">Join the party</a>
+          </div>
+          <div>
+            <p class="footer__nav-title">The papers</p>
+            <a href="financial-disclosure.html">Financial disclosure</a>
+            <a href="accessibility.html">Accessibility</a>
+            <a href="privacy.html">Privacy</a>
+          </div>
         </nav>
-        <div class="footer__legal">
-          <p>
-            Authorised by A. Rivera, Registered Officer, The Action Party. This
-            is a demonstration site: the party, its people and its figures are
-            fictional.
-          </p>
-          <p>
-            <a class="footer__legal-link" href="financial-disclosure.html"
-              >Financial disclosure</a
-            >, <a class="footer__legal-link" href="privacy.html">Privacy</a>,
-            and <a class="footer__legal-link" href="accessibility.html"
-              >Accessibility</a
-            >. Every figure on this site is fictional and demonstrative.
-          </p>
-        </div>
+      </div>
+
+      <div class="shell footer__print">
+        <img
+          class="footer__lockup"
+          src="assets/img/logo-lockup.png"
+          alt="The Action Party. Less talk. More action."
+          width="824"
+          height="424"
+          decoding="async"
+          data-print
+        />
+      </div>
+
+      <div class="shell footer__legal">
+        <p>
+          Authorised by A. Rivera, Registered Officer, The Action Party. This is a
+          demonstration site: the party, its people and its figures are fictional.
+        </p>
+        <p>
+          <a href="financial-disclosure.html">Financial disclosure</a>,
+          <a href="privacy.html">Privacy</a>, and
+          <a href="accessibility.html">Accessibility</a>.
+        </p>
+        <p class="footer__top-link"><a class="tlink" href="#top">Back to the top</a></p>
       </div>
     </footer>
 
-    <div class="sky" data-sky aria-hidden="true">
-      <div class="sky__rig">
-        <span class="sky__sun"></span>
-        <span class="sky__cloud sky__cloud--a"></span>
-        <span class="sky__cloud sky__cloud--b"></span>
-        <span class="sky__cloud sky__cloud--c"></span>
+    <div class="stamp" data-stamp aria-hidden="true">
+      <div class="stamp__rig">
+        <div class="stamp__head">
+          <span class="stamp__ring">
+            <span class="stamp__word">Register of members</span>
+            <span class="stamp__initials">AP</span>
+          </span>
+        </div>
+        <p class="stamp__line">You are in the register.</p>
+        <p class="stamp__hint">Click anywhere to return</p>
       </div>
-      <p class="sky__word">You are in the plan.</p>
-      <p class="sky__hint">Click anywhere to return</p>
     </div>
 
-    <script src="main.js"></script>
+    <div class="grain" aria-hidden="true"></div>
+
+    <script src="assets/vendor/gsap.min.js" defer></script>
+    <script src="assets/vendor/ScrollTrigger.min.js" defer></script>
+    <script src="assets/vendor/lenis.min.js" defer></script>
+    <script src="main.js" defer></script>
   </body>
 </html>
