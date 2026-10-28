@@ -249,6 +249,11 @@
         click(420, 0.14, 0.05);
         window.setTimeout(() => click(240, 0.1, 0.07), 60);
       },
+      /* A drawer: the soft roll of steel, then the stop at the end of its run. */
+      drawer: () => {
+        click(900, 0.05, 0.09);
+        window.setTimeout(() => click(300, 0.11, 0.055), 130);
+      },
       set: (value) => {
         on = value;
         if (soundButton) {
@@ -635,83 +640,78 @@
     }
   }
 
-  /* ─── the plan: seven files that open, one tab strip that follows ─── */
+  /* ─── the plan: one cabinet, seven drawers, one open at a time ─── */
 
-  const files = $$("[data-file]");
-  const planTabs = $$("[data-plan-tab]");
+  const drawers = $$("[data-drawer]");
 
-  const setFile = (file, open) => {
-    const button = $("[data-file-toggle]", file);
-    file.dataset.open = String(open);
-    button?.setAttribute("aria-expanded", String(open));
+  const setDrawer = (drawer, open, { scroll = false } = {}) => {
+    if (!drawer) return;
+    const front = $("[data-drawer-toggle]", drawer);
+    drawer.dataset.open = String(open);
+    front?.setAttribute("aria-expanded", String(open));
+    if (open && scroll) {
+      /* The cabinet reads top-down, so an opened drawer is brought to the top
+         of the viewport rather than left half off it. */
+      window.setTimeout(() => {
+        drawer.scrollIntoView({
+          block: "start",
+          behavior: canAnimate ? "smooth" : "auto",
+        });
+      }, 60);
+    }
   };
 
-  files.forEach((file) => {
-    const button = $("[data-file-toggle]", file);
-    button?.addEventListener("click", () => {
-      const open = file.dataset.open === "true";
-      files.forEach((other) => {
-        if (other !== file && other.dataset.open === "true") setFile(other, false);
-      });
-      setFile(file, !open);
+  /* Opening a drawer rolls the others home, the way a filing cabinet only
+     gives you one drawer's worth of room at a time. */
+  const openDrawer = (drawer, { scroll = false, silent = false } = {}) => {
+    const isOpen = drawer.dataset.open === "true";
+    drawers.forEach((other) => {
+      if (other !== drawer && other.dataset.open === "true") setDrawer(other, false);
     });
-  });
+    setDrawer(drawer, !isOpen, { scroll });
+    if (!isOpen && !silent) sound.drawer();
+  };
 
-  /* The tab strip mirrors whichever file is on screen, so it works as a map
-     as well as a control. Opening from a tab opens that file, not just scrolls. */
-  planTabs.forEach((tab) => {
-    tab.addEventListener("click", () => {
-      const id = tab.dataset.planTab;
-      const file = document.getElementById(id);
-      if (!file) return;
-      setFile(file, true);
-    });
-  });
+  drawers.forEach((drawer) => {
+    const front = $("[data-drawer-toggle]", drawer);
+    front?.addEventListener("click", () => openDrawer(drawer));
 
-  /* Arrow keys walk the seven files while focus is on one of them, and carry
-     focus with the selection so the next arrow press lands where expected.
-     Escape closes the file that is open, which is the contract the
-     accessibility page states. */
-  files.forEach((file, index) => {
-    const button = $("[data-file-toggle]", file);
-    button?.addEventListener("keydown", (event) => {
-      if (event.key === "Escape") {
-        if (file.dataset.open !== "true") return;
+    front?.addEventListener("keydown", (event) => {
+      if (event.key === "Escape" && drawer.dataset.open === "true") {
         event.preventDefault();
-        setFile(file, false);
+        setDrawer(drawer, false);
         return;
       }
       const forward = event.key === "ArrowDown" || event.key === "ArrowRight";
       const back = event.key === "ArrowUp" || event.key === "ArrowLeft";
       if (!forward && !back) return;
       event.preventDefault();
-      const next = files[(index + (forward ? 1 : -1) + files.length) % files.length];
-      /* One file open at a time is the whole idea of the cabinet: walking with
-         the arrows has to close the others exactly as a click does. */
-      files.forEach((other) => {
-        if (other !== next && other.dataset.open === "true") setFile(other, false);
-      });
-      setFile(next, true);
-      $("[data-file-toggle]", next)?.focus();
+      const index = drawers.indexOf(drawer);
+      const next = drawers[(index + (forward ? 1 : -1) + drawers.length) % drawers.length];
+      $("[data-drawer-toggle]", next)?.focus();
     });
   });
 
-  if (files.length && "IntersectionObserver" in window) {
-    const currentFile = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (!entry.isIntersecting) return;
-          planTabs.forEach((tab) => {
-            const on = tab.dataset.planTab === entry.target.id;
-            tab.classList.toggle("is-current", on);
-            tab.setAttribute("aria-current", on ? "true" : "false");
-          });
-        });
-      },
-      { rootMargin: "-45% 0px -45% 0px" }
-    );
-    files.forEach((f) => currentFile.observe(f));
-  }
+  /* Back and next at the foot of a file: the same tidy-up, then focus the
+     drawer that took over so the keyboard never lands nowhere. */
+  $$("[data-drawer-step]").forEach((step) => {
+    step.addEventListener("click", () => {
+      const target = document.getElementById(step.dataset.drawerStep);
+      if (!target) return;
+      openDrawer(target, { scroll: true });
+      $("[data-drawer-toggle]", target)?.focus({ preventScroll: true });
+    });
+  });
+
+  /* A link into a file, from anywhere: #policy-4 opens drawer four. */
+  const openFromHash = () => {
+    const id = window.location.hash.slice(1);
+    if (!id) return;
+    const target = document.getElementById(id);
+    if (target?.hasAttribute("data-drawer")) openDrawer(target, { silent: true });
+  };
+  openFromHash();
+  window.addEventListener("hashchange", openFromHash);
 
   /* The bench is a list of cards, not controls, so the arrow keys only move
      focus between the cards; there is nothing to activate on them. */

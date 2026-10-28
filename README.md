@@ -14,10 +14,10 @@ Six sections, each with its own personality but on one spine. A tile panel at
 
 | Section | Title | What it does | Its own gesture |
 | --- | --- | --- | --- |
-| `#plan` | Our Plan to Take Action | 21 policies in seven files | A tabbed file deck, one folder per area; each file opens to its policies in place |
+| `#plan` | Our Plan to Take Action | 21 policies in seven drawers | One steel filing cabinet; each drawer pulls out to reveal its file, and only one is out at a time |
 | `#finances` | The Finances, in the Open | Three-year ledger | Rows enter from the left, figures count up in their own unit (billion, trillion, percent), change bars draw from a centre line |
 | `#system` | How Your Vote Actually Counts | NZ MMP, explained | The page inverts to black; clouds drift; an interactive 120-seat hemicycle |
-| `#people` | The Three Who Would Hold the Front Bench | The list, and who chose it | Cards tilt in 3D with the pointer and lift out of the stack |
+| `#people` | Four People. One List. | The list, and who chose it | Four cards, two by two; each tilts in 3D with the pointer and lifts out of the stack |
 | `#record` | The Record, as Published | Everything published | Dated lines tick in against their date column |
 | `#join` | Put Your Name Down | Join, volunteer, donate | A sliding segmented block; a black sky as the reward for finishing |
 
@@ -63,14 +63,14 @@ gesture is gated on being in view. Shared rules:
   states are gated behind a `js` class on `<html>`.
 - A policy file opens in place, so the page keeps its own vertical scroll and no
   gesture is ever taken away from it.
-- The file arrow keys only act while focus is inside the files, so the page is
-  never hijacked; Escape closes the open file.
+- The drawer arrow keys only act while focus is on a drawer front, so the page is
+  never hijacked; Escape closes the open drawer.
 
 ## Accessibility
 
 - axe-core: **0 violations** at 1440 / 834 / 390 / 320 px.
-- Keyboard: skip link, visible 2px focus rings, tab strip with arrow-key navigation,
-  policy files reachable by Tab with arrow keys to move between them, the mobile
+- Keyboard: skip link, visible 2px focus rings, the seven cabinet drawers reachable
+  by Tab with arrow keys to move between their fronts, the mobile
   menu closes on Escape, and the success overlay is announced once and can be
   dismissed with Escape or a click.
 - The ledger table collapses to a stacked definition layout under 48rem.

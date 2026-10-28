@@ -320,7 +320,7 @@
                 <span class="toc__no">05</span>
                 <span class="toc__name">The front bench</span>
                 <span class="toc__desc">The people who will bring real change to the table.</span>
-                <span class="toc__fig">3 of 21</span>
+                <span class="toc__fig">4 of 21</span>
                 <span class="toc__arrow" aria-hidden="true">&#8594;</span>
               </a>
             </li>
@@ -549,323 +549,374 @@
             </h2>
             <div class="plan__lede" data-reveal>
               <p>
-                Each area is a file. Open one and you get the promise, the bullet
-                points, the deadline and the price, in that order, every time. No
-                area gets a longer page than another, because a promise that needs
-                three paragraphs of warm-up is usually a promise with something to
-                hide.
+                Each area is a drawer in one cabinet. Pull it open and you get the
+                promise, the bullets, the deadline and the price, in that order,
+                every time. No area gets a longer page than another, because a
+                promise that needs three paragraphs of warm-up is usually a promise
+                with something to hide.
               </p>
               <p class="plan__hint">
-                <span aria-hidden="true">&#8595;</span> Scroll through the files, or
-                pick a tab.
+                <span aria-hidden="true">&#8595;</span> Pull a drawer.
               </p>
             </div>
           </div>
-
-          <nav class="plan__tabs" aria-label="Policy areas" data-plan-tabs>
-            <a class="folder-tab" href="#policy-1" data-plan-tab="policy-1">
-              <span class="folder-tab__no">I</span> Education
-              <span class="folder-tab__count">3</span>
-            </a>
-            <a class="folder-tab" href="#policy-2" data-plan-tab="policy-2">
-              <span class="folder-tab__no">II</span> Environment
-              <span class="folder-tab__count">3</span>
-            </a>
-            <a class="folder-tab" href="#policy-3" data-plan-tab="policy-3">
-              <span class="folder-tab__no">III</span> Health
-              <span class="folder-tab__count">3</span>
-            </a>
-            <a class="folder-tab" href="#policy-4" data-plan-tab="policy-4">
-              <span class="folder-tab__no">IV</span> Tax
-              <span class="folder-tab__count">3</span>
-            </a>
-            <a class="folder-tab" href="#policy-5" data-plan-tab="policy-5">
-              <span class="folder-tab__no">V</span> Careers
-              <span class="folder-tab__count">3</span>
-            </a>
-            <a class="folder-tab" href="#policy-6" data-plan-tab="policy-6">
-              <span class="folder-tab__no">VI</span> Integrity
-              <span class="folder-tab__count">3</span>
-            </a>
-            <a class="folder-tab" href="#policy-7" data-plan-tab="policy-7">
-              <span class="folder-tab__no">VII</span> Justice
-              <span class="folder-tab__count">3</span>
-            </a>
-          </nav>
         </div>
 
-        <div class="files" data-files>
-          <article class="file" id="policy-1" data-file data-open="false" style="--i: 0">
-            <div class="file__card">
-              <header class="file__head">
+        <div class="shell">
+          <div class="cabinet" data-cabinet>
+            <div class="cabinet__rail">
+              <p class="cabinet__plate">The Action Party</p>
+              <p class="cabinet__serial">Policy file &middot; MMXXVI &middot; seven drawers</p>
+            </div>
+
+            <div class="cabinet__body" data-drawers>
+              <article class="drawer" id="policy-1" data-drawer data-open="false">
                 <button
-                  class="file__tab"
+                  class="drawer__front"
                   type="button"
                   aria-expanded="false"
-                  aria-controls="policy-1-body"
-                  data-file-toggle
+                  aria-controls="policy-1-file"
+                  data-drawer-toggle
                 >
-                  <span class="file__no">I</span>
-                  <span class="file__name">Education</span>
-                  <span class="file__claim">A curriculum that keeps you alive</span>
-                  <span class="file__count">3 policies</span>
-                  <span class="file__plus" aria-hidden="true"></span>
+                  <span class="drawer__plate">
+                    <span class="drawer__no">I</span>
+                    <span class="drawer__name">Education</span>
+                    <span class="drawer__claim">A curriculum that keeps you alive</span>
+                  </span>
+                  <span class="drawer__handle" aria-hidden="true"></span>
+                  <span class="drawer__count">3</span>
                 </button>
-              </header>
 
-              <div class="file__body" id="policy-1-body">
-                <div class="file__body-in">
-                  <p class="file__lead">
-                    School should teach a child how to stay alive before it teaches them anything else. We are rewriting the curriculum around survival, and giving the people standing in front of the class the power to act on what they see.
-                  </p>
-                  <ul class="file__points">
+                <div class="drawer__well" id="policy-1-file">
+                  <div class="drawer__sheet">
+                    <p class="drawer__fileno">
+                      <span>File I</span>
+                      <span>Education</span>
+                      <span>3 policies</span>
+                    </p>
+                    <p class="drawer__lead">
+                      School should teach a child how to stay alive before it teaches them anything else. We are rewriting the curriculum around survival, and giving the people standing in front of the class the power to act on what they see.
+                    </p>
+                    <ul class="drawer__points">
                       <li><span>01</span> Children below the required intelligence level are all deported.</li>
                       <li><span>02</span> Teachers have the right to deport any “unfit” student in their class.</li>
                       <li><span>03</span> Basic survival skills become a mandatory part of the curriculum.</li>
-                  </ul>
-                  <dl class="file__meta">
-                    <div><dt>Deadline</dt><dd>The next school year</dd></div>
-                    <div><dt>Price</dt><dd>40 billion</dd></div>
-                  </dl>
+                    </ul>
+                    <dl class="drawer__meta">
+                      <div><dt>Deadline</dt><dd>The next school year</dd></div>
+                      <div><dt>Price</dt><dd>40 billion</dd></div>
+                    </dl>
+                    <div class="drawer__walk">
+                      <button class="drawer__step drawer__step--next" type="button" data-drawer-step="policy-2">
+                        <span>Next</span> Environment
+                      </button>
+                    </div>
+                    <span class="drawer__stamp" aria-hidden="true">Filed</span>
+                  </div>
                 </div>
-              </div>
-              <span class="file__stamp" aria-hidden="true">Filed</span>
-            </div>
-          </article>
-          <article class="file" id="policy-2" data-file data-open="false" style="--i: 1">
-            <div class="file__card">
-              <header class="file__head">
+              </article>
+              <article class="drawer" id="policy-2" data-drawer data-open="false">
                 <button
-                  class="file__tab"
+                  class="drawer__front"
                   type="button"
                   aria-expanded="false"
-                  aria-controls="policy-2-body"
-                  data-file-toggle
+                  aria-controls="policy-2-file"
+                  data-drawer-toggle
                 >
-                  <span class="file__no">II</span>
-                  <span class="file__name">Environment</span>
-                  <span class="file__claim">The land is not a resource. It is a spirit</span>
-                  <span class="file__count">3 policies</span>
-                  <span class="file__plus" aria-hidden="true"></span>
+                  <span class="drawer__plate">
+                    <span class="drawer__no">II</span>
+                    <span class="drawer__name">Environment</span>
+                    <span class="drawer__claim">The land is not a resource. It is a spirit</span>
+                  </span>
+                  <span class="drawer__handle" aria-hidden="true"></span>
+                  <span class="drawer__count">3</span>
                 </button>
-              </header>
 
-              <div class="file__body" id="policy-2-body">
-                <div class="file__body-in">
-                  <p class="file__lead">
-                    A river, a forest and a tree are not inputs to an economy. We will treat the damage done to them as what it is, and we will not let the sentence be a fine that a company can budget for.
-                  </p>
-                  <ul class="file__points">
+                <div class="drawer__well" id="policy-2-file">
+                  <div class="drawer__sheet">
+                    <p class="drawer__fileno">
+                      <span>File II</span>
+                      <span>Environment</span>
+                      <span>3 policies</span>
+                    </p>
+                    <p class="drawer__lead">
+                      A river, a forest and a tree are not inputs to an economy. We will treat the damage done to them as what it is, and we will not let the sentence be a fine that a company can budget for.
+                    </p>
+                    <ul class="drawer__points">
                       <li><span>01</span> Littering becomes a federal crime, with a high chance of deportation.</li>
                       <li><span>02</span> Trees are classified as holy spirits. Misusing one carries a minimum of 2,000,000 years in federal prison.</li>
                       <li><span>03</span> Mass fishing and sea-floor trawling become a federal crime, and lead to deportation with no regard for personal safety.</li>
-                  </ul>
-                  <dl class="file__meta">
-                    <div><dt>Deadline</dt><dd>First hundred days</dd></div>
-                    <div><dt>Price</dt><dd>120 billion</dd></div>
-                  </dl>
+                    </ul>
+                    <dl class="drawer__meta">
+                      <div><dt>Deadline</dt><dd>First hundred days</dd></div>
+                      <div><dt>Price</dt><dd>120 billion</dd></div>
+                    </dl>
+                    <div class="drawer__walk">
+                      <button class="drawer__step" type="button" data-drawer-step="policy-1">
+                        <span>Back</span> Education
+                      </button>
+                      <button class="drawer__step drawer__step--next" type="button" data-drawer-step="policy-3">
+                        <span>Next</span> Health
+                      </button>
+                    </div>
+                    <span class="drawer__stamp" aria-hidden="true">Filed</span>
+                  </div>
                 </div>
-              </div>
-              <span class="file__stamp" aria-hidden="true">Filed</span>
-            </div>
-          </article>
-          <article class="file" id="policy-3" data-file data-open="false" style="--i: 2">
-            <div class="file__card">
-              <header class="file__head">
+              </article>
+              <article class="drawer" id="policy-3" data-drawer data-open="false">
                 <button
-                  class="file__tab"
+                  class="drawer__front"
                   type="button"
                   aria-expanded="false"
-                  aria-controls="policy-3-body"
-                  data-file-toggle
+                  aria-controls="policy-3-file"
+                  data-drawer-toggle
                 >
-                  <span class="file__no">III</span>
-                  <span class="file__name">Health</span>
-                  <span class="file__claim">Care for the people who need it, in the week they need it</span>
-                  <span class="file__count">3 policies</span>
-                  <span class="file__plus" aria-hidden="true"></span>
+                  <span class="drawer__plate">
+                    <span class="drawer__no">III</span>
+                    <span class="drawer__name">Health</span>
+                    <span class="drawer__claim">Care for the people who need it, in the week they need it</span>
+                  </span>
+                  <span class="drawer__handle" aria-hidden="true"></span>
+                  <span class="drawer__count">3</span>
                 </button>
-              </header>
 
-              <div class="file__body" id="policy-3-body">
-                <div class="file__body-in">
-                  <p class="file__lead">
-                    Beds were closed while the waiting lists grew, and the people who could pay moved to the front. We are reopening the beds, adding fifty thousand more, and paying the nurses who are still training enough that they stay.
-                  </p>
-                  <ul class="file__points">
+                <div class="drawer__well" id="policy-3-file">
+                  <div class="drawer__sheet">
+                    <p class="drawer__fileno">
+                      <span>File III</span>
+                      <span>Health</span>
+                      <span>3 policies</span>
+                    </p>
+                    <p class="drawer__lead">
+                      Beds were closed while the waiting lists grew, and the people who could pay moved to the front. We are reopening the beds, adding fifty thousand more, and paying the nurses who are still training enough that they stay.
+                    </p>
+                    <ul class="drawer__points">
                       <li><span>01</span> Reopen 1,200+ beds closed since 2019, and open an extra 50,000 more.</li>
                       <li><span>02</span> Prioritise the people in need, not the ones with the deepest pockets.</li>
                       <li><span>03</span> Raise student nurses’ pay to $35 per hour while they train.</li>
-                  </ul>
-                  <dl class="file__meta">
-                    <div><dt>Deadline</dt><dd>First hundred days</dd></div>
-                    <div><dt>Price</dt><dd>600 billion</dd></div>
-                  </dl>
+                    </ul>
+                    <dl class="drawer__meta">
+                      <div><dt>Deadline</dt><dd>First hundred days</dd></div>
+                      <div><dt>Price</dt><dd>600 billion</dd></div>
+                    </dl>
+                    <div class="drawer__walk">
+                      <button class="drawer__step" type="button" data-drawer-step="policy-2">
+                        <span>Back</span> Environment
+                      </button>
+                      <button class="drawer__step drawer__step--next" type="button" data-drawer-step="policy-4">
+                        <span>Next</span> Tax
+                      </button>
+                    </div>
+                    <span class="drawer__stamp" aria-hidden="true">Filed</span>
+                  </div>
                 </div>
-              </div>
-              <span class="file__stamp" aria-hidden="true">Filed</span>
-            </div>
-          </article>
-          <article class="file" id="policy-4" data-file data-open="false" style="--i: 3">
-            <div class="file__card">
-              <header class="file__head">
+              </article>
+              <article class="drawer" id="policy-4" data-drawer data-open="false">
                 <button
-                  class="file__tab"
+                  class="drawer__front"
                   type="button"
                   aria-expanded="false"
-                  aria-controls="policy-4-body"
-                  data-file-toggle
+                  aria-controls="policy-4-file"
+                  data-drawer-toggle
                 >
-                  <span class="file__no">IV</span>
-                  <span class="file__name">Tax</span>
-                  <span class="file__claim">Nobody buys their way to a lower share</span>
-                  <span class="file__count">3 policies</span>
-                  <span class="file__plus" aria-hidden="true"></span>
+                  <span class="drawer__plate">
+                    <span class="drawer__no">IV</span>
+                    <span class="drawer__name">Tax</span>
+                    <span class="drawer__claim">Nobody buys their way to a lower share</span>
+                  </span>
+                  <span class="drawer__handle" aria-hidden="true"></span>
+                  <span class="drawer__count">3</span>
                 </button>
-              </header>
 
-              <div class="file__body" id="policy-4-body">
-                <div class="file__body-in">
-                  <p class="file__lead">
-                    Below $70,000 a year you pay no income tax at all. Above it the rate climbs steeply, and the scale raises an estimated 2.7 trillion a year. It is printed in full, band by band, from nothing to 18,860 percent.
-                  </p>
-                  <ul class="file__points">
+                <div class="drawer__well" id="policy-4-file">
+                  <div class="drawer__sheet">
+                    <p class="drawer__fileno">
+                      <span>File IV</span>
+                      <span>Tax</span>
+                      <span>3 policies</span>
+                    </p>
+                    <p class="drawer__lead">
+                      Below $70,000 a year you pay no income tax at all. Above it the rate climbs steeply, and the scale raises an estimated 2.7 trillion a year. It is printed in full, band by band, from nothing to 18,860 percent.
+                    </p>
+                    <ul class="drawer__points">
                       <li><span>01</span> 0% under $70K. 45% from $70K to $100K. 80% from $100K to $150K.</li>
                       <li><span>02</span> 200% from $250K to $500K, and 18,860% above $500K.</li>
                       <li><span>03</span> No tax exceptions for the rich.</li>
-                  </ul>
-                  <dl class="file__meta">
-                    <div><dt>Deadline</dt><dd>The hour we take office</dd></div>
-                    <div><dt>Price</dt><dd>Raises 2.7 trillion a year</dd></div>
-                  </dl>
+                    </ul>
+                    <dl class="drawer__meta">
+                      <div><dt>Deadline</dt><dd>The hour we take office</dd></div>
+                      <div><dt>Price</dt><dd>Raises 2.7 trillion a year</dd></div>
+                    </dl>
+                    <div class="drawer__walk">
+                      <button class="drawer__step" type="button" data-drawer-step="policy-3">
+                        <span>Back</span> Health
+                      </button>
+                      <button class="drawer__step drawer__step--next" type="button" data-drawer-step="policy-5">
+                        <span>Next</span> Careers
+                      </button>
+                    </div>
+                    <span class="drawer__stamp" aria-hidden="true">Filed</span>
+                  </div>
                 </div>
-              </div>
-              <span class="file__stamp" aria-hidden="true">Filed</span>
-            </div>
-          </article>
-          <article class="file" id="policy-5" data-file data-open="false" style="--i: 4">
-            <div class="file__card">
-              <header class="file__head">
+              </article>
+              <article class="drawer" id="policy-5" data-drawer data-open="false">
                 <button
-                  class="file__tab"
+                  class="drawer__front"
                   type="button"
                   aria-expanded="false"
-                  aria-controls="policy-5-body"
-                  data-file-toggle
+                  aria-controls="policy-5-file"
+                  data-drawer-toggle
                 >
-                  <span class="file__no">V</span>
-                  <span class="file__name">Careers</span>
-                  <span class="file__claim">A wage nobody has to fall through</span>
-                  <span class="file__count">3 policies</span>
-                  <span class="file__plus" aria-hidden="true"></span>
+                  <span class="drawer__plate">
+                    <span class="drawer__no">V</span>
+                    <span class="drawer__name">Careers</span>
+                    <span class="drawer__claim">A wage nobody has to fall through</span>
+                  </span>
+                  <span class="drawer__handle" aria-hidden="true"></span>
+                  <span class="drawer__count">3</span>
                 </button>
-              </header>
 
-              <div class="file__body" id="policy-5-body">
-                <div class="file__body-in">
-                  <p class="file__lead">
-                    The minimum wage should be a floor, not a negotiation, and the work should be there to take. We will put half a trillion into the jobs and the infrastructure behind them, and stop treating stolen wages as a paperwork problem.
-                  </p>
-                  <ul class="file__points">
+                <div class="drawer__well" id="policy-5-file">
+                  <div class="drawer__sheet">
+                    <p class="drawer__fileno">
+                      <span>File V</span>
+                      <span>Careers</span>
+                      <span>3 policies</span>
+                    </p>
+                    <p class="drawer__lead">
+                      The minimum wage should be a floor, not a negotiation, and the work should be there to take. We will put half a trillion into the jobs and the infrastructure behind them, and stop treating stolen wages as a paperwork problem.
+                    </p>
+                    <ul class="drawer__points">
                       <li><span>01</span> 500 billion invested into job creation and infrastructure.</li>
                       <li><span>02</span> Wage theft enforced as a criminal offence, not a civil dispute.</li>
                       <li><span>03</span> A 24% increase to the minimum wage.</li>
-                  </ul>
-                  <dl class="file__meta">
-                    <div><dt>Deadline</dt><dd>Within 30 days</dd></div>
-                    <div><dt>Price</dt><dd>500 billion</dd></div>
-                  </dl>
+                    </ul>
+                    <dl class="drawer__meta">
+                      <div><dt>Deadline</dt><dd>Within 30 days</dd></div>
+                      <div><dt>Price</dt><dd>500 billion</dd></div>
+                    </dl>
+                    <div class="drawer__walk">
+                      <button class="drawer__step" type="button" data-drawer-step="policy-4">
+                        <span>Back</span> Tax
+                      </button>
+                      <button class="drawer__step drawer__step--next" type="button" data-drawer-step="policy-6">
+                        <span>Next</span> Integrity
+                      </button>
+                    </div>
+                    <span class="drawer__stamp" aria-hidden="true">Filed</span>
+                  </div>
                 </div>
-              </div>
-              <span class="file__stamp" aria-hidden="true">Filed</span>
-            </div>
-          </article>
-          <article class="file" id="policy-6" data-file data-open="false" style="--i: 5">
-            <div class="file__card">
-              <header class="file__head">
+              </article>
+              <article class="drawer" id="policy-6" data-drawer data-open="false">
                 <button
-                  class="file__tab"
+                  class="drawer__front"
                   type="button"
                   aria-expanded="false"
-                  aria-controls="policy-6-body"
-                  data-file-toggle
+                  aria-controls="policy-6-file"
+                  data-drawer-toggle
                 >
-                  <span class="file__no">VI</span>
-                  <span class="file__name">Integrity</span>
-                  <span class="file__claim">The franchise, widened. The border, closed</span>
-                  <span class="file__count">3 policies</span>
-                  <span class="file__plus" aria-hidden="true"></span>
+                  <span class="drawer__plate">
+                    <span class="drawer__no">VI</span>
+                    <span class="drawer__name">Integrity</span>
+                    <span class="drawer__claim">The franchise, widened. The border, closed</span>
+                  </span>
+                  <span class="drawer__handle" aria-hidden="true"></span>
+                  <span class="drawer__count">3</span>
                 </button>
-              </header>
 
-              <div class="file__body" id="policy-6-body">
-                <div class="file__body-in">
-                  <p class="file__lead">
-                    Why should young people who cannot even vote have to prop up the elderly? The franchise is the first policy of any government, so ours widens it to thirteen, removes everyone past seventy-two, and locks the door behind the people still inside.
-                  </p>
-                  <ul class="file__points">
+                <div class="drawer__well" id="policy-6-file">
+                  <div class="drawer__sheet">
+                    <p class="drawer__fileno">
+                      <span>File VI</span>
+                      <span>Integrity</span>
+                      <span>3 policies</span>
+                    </p>
+                    <p class="drawer__lead">
+                      Why should young people who cannot even vote have to prop up the elderly? The franchise is the first policy of any government, so ours widens it to thirteen, removes everyone past seventy-two, and locks the door behind the people still inside.
+                    </p>
+                    <ul class="drawer__points">
                       <li><span>01</span> The voting age reduced to 13.</li>
                       <li><span>02</span> All people over the age of 72 are deported.</li>
                       <li><span>03</span> Locked-down borders, preventing people from entering and leaving.</li>
-                  </ul>
-                  <dl class="file__meta">
-                    <div><dt>Deadline</dt><dd>Two months</dd></div>
-                    <div><dt>Price</dt><dd>50 billion</dd></div>
-                  </dl>
+                    </ul>
+                    <dl class="drawer__meta">
+                      <div><dt>Deadline</dt><dd>Two months</dd></div>
+                      <div><dt>Price</dt><dd>50 billion</dd></div>
+                    </dl>
+                    <div class="drawer__walk">
+                      <button class="drawer__step" type="button" data-drawer-step="policy-5">
+                        <span>Back</span> Careers
+                      </button>
+                      <button class="drawer__step drawer__step--next" type="button" data-drawer-step="policy-7">
+                        <span>Next</span> Justice
+                      </button>
+                    </div>
+                    <span class="drawer__stamp" aria-hidden="true">Filed</span>
+                  </div>
                 </div>
-              </div>
-              <span class="file__stamp" aria-hidden="true">Filed</span>
-            </div>
-          </article>
-          <article class="file" id="policy-7" data-file data-open="false" style="--i: 6">
-            <div class="file__card">
-              <header class="file__head">
+              </article>
+              <article class="drawer" id="policy-7" data-drawer data-open="false">
                 <button
-                  class="file__tab"
+                  class="drawer__front"
                   type="button"
                   aria-expanded="false"
-                  aria-controls="policy-7-body"
-                  data-file-toggle
+                  aria-controls="policy-7-file"
+                  data-drawer-toggle
                 >
-                  <span class="file__no">VII</span>
-                  <span class="file__name">Justice</span>
-                  <span class="file__claim">One power, and no appeal to it</span>
-                  <span class="file__count">3 policies</span>
-                  <span class="file__plus" aria-hidden="true"></span>
+                  <span class="drawer__plate">
+                    <span class="drawer__no">VII</span>
+                    <span class="drawer__name">Justice</span>
+                    <span class="drawer__claim">One power, and no appeal to it</span>
+                  </span>
+                  <span class="drawer__handle" aria-hidden="true"></span>
+                  <span class="drawer__count">3</span>
                 </button>
-              </header>
 
-              <div class="file__body" id="policy-7-body">
-                <div class="file__body-in">
-                  <p class="file__lead">
-                    Justice here is not a process that can be argued with. It has one sovereign, one sentence and no waiting period, and it does not weigh the family, the notice or the safety of the person on the other side of it.
-                  </p>
-                  <ul class="file__points">
+                <div class="drawer__well" id="policy-7-file">
+                  <div class="drawer__sheet">
+                    <p class="drawer__fileno">
+                      <span>File VII</span>
+                      <span>Justice</span>
+                      <span>3 policies</span>
+                    </p>
+                    <p class="drawer__lead">
+                      Justice here is not a process that can be argued with. It has one sovereign, one sentence and no waiting period, and it does not weigh the family, the notice or the safety of the person on the other side of it.
+                    </p>
+                    <ul class="drawer__points">
                       <li><span>01</span> Lajoon Park, Almighty God, has full power and sovereignty over New New Zealand.</li>
                       <li><span>02</span> Deportation can happen with no prior notice, no regard for family, no contact, and no regard for personal safety.</li>
                       <li><span>03</span> All sex offenders — rapists, groomers, sexual assaulters, stalkers — are executed immediately, with no regard for their rights.</li>
-                  </ul>
-                  <dl class="file__meta">
-                    <div><dt>Deadline</dt><dd>The hour we take office</dd></div>
-                    <div><dt>Price</dt><dd>90 billion</dd></div>
-                  </dl>
+                    </ul>
+                    <dl class="drawer__meta">
+                      <div><dt>Deadline</dt><dd>The hour we take office</dd></div>
+                      <div><dt>Price</dt><dd>90 billion</dd></div>
+                    </dl>
+                    <div class="drawer__walk">
+                      <button class="drawer__step" type="button" data-drawer-step="policy-6">
+                        <span>Back</span> Integrity
+                      </button>
+                    </div>
+                    <span class="drawer__stamp" aria-hidden="true">Filed</span>
+                  </div>
                 </div>
-              </div>
-              <span class="file__stamp" aria-hidden="true">Filed</span>
+              </article>
             </div>
-          </article>
-        </div>
 
-        <div class="shell plan__foot">
-          <p class="plan__foot-note">
-            Twenty-one policies across seven files, and
-            nothing held back in a drawer: every policy we have stands on this
-            page, with its deadline and its price beside it.
-          </p>
-          <a class="tlink" href="#record">See how each one changed</a>
+            <div class="cabinet__foot" aria-hidden="true">
+              <span class="cabinet__vent"></span>
+            </div>
+          </div>
+
+          <div class="plan__foot">
+            <p class="plan__foot-note">
+              Twenty-one policies across seven drawers, and
+              nothing kept in a back room: every policy we have stands on this
+              page, with its deadline and its price beside it.
+            </p>
+            <a class="tlink" href="#record">See how each one changed</a>
+          </div>
         </div>
       </section>
-
       <!-- ──────────────────────── 03 THE FINANCES ──────────────────────── -->
       <section class="money" id="finances" data-section data-tone="paper" data-money>
         <div class="shell money__head">
@@ -1067,12 +1118,12 @@
         <div class="shell bench__head">
           <p class="label">05 / The front bench</p>
           <h2 class="bench__title" data-reveal>
-            Three people.<br />One <em>list.</em>
+            Four people.<br />One <em>list.</em>
           </h2>
           <p class="bench__intro" data-reveal>
             Under MMP you vote for a party, and the party hands you a list, so the
-            list matters. These three would sit in Cabinet on the first day. The
-            other eighteen are ranked by the same members, in the same order,
+            list matters. These four would sit in Cabinet on the first day. The
+            other seventeen are ranked by the same members, in the same order,
             and that list is in the record.
           </p>
         </div>
@@ -1082,14 +1133,18 @@
             <li class="member" data-member data-member-card tabindex="0" aria-label="Front bench member: Lajoon Park" style="--tilt: -1.4deg">
               <article class="member__card">
                 <div class="member__top">
-                  <p class="member__index">01 <span>of 03</span></p>
+                  <p class="member__index">01 <span>of 04</span></p>
                   <p class="member__portfolio">Finance</p>
                 </div>
                 <div class="member__body">
                   <span class="member__seal" aria-hidden="true">LP</span>
                   <h3 class="member__name">Lajoon Park</h3>
                   <p class="member__role">Leader, and Minister of Finance</p>
-                  <p class="member__bio">Has led the party since its first meeting, and has sat in the House since 2017. Writes the tax file personally, which is why it is the only one with a number he cannot round.</p>
+                  <p class="member__bio">Formerly a god, now mortal, and destined to become the chosen one. Has led The Action Party since 1994, the year it was founded, with grace and an undying love for the betterment of the world.</p>
+                  <blockquote class="member__quote">
+                    <p>Love to all. That’s my motto. Except people over 72.</p>
+                    <cite>Lajoon Park</cite>
+                  </blockquote>
                 </div>
                 <dl class="member__meta">
                   <div><dt>List place</dt><dd>1</dd></div>
@@ -1099,40 +1154,60 @@
                 <span class="member__perf" aria-hidden="true"></span>
               </article>
             </li>
-            <li class="member" data-member data-member-card tabindex="0" aria-label="Front bench member: Tomas Oyelaran" style="--tilt: 0.9deg">
+            <li class="member" data-member data-member-card tabindex="0" aria-label="Front bench member: Kahn" style="--tilt: 0.9deg">
               <article class="member__card">
                 <div class="member__top">
-                  <p class="member__index">02 <span>of 03</span></p>
-                  <p class="member__portfolio">Environment</p>
+                  <p class="member__index">02 <span>of 04</span></p>
+                  <p class="member__portfolio">Careers</p>
                 </div>
                 <div class="member__body">
-                  <span class="member__seal" aria-hidden="true">TO</span>
-                  <h3 class="member__name">Tomas Oyelaran</h3>
-                  <p class="member__role">Deputy Leader, and Minister for the Environment</p>
-                  <p class="member__bio">A former council planner who resigned over a land reclassification. Spent three years building the coastal catch register this file is costed against, vessel by vessel, and published it before he asked for anything.</p>
+                  <span class="member__seal" aria-hidden="true">K</span>
+                  <h3 class="member__name">Kahn</h3>
+                  <p class="member__role">List member, and Minister for Careers</p>
+                  <p class="member__bio">Hired to clear the blocked pipes in the staff bathroom, and made an MP three days later. He has little to no experience in law or politics, and is a very good therapist: one conversation about a marriage ended with the other party engaged to Tim, his assistant. On that record, the right person for this job, and of great character. Allegedly.</p>
                 </div>
                 <dl class="member__meta">
                   <div><dt>List place</dt><dd>2</dd></div>
-                  <div><dt>Selected by</dt><dd>Wellington members, 21 March</dd></div>
-                  <div><dt>Policy</dt><dd>II, Environment</dd></div>
+                  <div><dt>Selected by</dt><dd>The membership</dd></div>
+                  <div><dt>Policy</dt><dd>V, Careers</dd></div>
                 </dl>
                 <span class="member__perf" aria-hidden="true"></span>
               </article>
             </li>
-            <li class="member" data-member data-member-card tabindex="0" aria-label="Front bench member: Jaxton Martin" style="--tilt: -0.7deg">
+            <li class="member" data-member data-member-card tabindex="0" aria-label="Front bench member: Tahnika" style="--tilt: -0.7deg">
               <article class="member__card">
                 <div class="member__top">
-                  <p class="member__index">03 <span>of 03</span></p>
+                  <p class="member__index">03 <span>of 04</span></p>
+                  <p class="member__portfolio">Integrity</p>
+                </div>
+                <div class="member__body">
+                  <span class="member__seal" aria-hidden="true">T</span>
+                  <h3 class="member__name">Tahnika</h3>
+                  <p class="member__role">List member, and Minister for Integrity</p>
+                  <p class="member__bio">The fairest and the best of them all, known for her commitment to herself and, separately, to others. The only person fit for this job. Extremely rich, and extremely famous. Colleagues say they wish they were her, then withdraw the wish, because nobody could be.</p>
+                </div>
+                <dl class="member__meta">
+                  <div><dt>List place</dt><dd>3</dd></div>
+                  <div><dt>Selected by</dt><dd>The membership</dd></div>
+                  <div><dt>Policy</dt><dd>VI, Integrity</dd></div>
+                </dl>
+                <span class="member__perf" aria-hidden="true"></span>
+              </article>
+            </li>
+            <li class="member" data-member data-member-card tabindex="0" aria-label="Front bench member: Jaxton Martin" style="--tilt: 0.5deg">
+              <article class="member__card">
+                <div class="member__top">
+                  <p class="member__index">04 <span>of 04</span></p>
                   <p class="member__portfolio">Health</p>
                 </div>
                 <div class="member__body">
                   <span class="member__seal" aria-hidden="true">JM</span>
                   <h3 class="member__name">Jaxton Martin</h3>
                   <p class="member__role">List member, and Minister of Health</p>
-                  <p class="member__bio">A former football player who came to the party through the health campaign rather than the other way around. Runs the waiting-list audit, and answers questions about it in public every quarter.</p>
+                  <p class="member__bio">A former football water boy, dismissed from that post for spiking the drinks with laxatives. Joined the health campaign to collect the community service hours required while on parole. He runs the waiting-list audit and answers questions about it in public every quarter, mainly because he is the only one willing to do the job.</p>
                 </div>
                 <dl class="member__meta">
-                  <div><dt>List place</dt><dd>3</dd></div>
+                  <div><dt>List place</dt><dd>4</dd></div>
                   <div><dt>Selected by</dt><dd>The membership</dd></div>
                   <div><dt>Policy</dt><dd>III, Health</dd></div>
                 </dl>

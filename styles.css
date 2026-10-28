@@ -1849,14 +1849,21 @@ section { position: relative; }
   .readout__fig { font-size: clamp(3.4rem, 18vw, 5rem); }
 }
 
-/* ---------- 02 THE PLAN: a filing cabinet ---------- */
+/* ---------- 02 THE PLAN: one cabinet, seven drawers ---------- */
 
 .plan {
   background: var(--paper);
   padding-block: var(--pad-3) var(--pad-2);
   border-top: 1px solid var(--rule);
 }
-.plan__head { display: grid; gap: var(--pad-2); }
+/* The display line is set tighter than its own type, so the descender of
+   the italic "policies." hangs below the grid box; the head keeps room for
+   it, or the cabinet's top rail cuts the word in half. */
+.plan__head {
+  display: grid;
+  gap: var(--pad-2);
+  padding-bottom: clamp(2.4rem, 5vw, 3.6rem);
+}
 .plan__head-grid {
   display: grid;
   grid-template-columns: minmax(0, 11rem) minmax(0, 1fr) minmax(0, 26rem);
@@ -1893,278 +1900,495 @@ section { position: relative; }
 }
 .plan__hint span { color: var(--red-ink); }
 
-.plan__tabs {
+/* The cabinet. A steel shell around a stack of drawers: the shell is drawn
+   once, the drawers butt against each other with a hairline seam, and the
+   only thing that moves is the drawer you pull. */
+.cabinet {
+  --cab-shell: var(--bone-2);
+  --cab-front: var(--paper-hi);
+  --cab-seam: rgba(11, 12, 14, 0.34);
+  position: relative;
+  max-width: 64rem;
+  margin-inline: auto;
+  padding: 0 clamp(0.45rem, 1.3vw, 0.9rem) clamp(0.45rem, 1.3vw, 0.9rem);
+  background:
+    linear-gradient(180deg, rgba(11, 12, 14, 0.06), transparent 22%),
+    var(--cab-shell);
+  border: 1px solid var(--cab-seam);
+  border-radius: 4px 4px 3px 3px;
+  box-shadow:
+    0 1px 0 rgba(251, 249, 244, 0.5) inset,
+    0 26px 40px -30px rgba(11, 12, 14, 0.55);
+}
+
+/* The maker's plate on the cabinet's top rail. */
+.cabinet__rail {
+  position: relative;
   display: flex;
   flex-wrap: wrap;
-  gap: 0;
-  border-bottom: 2px solid var(--ink);
-  padding-left: 0;
-}
-.folder-tab {
-  position: relative;
-  display: inline-flex;
   align-items: baseline;
-  gap: 0.4rem;
-  padding: 0.7rem 1.1rem 0.6rem;
-  border: 1px solid var(--rule);
-  border-bottom: 0;
-  border-radius: 8px 8px 0 0;
-  margin-right: -1px;
-  background: var(--bone);
-  font-size: var(--step--1);
-  font-variation-settings: "wght" 500;
-  text-decoration: none;
-  color: var(--ink-2);
-  transition:
-    background-color 240ms var(--ease),
-    color 240ms var(--ease),
-    transform 260ms var(--spring),
-    padding 240ms var(--ease);
+  justify-content: space-between;
+  gap: 0.2rem 1rem;
+  padding: 0.85rem clamp(0.6rem, 2vw, 1.1rem) 0.8rem;
+  border-bottom: 1px solid var(--cab-seam);
 }
-.folder-tab:hover,
-.folder-tab:focus-visible {
-  background: var(--paper-hi);
-  color: var(--ink);
-  transform: translateY(-3px);
+.cabinet__plate {
+  font-variation-settings: "wght" 700, "wdth" 92;
+  font-size: var(--step-0);
+  letter-spacing: 0.02em;
 }
-.folder-tab:active { transform: translateY(0); }
-.folder-tab.is-current {
-  background: var(--paper-hi);
-  color: var(--ink);
-  padding-block: 0.85rem 0.75rem;
-}
-.folder-tab.is-current .folder-tab__no { color: var(--red-ink); }
-.folder-tab__no {
-  font-family: var(--mono);
-  font-size: var(--step--2);
-  letter-spacing: 0.08em;
-  color: var(--ink-2);
-  transition: color 240ms var(--ease);
-}
-.folder-tab__count {
+.cabinet__serial {
   font-family: var(--mono);
   font-size: 0.625rem;
-  letter-spacing: 0.06em;
-  padding: 0.1rem 0.3rem;
-  border-radius: 2px;
-  background: rgba(11, 12, 14, 0.07);
-  color: var(--ink-2);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #55524b;
 }
-
-.files {
-  display: grid;
-  gap: 0.75rem;
-  padding: var(--pad-2) var(--gutter) var(--pad-1);
-  max-width: var(--shell);
-  margin-inline: auto;
-}
-
-.file { position: relative; }
-.file__card {
-  position: relative;
-  border: 1px solid var(--rule);
-  border-radius: 3px;
-  background: var(--paper-hi);
-  transition: border-color 300ms var(--ease), box-shadow 400ms var(--ease);
-}
-.file:hover .file__card { border-color: rgba(11, 12, 14, 0.3); }
-.file[data-open="true"] .file__card {
-  border-color: var(--ink);
-  box-shadow: 6px 6px 0 0 rgba(234, 51, 35, 0.16);
-}
-
-/* Only the open file shows its tab, the way only the drawn folder in a cabinet
-   stands proud of the rest. The strip above already numbers the others, so a
-   tab on every card would just repeat it seven times. */
-.file__card::before {
+/* Two screws, because a plate that is only printed reads as a caption. */
+.cabinet__rail::before,
+.cabinet__rail::after {
   content: "";
   position: absolute;
-  left: 2.6rem;
-  top: -0.62rem;
-  width: 8.5rem;
-  height: calc(0.62rem + 1px);
-  background: var(--red);
-  border-radius: 3px 3px 0 0;
-  transform: translateY(0.62rem);
-  opacity: 0;
-  transition: transform 420ms var(--ease), opacity 300ms var(--ease);
+  top: 50%;
+  width: 7px;
+  height: 7px;
+  margin-top: -3px;
+  border-radius: 50%;
+  background:
+    linear-gradient(150deg, #fdfbf7, #b9ae94 60%, #8d846f);
+  box-shadow: 0 0 0 1px rgba(11, 12, 14, 0.28);
 }
-.file[data-open="true"] .file__card::before {
-  transform: translateY(0);
-  opacity: 1;
-}
-.file[data-open="true"] .file__card::before { background: var(--red); }
+.cabinet__rail::before { left: 0.28rem; }
+.cabinet__rail::after { right: 0.28rem; }
 
-.file__tab {
+.cabinet__body {
+  position: relative;
+  /* A dark interior, so the gap a drawer leaves reads as depth, not as
+     a paragraph break. */
+  background: rgba(11, 12, 14, 0.14);
+  border: 1px solid var(--cab-seam);
+  border-top: 0;
+  box-shadow: inset 0 10px 14px -12px rgba(11, 12, 14, 0.8);
+}
+
+.cabinet__foot {
   display: grid;
-  grid-template-columns: 3.4rem minmax(0, 0.85fr) minmax(0, 1.3fr) auto 2.4rem;
-  gap: clamp(0.6rem, 2vw, 2rem);
+  gap: 0.4rem;
+  padding: 0.75rem clamp(0.6rem, 2vw, 1.1rem) 0.35rem;
+  border-top: 1px solid var(--cab-seam);
+}
+.cabinet__vent {
+  height: 0.55rem;
+  background: repeating-linear-gradient(
+    90deg,
+    rgba(11, 12, 14, 0.42) 0 1.5rem,
+    transparent 1.5rem 2.1rem
+  );
+  mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+}
+
+/* ---------- the drawer ---------- */
+
+.drawer {
+  position: relative;
+  perspective: 1400px;
+}
+.drawer + .drawer { border-top: 1px solid var(--cab-seam); }
+
+/* The drawer face. Everything on it is furniture: a pressed steel label
+   holder, the card inside it, a bar handle, and a hairline reveal around the
+   edge. Nothing is a button-shaped rectangle. */
+.drawer__front {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto auto;
+  grid-template-areas: "plate action count";
+  gap: clamp(0.7rem, 2vw, 1.6rem);
   align-items: center;
   width: 100%;
-  padding: 1.6rem 1.4rem 1.4rem;
-  background: none;
+  padding: 0.8rem clamp(0.7rem, 2vw, 1.1rem);
   border: 0;
+  background:
+    linear-gradient(180deg, #fffefa 0%, var(--cab-front) 42%, #f2ede2 100%);
   text-align: left;
   cursor: pointer;
   color: var(--ink);
-  transition: background-color 300ms var(--ease);
+  box-shadow:
+    inset 0 1px 0 #fff,
+    inset 0 -1px 0 rgba(11, 12, 14, 0.16),
+    inset 0 0 0 1px rgba(11, 12, 14, 0.06);
+  transform-origin: 50% 100%;
+  transition:
+    transform 460ms var(--spring),
+    box-shadow 340ms var(--ease),
+    filter 260ms var(--ease);
 }
-.file__tab:hover { background: var(--paper); }
-.file__tab:active { background: var(--bone); }
-.file__no {
+
+/* The label holder: a recessed steel frame the card sits inside. */
+.drawer__plate {
+  grid-area: plate;
+  display: grid;
+  grid-template-columns: 2.1rem minmax(0, 1fr);
+  grid-template-areas:
+    "no name"
+    "no claim";
+  align-items: baseline;
+  gap: 0.05rem 0.6rem;
+  padding: 0.45rem 0.9rem 0.5rem 0.7rem;
+  border: 1px solid rgba(11, 12, 14, 0.22);
+  border-radius: 2px;
+  background:
+    linear-gradient(180deg, rgba(11, 12, 14, 0.07), transparent 30%),
+    var(--paper);
+  box-shadow:
+    inset 0 1px 2px rgba(11, 12, 14, 0.18),
+    0 1px 0 rgba(255, 255, 255, 0.9);
+}
+.drawer__no {
+  grid-area: no;
   font-family: var(--mono);
   font-size: var(--step--1);
+  letter-spacing: 0.08em;
   color: var(--red-ink);
-  transition: transform 320ms var(--spring);
+  transition: color 240ms var(--ease);
 }
-.file__tab:hover .file__no { transform: translateX(3px); }
-.file__name {
-  font-size: clamp(1.35rem, 1.1rem + 1.1vw, 2.15rem);
+.drawer__name {
+  grid-area: name;
+  min-width: 0;
+  font-size: clamp(1.15rem, 0.95rem + 0.85vw, 1.6rem);
   font-variation-settings: "wght" 600, "wdth" 96;
-  letter-spacing: -0.025em;
-  line-height: 1;
+  letter-spacing: -0.03em;
+  line-height: 1.05;
 }
-.file__claim {
+.drawer__claim {
+  grid-area: claim;
+  min-width: 0;
   font-family: var(--serif);
   font-style: italic;
-  font-size: var(--step-1);
+  font-size: var(--step--1);
+  line-height: 1.3;
   color: var(--ink-2);
-  line-height: 1.25;
+  transition: color 240ms var(--ease);
 }
-.file__count {
+
+/* The handle: a steel bar across the front, with the shadow of a bar. */
+.drawer__handle {
+  grid-area: action;
+  position: relative;
+  width: clamp(4rem, 8vw, 6.5rem);
+  height: 0.85rem;
+  border: 1px solid rgba(11, 12, 14, 0.5);
+  border-radius: 999px;
+  background:
+    linear-gradient(180deg, #fffefa 0%, #ded4bd 34%, #a99e86 68%, #cfc6b1 100%);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.9),
+    0 2px 3px -1px rgba(11, 12, 14, 0.45),
+    0 6px 10px -8px rgba(11, 12, 14, 0.8);
+  transform-origin: 50% 0;
+  transition: transform 520ms var(--spring), box-shadow 320ms var(--ease);
+}
+/* The shadow the bar casts on the face: it is what makes it lift off. */
+.drawer__handle::after {
+  content: "";
+  position: absolute;
+  left: 6%;
+  right: 6%;
+  top: 100%;
+  height: 0.42rem;
+  background: linear-gradient(180deg, rgba(11, 12, 14, 0.3), transparent);
+  border-radius: 0 0 999px 999px;
+  transition: opacity 320ms var(--ease), transform 520ms var(--spring);
+}
+
+.drawer__count {
+  grid-area: count;
   font-family: var(--mono);
-  font-size: var(--step--2);
-  letter-spacing: 0.1em;
+  font-size: 0.625rem;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: var(--ink-3);
+  color: #55524b;
   white-space: nowrap;
 }
 
-.file__plus {
-  position: relative;
-  justify-self: end;
-  width: 2.4rem;
-  height: 2.4rem;
-  border: 1px solid var(--rule);
-  border-radius: 50%;
-  transition:
-    background-color 260ms var(--ease),
-    border-color 260ms var(--ease),
-    transform 420ms var(--spring);
+.drawer__front:hover .drawer__handle {
+  transform: rotateX(-32deg) translateY(-1px);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.95),
+    0 4px 6px -2px rgba(11, 12, 14, 0.5),
+    0 12px 14px -10px rgba(11, 12, 14, 0.9);
 }
-.file__plus::before,
-.file__plus::after {
+.drawer__front:hover .drawer__handle::after {
+  opacity: 0.55;
+  transform: scaleX(0.94);
+}
+.drawer__front:active { transform: translateY(1px) scale(0.998); }
+
+/* Open: the face comes toward you and tips forward under the pull, the way a
+   loaded drawer leans on its runners when it comes out. */
+.drawer[data-open="true"] .drawer__front {
+  transform: translateY(-1px) rotateX(-2.2deg);
+  background: linear-gradient(180deg, #fdfbf4 0%, #f4efe4 60%, #e9e2d3 100%);
+  box-shadow:
+    inset 0 2px 5px rgba(11, 12, 14, 0.14),
+    inset 0 -1px 0 rgba(11, 12, 14, 0.22),
+    0 12px 20px -18px rgba(11, 12, 14, 0.9);
+}
+.drawer[data-open="true"] .drawer__handle {
+  transform: rotateX(-58deg) translateY(1px);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.6),
+    0 2px 3px rgba(11, 12, 14, 0.4);
+}
+.drawer[data-open="true"] .drawer__handle::after { opacity: 0.25; }
+.drawer[data-open="true"] .drawer__plate {
+  box-shadow:
+    inset 0 2px 3px rgba(11, 12, 14, 0.22),
+    0 1px 0 rgba(255, 255, 255, 0.6);
+}
+.drawer[data-open="true"] .drawer__no { color: var(--ink); }
+.drawer[data-open="true"] .drawer__claim { color: #3f3d38; }
+
+/* A red edge down the drawer's left side once it is out: the folder tab
+   inside, visible at the margin. */
+.drawer__front::before {
   content: "";
   position: absolute;
-  left: 50%;
-  top: 50%;
-  background: var(--ink);
-  translate: -50% -50%;
-  transition: transform 420ms var(--ease), background-color 260ms var(--ease);
+  inset: 0 auto 0 0;
+  width: 3px;
+  background: var(--red);
+  transform: scaleY(0);
+  transform-origin: 50% 0;
+  transition: transform 380ms var(--ease);
 }
-.file__plus::before { width: 0.8rem; height: 1.5px; }
-.file__plus::after { width: 1.5px; height: 0.8rem; }
-.file__tab:hover .file__plus { border-color: var(--ink); transform: rotate(90deg); }
-.file[data-open="true"] .file__plus { background: var(--ink); border-color: var(--ink); transform: rotate(180deg); }
-.file[data-open="true"] .file__plus::before,
-.file[data-open="true"] .file__plus::after { background: var(--paper-hi); }
-.file[data-open="true"] .file__plus::after { transform: scaleY(0); }
+.drawer[data-open="true"] .drawer__front::before { transform: scaleY(1); }
 
-/* Rows: a grid 0fr to 1fr, so the panel opens to its own height. */
-.file__body {
+/* The contents settle a beat after the drawer starts moving, so the file
+   arrives rather than being revealed. Transform and opacity only, so the
+   measured height the well animates is never disturbed. */
+.drawer__sheet > :not(.drawer__stamp) {
+  transition:
+    opacity 260ms var(--ease),
+    translate 380ms var(--ease);
+}
+.js .drawer:not([data-open="true"]) .drawer__sheet > :not(.drawer__stamp) {
+  opacity: 0;
+  translate: 0 10px;
+}
+.js .drawer[data-open="true"] .drawer__fileno { transition-delay: 200ms; }
+.js .drawer[data-open="true"] .drawer__lead { transition-delay: 230ms; }
+.js .drawer[data-open="true"] .drawer__points { transition-delay: 265ms; }
+.js .drawer[data-open="true"] .drawer__meta { transition-delay: 300ms; }
+.js .drawer[data-open="true"] .drawer__walk {
+  grid-area: walk; transition-delay: 330ms; }
+
+/* The well is the cavity the drawer leaves behind: a dark slot that opens
+   with a slight overshoot, like a drawer hitting the end of its run. */
+.drawer__well {
   display: grid;
   grid-template-rows: 1fr;
-  transition: grid-template-rows 520ms var(--ease);
+  transition: grid-template-rows 560ms cubic-bezier(0.22, 1.14, 0.3, 1);
 }
-/* Collapsing is a scripting behaviour: if the script never runs, every file
-   stays open instead of becoming a stack of headings with no text. */
-.js .file__body { grid-template-rows: 0fr; }
-.js .file[data-open="true"] .file__body { grid-template-rows: 1fr; }
-.file__body-in {
+.js .drawer__well { grid-template-rows: 0fr; }
+.js .drawer[data-open="true"] .drawer__well { grid-template-rows: 1fr; }
+
+/* visibility, not just the 0fr row: a clipped panel still takes focus and is
+   still read out, and a closed drawer must be neither. The delay keeps the
+   panel visible until the drawer has finished rolling home. */
+.drawer__sheet {
   overflow: hidden;
-  padding: 0 1.4rem 1.6rem;
-  transition: opacity 320ms var(--ease), padding 520ms var(--ease);
+  visibility: visible;
 }
-.js .file__body-in { opacity: 0; padding-bottom: 0; }
-.js .file[data-open="true"] .file__body-in {
-  opacity: 1;
-  padding-bottom: 1.6rem;
-  transition: opacity 420ms var(--ease) 120ms, padding 520ms var(--ease);
+.js .drawer__sheet {
+  visibility: hidden;
+  transition: visibility 0s linear 560ms;
 }
-.file__lead {
+.js .drawer[data-open="true"] .drawer__sheet {
+  visibility: visible;
+  transition-delay: 0s;
+}
+
+/* The file itself: a sheet standing in the cavity, front edge lit, back edge
+   in shadow, so it reads as paper in a box rather than a panel in a bar. */
+.drawer__sheet {
+  position: relative;
+  min-height: 0;
+  padding: 0 clamp(0.9rem, 2.4vw, 1.6rem);
+  background:
+    linear-gradient(180deg, #fffefb 0%, var(--paper-hi) 30%);
+  box-shadow:
+    inset 0 14px 18px -20px rgba(11, 12, 14, 0.75),
+    inset 0 -1px 0 rgba(11, 12, 14, 0.1);
+}
+.drawer__fileno {
+  grid-area: fileno;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem 1.2rem;
+  padding: 0.9rem 0 0.8rem;
+  border-bottom: 1px solid var(--rule-soft);
+  font-family: var(--mono);
+  font-size: 0.625rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: #55524b;
+}
+.drawer__fileno span:first-child { color: var(--red-ink); }
+
+/* Wide screens get a real margin: the clauses run down the left of the sheet
+   and the deadline, the price and the walk-through sit in the gutter, which
+   is the space a filed sheet actually leaves. */
+@media (min-width: 60rem) {
+  .drawer__sheet {
+    display: grid;
+    grid-template-columns: minmax(0, 62ch) minmax(12rem, 1fr);
+    /* The margin spans the lead and the clauses, so it never stretches the
+       paragraph row it sits beside and leaves a hole under the lead. */
+    grid-template-areas:
+      "fileno fileno"
+      "lead   meta"
+      "points stamp"
+      "walk   walk";
+    column-gap: clamp(1.5rem, 4vw, 3.5rem);
+    align-content: start;
+  }
+  /* In the margin the stamp sits at the foot of the clause block, where a
+     clerk would put it: the row is as tall as the clauses, and the stamp
+     rides its baseline. */
+  .drawer__stamp {
+    position: static;
+    grid-area: stamp;
+    justify-self: end;
+    align-self: end;
+    margin-bottom: 0.3rem;
+  }
+  .drawer__lead { padding-right: 0; }
+  .drawer__meta {
+    display: grid;
+    gap: 1.1rem;
+    align-content: start;
+    padding: 1.35rem 0 0;
+    border-top: 2px solid var(--ink);
+    margin-top: 1.35rem;
+  }
+  .drawer__meta div + div { padding-top: 1rem; border-top: 1px solid var(--rule-soft); }
+  .drawer__meta dd { font-size: var(--step-2); line-height: 1.05; }
+  .drawer__walk { padding-top: 1.4rem; border-top: 1px solid var(--rule-soft); }
+}
+.drawer__lead {
+  grid-area: lead;
   max-width: 62ch;
   font-size: var(--step-1);
   line-height: 1.5;
   letter-spacing: -0.01em;
-  padding-left: calc(3.4rem + clamp(0.6rem, 2vw, 2rem));
-  padding-bottom: 1.6rem;
+  padding: 1.2rem 0 1.4rem;
 }
-.file__points {
+.drawer__points {
+  grid-area: points;
   display: grid;
-  gap: 0;
+  max-width: 62ch;
   border-top: 1px solid var(--rule-soft);
-  margin-left: calc(3.4rem + clamp(0.6rem, 2vw, 2rem));
-  max-width: 58ch;
 }
-.file__points li {
+.drawer__points li {
   display: grid;
-  grid-template-columns: 2.4rem minmax(0, 1fr);
-  gap: 0.6rem;
-  padding-block: 0.7rem;
+  grid-template-columns: 2.2rem minmax(0, 1fr);
+  gap: 0.5rem;
+  padding-block: 0.75rem;
   border-bottom: 1px solid var(--rule-soft);
   font-size: var(--step-0);
   line-height: 1.45;
 }
-.file__points span {
+.drawer__points span {
   font-family: var(--mono);
   font-size: var(--step--2);
   color: var(--red-ink);
   padding-top: 0.2rem;
 }
-.file__meta {
+/* The margin: what the file is worth and when it lands, set beside the
+   clauses rather than buried under them. */
+.drawer__meta {
+  grid-area: meta;
   display: flex;
   flex-wrap: wrap;
   gap: 0.75rem 3rem;
-  margin-left: calc(3.4rem + clamp(0.6rem, 2vw, 2rem));
-  padding-top: 1.4rem;
+  padding: 1.3rem 0 1.4rem;
 }
-.file__meta dt {
+.drawer__meta dt {
   font-family: var(--mono);
   font-size: var(--step--2);
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: var(--ink-3);
+  color: #55524b;
 }
-.file__meta dd {
+.drawer__meta dd {
   font-size: var(--step-1);
   font-variation-settings: "wght" 600;
   letter-spacing: -0.02em;
 }
-
-/* The stamp lands when the file is open: rotated, inked, slightly worn. */
-.file__stamp {
+/* The stamp lands after the sheet has settled: the file is filed. */
+.drawer__stamp {
   position: absolute;
-  right: 1.6rem;
-  bottom: 1.2rem;
-  padding: 0.3rem 0.7rem;
+  right: clamp(0.9rem, 2.4vw, 1.6rem);
+  top: 2.9rem;
+  padding: 0.28rem 0.65rem;
   border: 2px solid var(--red-ink);
   border-radius: 3px;
   font-family: var(--mono);
-  font-size: var(--step--2);
+  font-size: 0.625rem;
   letter-spacing: 0.3em;
   text-transform: uppercase;
   color: var(--red-ink);
   rotate: -7deg;
   opacity: 0;
-  transform: scale(1.6);
-  transition: opacity 200ms var(--ease), transform 320ms var(--spring);
+  transform: scale(1.5);
   pointer-events: none;
+  transition: opacity 180ms var(--ease), transform 320ms var(--spring);
 }
-.file[data-open="true"] .file__stamp {
-  opacity: 0.75;
+.drawer[data-open="true"] .drawer__stamp {
+  opacity: 0.72;
   transform: scale(1);
-  transition: opacity 220ms var(--ease) 220ms, transform 360ms var(--spring) 220ms;
+  transition:
+    opacity 200ms var(--ease) 340ms,
+    transform 380ms var(--spring) 310ms;
 }
+
+/* The walk-through: two quiet controls at the foot of every open drawer, so
+   the cabinet can be read straight through without going back to the stack. */
+.drawer__walk {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem 1.4rem;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 0 1.3rem;
+  border-top: 1px solid var(--rule);
+}
+.drawer__step {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.5rem;
+  padding: 0.35rem 0;
+  border: 0;
+  background: none;
+  font-size: var(--step--1);
+  font-variation-settings: "wght" 500;
+  color: var(--ink);
+  cursor: pointer;
+  text-decoration: underline;
+  text-decoration-color: var(--rule);
+  text-underline-offset: 0.28em;
+  transition: text-decoration-color 220ms var(--ease), color 220ms var(--ease);
+}
+.drawer__step:hover { color: var(--red-ink); text-decoration-color: currentColor; }
+.drawer__step span {
+  font-family: var(--mono);
+  font-size: 0.625rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #55524b;
+}
+.drawer__step--next { margin-left: auto; text-align: right; }
 
 .plan__foot {
   display: flex;
@@ -2172,6 +2396,7 @@ section { position: relative; }
   gap: 1rem 2rem;
   justify-content: space-between;
   align-items: baseline;
+  margin-top: var(--pad-2);
   padding-top: var(--pad-1);
   border-top: 1px solid var(--rule);
   color: var(--ink-2);
@@ -2181,23 +2406,54 @@ section { position: relative; }
 
 @media (max-width: 64rem) {
   .plan__head-grid { grid-template-columns: 1fr; }
-  .file__tab {
-    grid-template-columns: 2.2rem minmax(0, 1fr) 2.2rem;
+  .drawer__front {
+    grid-template-columns: minmax(0, 1fr) auto;
     grid-template-areas:
-      "no name plus"
-      ". claim claim"
-      ". count count";
-    row-gap: 0.4rem;
-    padding: 1.4rem 1.1rem 1.2rem;
+      "plate action"
+      "plate count";
+    align-items: center;
+    padding: 0.9rem;
   }
-  .file__no { grid-area: no; }
-  .file__name { grid-area: name; }
-  .file__claim { grid-area: claim; }
-  .file__count { grid-area: count; }
-  .file__plus { grid-area: plus; width: 2.2rem; height: 2.2rem; }
-  .file__body-in { padding-inline: 1.1rem; }
-  .file__lead, .file__points, .file__meta { padding-left: 0; margin-left: 0; }
-  .file__stamp { display: none; }
+  .drawer__handle { align-self: start; }
+  .drawer__count { justify-self: end; align-self: end; }
+  .drawer__plate { grid-template-columns: 1.9rem minmax(0, 1fr); }
+  .drawer__sheet { padding-inline: 0.9rem; }
+  .drawer__stamp { display: none; }
+}
+@media (max-width: 40rem) {
+  .cabinet { padding-inline: 0.3rem; padding-bottom: 0.3rem; }
+  .cabinet__serial { display: none; }
+  .drawer__front {
+    grid-template-columns: minmax(0, 1fr) 2.6rem;
+    grid-template-areas: "plate action";
+    grid-template-rows: auto;
+    gap: 0.5rem;
+    padding: 0.55rem 0.6rem;
+  }
+  .drawer__plate { grid-template-columns: 1.7rem minmax(0, 1fr); padding: 0.45rem 0.6rem 0.5rem 0.5rem; }
+  /* The handle turns to face you: a vertical bar on the drawer's edge, which
+     is how a narrow drawer front is actually pulled. */
+  .drawer__handle {
+    width: 0.8rem;
+    height: 2.6rem;
+    justify-self: center;
+    align-self: center;
+    background: linear-gradient(90deg, #fffefa 0%, #ded4bd 34%, #a99e86 68%, #cfc6b1 100%);
+  }
+  .drawer__handle::after {
+    left: 100%;
+    right: auto;
+    top: 4%;
+    bottom: 4%;
+    width: 0.35rem;
+    height: auto;
+    background: linear-gradient(90deg, rgba(11, 12, 14, 0.3), transparent);
+    border-radius: 0 999px 999px 0;
+  }
+  .drawer__count { display: none; }
+  .drawer__name { font-size: 1.2rem; }
+  .drawer__claim { font-size: var(--step--1); }
+  .drawer__lead { font-size: var(--step-0); }
 }
 
 /* ---------- 03 THE FINANCES: a ledger with a switch ---------- */
@@ -2663,9 +2919,11 @@ ol.record {
 }
 .bench__intro { font-size: var(--step-0); line-height: 1.6; color: #4f4c45; }
 
+/* Four cards, so the stack is a square: two rows of two. Three columns left
+   the fourth card orphaned across half the measure. */
 .members {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: clamp(1rem, 2.4vw, 2rem);
   perspective: 1400px;
 }
@@ -2752,6 +3010,29 @@ ol.record {
   font-size: var(--step-0);
   line-height: 1.55;
   color: #3f3d38;
+}
+/* The leader's one line, set as a pulled quote rather than a caption. */
+.member__quote {
+  margin: 0.4rem 0 0;
+  padding: 0.85rem 0 0 0.95rem;
+  border-left: 2px solid var(--red);
+}
+.member__quote p {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: var(--step-1);
+  line-height: 1.4;
+  letter-spacing: -0.01em;
+}
+.member__quote cite {
+  display: block;
+  margin-top: 0.4rem;
+  font-family: var(--mono);
+  font-style: normal;
+  font-size: 0.625rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--ink-3);
 }
 .member__meta {
   display: grid;
