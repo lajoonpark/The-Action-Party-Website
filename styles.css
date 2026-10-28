@@ -1975,7 +1975,7 @@ section { position: relative; }
 
 /* Only the open file shows its tab, the way only the drawn folder in a cabinet
    stands proud of the rest. The strip above already numbers the others, so a
-   tab on every card would just repeat it five times. */
+   tab on every card would just repeat it seven times. */
 .file__card::before {
   content: "";
   position: absolute;

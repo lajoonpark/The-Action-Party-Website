@@ -14,8 +14,8 @@ Six sections, each with its own personality but on one spine. A tile panel at
 
 | Section | Title | What it does | Its own gesture |
 | --- | --- | --- | --- |
-| `#plan` | Our Plan to Take Action | 31 policies in five areas | A horizontal deck you drag, swipe, or arrow through, with step buttons beside the counter; each policy opens in place |
-| `#finances` | The Finances, in the Open | Four-year ledger | Rows enter from the left, figures count up in their own unit (billion, trillion, percent), change bars draw from a centre line |
+| `#plan` | Our Plan to Take Action | 21 policies in seven files | A tabbed file deck, one folder per area; each file opens to its policies in place |
+| `#finances` | The Finances, in the Open | Three-year ledger | Rows enter from the left, figures count up in their own unit (billion, trillion, percent), change bars draw from a centre line |
 | `#system` | How Your Vote Actually Counts | NZ MMP, explained | The page inverts to black; clouds drift; an interactive 120-seat hemicycle |
 | `#people` | The Three Who Would Hold the Front Bench | The list, and who chose it | Cards tilt in 3D with the pointer and lift out of the stack |
 | `#record` | The Record, as Published | Everything published | Dated lines tick in against their date column |
@@ -61,20 +61,16 @@ gesture is gated on being in view. Shared rules:
   and disables smooth scrolling and the progress hairline.
 - Nothing that is hidden for a reveal is hidden when scripting is off: reveal
   states are gated behind a `js` class on `<html>`.
-- A pointer drag on the policy deck sets pointer capture only after 6px of travel,
-  so clicking a button inside a card still works.
-- The deck's arrow keys only act while focus is inside the deck, so the page is
-  never hijacked.
-- The deck's scroll snapping is armed by script only while a gesture is horizontal.
-  `scroll-snap-type: x mandatory` left on permanently makes a vertical wheel over the
-  deck settle a sideways snap before the page may scroll, which reads as the deck
-  stealing the scroll. Horizontal wheel and touch swipes still snap to a card.
+- A policy file opens in place, so the page keeps its own vertical scroll and no
+  gesture is ever taken away from it.
+- The file arrow keys only act while focus is inside the files, so the page is
+  never hijacked; Escape closes the open file.
 
 ## Accessibility
 
 - axe-core: **0 violations** at 1440 / 834 / 390 / 320 px.
 - Keyboard: skip link, visible 2px focus rings, tab strip with arrow-key navigation,
-  policy deck reachable by Tab with arrow keys to move between cards, the mobile
+  policy files reachable by Tab with arrow keys to move between them, the mobile
   menu closes on Escape, and the success overlay is announced once and can be
   dismissed with Escape or a click.
 - The ledger table collapses to a stacked definition layout under 48rem.

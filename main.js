@@ -635,7 +635,7 @@
     }
   }
 
-  /* ─── the plan: five files that open, one tab strip that follows ─── */
+  /* ─── the plan: seven files that open, one tab strip that follows ─── */
 
   const files = $$("[data-file]");
   const planTabs = $$("[data-plan-tab]");
@@ -668,7 +668,7 @@
     });
   });
 
-  /* Arrow keys walk the five files while focus is on one of them, and carry
+  /* Arrow keys walk the seven files while focus is on one of them, and carry
      focus with the selection so the next arrow press lands where expected.
      Escape closes the file that is open, which is the contract the
      accessibility page states. */
@@ -746,7 +746,7 @@
       cell.style.opacity = "0";
       cell.style.transform = "translateY(4px)";
       window.setTimeout(() => {
-        cell.textContent = mode === "then" ? row.dataset.then : row.dataset.now;
+        cell.textContent = mode === "then" ? cell.dataset.then : cell.dataset.now;
         cell.style.opacity = "1";
         cell.style.transform = "none";
       }, 130);
@@ -763,17 +763,19 @@
       0
     );
 
-  const paintBalance = (mode) => {
+  const paintBalance = () => {
     if (!balanceNum) return;
     const net = deltaTotal();
     const label = `Net new spending ${(net / 1000).toFixed(2)} trillion dollars a year`;
     balanceNum.textContent = (net / 1000).toFixed(2);
-    balanceNum.style.opacity = mode === "then" ? "1" : "0.55";
     balanceFund?.setAttribute("aria-label", label);
   };
 
   moneyModes.forEach((btn) => {
-    btn.addEventListener("click", () => paintBalance(btn.dataset.moneyMode));
+    btn.addEventListener("click", () => {
+      setMoneyMode(btn.dataset.moneyMode);
+      paintBalance();
+    });
   });
 
   ledgerRows().map((row) => $("[data-cell]", row)).filter(Boolean).forEach((cell) => {
